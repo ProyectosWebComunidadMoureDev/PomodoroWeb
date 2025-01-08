@@ -1,2 +1,2 @@
 # PomodoroWeb
-Projecto colaborativo de la comunidad de Mouredev
+Proyecto colaborativo de la comunidad de Mouredev
