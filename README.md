@@ -13,21 +13,16 @@ Crear una página web que:
   - Visualizar métricas y estadísticas de su progreso.
   - En futuras iteraciones, gestionar tareas y hábitos.
 
-## 📂 Estructura del Proyecto
-- **HTML**: Estructura del contenido.
-- **CSS**: Diseño visual, colores, fuentes y disposición.
-- **JavaScript**: Funcionalidad interactiva (temporizador, botones, etc.).
-
 ## 🛠️ Tecnologías y Herramientas
-- HTML5
-- CSS3
-- JavaScript
+- **HTML5**: Estructura del contenido.
+- **CSS3**: Diseño visual, colores, fuentes y disposición.
+- **JavaScript**: Funcionalidad interactiva (temporizador, botones, etc.).
 
 ## 👩‍💻 ¿Quiénes pueden participar?
 Todos los niveles de experiencia son bienvenidos.
 - **Principiantes**: Perfecto para aprender los fundamentos y trabajar en equipo.
 - **Intermedios**: Profundiza en JavaScript y prácticas avanzadas de CSS.
-- **Avanzados**: Lidera, revisa código y guía a otros desarrolladores.
+- **Avanzados**: Guía, revisa código y guía a otros desarrolladores.
 
 ## ⁉️ ¿Cómo contribuir?
   - **Clona el repositorio** y familiarízate con los archivos existentes:        
