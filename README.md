@@ -1,5 +1,5 @@
 # 🍅 Proyecto Pomodoro Web
-  Projecto colaborativo de la comunidad de Mouredev
+  Proyecto colaborativo de la comunidad de Mouredev
 
 ## #️⃣ Descripción del Proyecto
 Este proyecto colaborativo busca crear una **página web tipo Pomodoro** para gestionar el tiempo de forma eficiente utilizando la técnica Pomodoro. Usaremos **HTML**, **CSS** y **JavaScript** para construirlo, y el objetivo es aprender y colaborar entre desarrolladores con distintos niveles de experiencia.
