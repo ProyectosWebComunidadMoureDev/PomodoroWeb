@@ -20,3 +20,10 @@
 |---|---|---|---|
 |Fuente Principal|--font-family-main|"Poppins"|https://fonts.google.com/specimen/Poppins|
 |Color de Fuente|--text-color-main|#f5f5f5|![png](https://github.com/user-attachments/assets/40d81961-0a04-46ee-8fee-dc441b9423c6)|
+
+
+# Otros estilos
+
+|Elemento|Variable|Valor||
+|---|---|---|---|
+|Border Radius|--border-radius|15px||
