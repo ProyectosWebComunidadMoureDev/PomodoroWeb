@@ -1,0 +1,31 @@
+/* reset.css */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    line-height: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    margin: 0;  
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-large);
+}
+
+*::selection {
+    color: var(--yellow-color);
+    background: var(--white-color);
+    text-shadow: 2px 2px var(--bg-color-alt);
+}
+
+body {
+    background-color: var(--bg-color-main);        
+    color: var(--text-color-main);    
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
