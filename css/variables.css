@@ -1,0 +1,24 @@
+/* variables.css */
+:root {    
+    --bg-color-main: #1A1A1A; /* Color de Fondo */
+    --bg-color-alt: #212121;  /* Color de Fondo Secundario */
+    --blue-color: #3EB0F9;    /* Color Azul */    
+    --green-color: #00aa47;    /* Color Verde */    
+    --red-color: #FF0000;     /* Color Rojo */
+    --orange-color: #ff5500;  /* Color Naranja */
+    --yellow-color: #ffa61e;  /* Color Amarillo */
+    --purple-color: #7D00FE;  /* Color Morado */
+    --white-color: #f5f5f5;   /* Color Blanco */
+    
+    --font-family-main: "Poppins";
+    --text-color-main: #f5f5f5;    
+
+    --font-size-xxsmall: 0.5rem;
+    --font-size-xsmall: 0.75rem;
+    --font-size-small: 0.875rem;
+    --font-size-medium: 1rem;
+    --font-size-large: 1.5rem;
+    --font-size-xlarge: 1.75rem;
+    --font-size-xxlarge: 2.5rem;
+    --font-size-xxxlarge: 4.5rem;                    
+}
