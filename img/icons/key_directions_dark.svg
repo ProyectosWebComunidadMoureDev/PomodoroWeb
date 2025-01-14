@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="327.52" height="135.06" viewBox="0 0 327.52 135.06">
+  <defs>
+    <style>
+      .cls-1 {
+      fill: #1a1a1a;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+      stroke: #f7f7f7;
+      stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3 {
+      stroke-width: 1.5px;
+      }
+
+      .cls-2, .cls-3 {
+      fill: none;
+      }
+
+      .cls-2 {
+      stroke-width: 1.48px;
+      }
+
+      .cls-4 {
+      fill: #f7f7f7;
+      stroke-width: 0.23px;
+      }
+    </style>
+  </defs>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <g>
+          <rect class="cls-1" x="112.73" y="72.5" width="102.05" height="61.57" />
+          <rect class="cls-2" x="123.67" y="83.17" width="80.18" height="39.58" />
+          <line class="cls-3" x1="112.73" y1="72.5" x2="123.67" y2="83.43" />
+          <line class="cls-3" x1="214.5" y1="72.5" x2="203.56" y2="83.43" />
+          <line class="cls-3" x1="214.5" y1="133.75" x2="203.56" y2="122.81" />
+          <line class="cls-3" x1="112.73" y1="133.75" x2="123.67" y2="122.81" />
+        </g>
+        <polygon class="cls-4"
+          points="163.76 95.77 172.59 95.77 168.17 105.3 163.76 114.83 159.34 105.3 154.93 95.77 163.76 95.77" />
+        <g>
+          <rect class="cls-1" x="224.71" y="72.73" width="102.05" height="61.57" />
+          <rect class="cls-2" x="235.65" y="83.4" width="80.18" height="39.58" />
+          <line class="cls-3" x1="224.71" y1="72.73" x2="235.65" y2="83.67" />
+          <line class="cls-3" x1="326.48" y1="72.73" x2="315.54" y2="83.67" />
+          <line class="cls-3" x1="326.48" y1="133.98" x2="315.54" y2="123.05" />
+          <line class="cls-3" x1="224.71" y1="133.98" x2="235.65" y2="123.05" />
+        </g>
+        <polygon class="cls-4"
+          points="266.21 103.52 266.21 94.69 275.74 99.1 285.26 103.52 275.74 107.93 266.21 112.35 266.21 103.52" />
+        <g>
+          <rect class="cls-1" x="0.75" y="72.73" width="102.05" height="61.57"
+            transform="translate(103.56 207.04) rotate(180)" />
+          <rect class="cls-2" x="11.69" y="84.06" width="80.18" height="39.58"
+            transform="translate(103.56 207.7) rotate(180)" />
+          <line class="cls-3" x1="102.8" y1="134.3" x2="91.87" y2="123.37" />
+          <line class="cls-3" x1="1.04" y1="134.3" x2="11.97" y2="123.37" />
+          <line class="cls-3" x1="1.04" y1="73.06" x2="11.97" y2="83.99" />
+          <line class="cls-3" x1="102.8" y1="73.06" x2="91.87" y2="83.99" />
+        </g>
+        <polygon class="cls-4"
+          points="61.3 103.52 61.3 112.35 51.78 107.93 42.25 103.52 51.78 99.1 61.3 94.69 61.3 103.52" />
+        <g>
+          <rect class="cls-1" x="112.73" y="0.75" width="102.05" height="61.57"
+            transform="translate(327.52 63.07) rotate(180)" />
+          <rect class="cls-2" x="123.67" y="12.08" width="80.18" height="39.58"
+            transform="translate(327.52 63.73) rotate(180)" />
+          <line class="cls-3" x1="214.78" y1="62.32" x2="203.85" y2="51.39" />
+          <line class="cls-3" x1="113.02" y1="62.32" x2="123.95" y2="51.39" />
+          <line class="cls-3" x1="113.02" y1="1.08" x2="123.95" y2="12.01" />
+          <line class="cls-3" x1="214.78" y1="1.08" x2="203.85" y2="12.01" />
+        </g>
+        <polygon class="cls-4"
+          points="163.76 39.05 154.93 39.05 159.34 29.52 163.76 20 168.17 29.52 172.59 39.05 163.76 39.05" />
+      </g>
+    </g>
+  </g>
+</svg>

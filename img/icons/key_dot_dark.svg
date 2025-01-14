@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="103.56" height="103.56" viewBox="0 0 103.56 103.56">
+  <defs>
+    <style>
+      .cls-1 {
+      fill: #1a1a1a;
+      }
+
+      .cls-1, .cls-2 {
+      stroke: #f7f7f7;
+      stroke-miterlimit: 10;
+      stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+      fill: none;
+      }
+
+      .cls-3 {
+      fill: #f7f7f7;
+      }
+    </style>
+  </defs>
+  <g id="Capa_2" data-name="Capa 2">
+    <g id="Capa_1-2" data-name="Capa 1">
+      <g>
+        <g>
+          <rect class="cls-1" x="0.75" y="0.75" width="102.05" height="102.05" />
+          <rect class="cls-2" x="11.69" y="11.69" width="80.18" height="80.18" />
+          <line class="cls-1" x1="0.75" y1="0.75" x2="11.69" y2="11.69" />
+          <line class="cls-1" x1="102.52" y1="0.75" x2="91.58" y2="11.69" />
+          <line class="cls-1" x1="102.52" y1="102.48" x2="91.58" y2="91.54" />
+          <line class="cls-1" x1="0.75" y1="102.48" x2="11.69" y2="91.54" />
+        </g>
+        <g>
+          <path class="cls-3" d="M45.25,29.66h4.28l9,8.51-9,8.55H45.25l9-8.55Z" />
+          <path class="cls-3"
+            d="M50.18,72.57a2.2,2.2,0,0,1-.67-1.63,2.29,2.29,0,0,1,2.3-2.31,2.1,2.1,0,0,1,1.58.67A2.24,2.24,0,0,1,54,70.94a2.22,2.22,0,0,1-.65,1.63,2.1,2.1,0,0,1-1.58.67A2.21,2.21,0,0,1,50.18,72.57Z" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
