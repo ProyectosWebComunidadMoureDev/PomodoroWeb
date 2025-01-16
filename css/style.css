@@ -1,0 +1,18 @@
+/**************************************************************/
+/****************** ANIMACIÓN DEL FONDO **********************/
+/************************************************************/
+main {
+    height: 100vh;
+    background: url("/img/png/bg_dark_pattern.png") repeat;
+    background-color: var(--bg-color-main);
+    animation: bg-scrolling-reverse 5s linear infinite;        
+}
+@keyframes bg-scrolling-reverse {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 73px 73px; /* Ajustar el tamaño a un múltiplo del patrón */
+    }
+}
+/**************************************************************/
