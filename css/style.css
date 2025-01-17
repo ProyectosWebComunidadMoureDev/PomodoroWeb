@@ -136,7 +136,7 @@ header {
 
 #tasks header h2 {
     color: var(--text-color-main);
-    font-size: var(--font-size-xxsmall);
+    font-size: var(--font-size-xsmall);
 
 }
 
@@ -169,14 +169,13 @@ header {
 /****************/
 #add-task {
     width: 100%;
-    font-size: var(--font-size-small);
     padding: 0 10px;
     margin-bottom: 10px;
 
 }
 
 #add-task label {
-    font-size: var(--font-size-xxsmall);
+    font-size: var(--font-size-xsmall);
     line-height: normal;
     padding: 5px;
 }
@@ -207,16 +206,17 @@ header {
 
 #add-task label[for="task-finish"]{
     vertical-align: middle;
+    font-size: var(--font-size-xxsmall);
 }
 
 
-#add-task_buttons {
+.form_buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-#add-task_buttons button {
+.form_buttons button {
     padding: 0 15px;
     border: 1px dashed var(--white-color);
     border-radius: 9px;
@@ -227,7 +227,7 @@ header {
     margin-bottom: 5px;
 }
 
-#add-task_buttons button:hover {
+.form_buttons button:hover {
     opacity: 0.8;
 }
 
@@ -287,6 +287,7 @@ header {
     align-items: center;
     justify-content: center;
     border: none;
+    padding: 0;
     border-radius: 4px;
     cursor: pointer;
     opacity: 0.7;
@@ -307,11 +308,6 @@ header {
 .task-buttons button.delete {
     background-color: var(--red-color);
 }
-
-.task-buttons img{
-    width: 16px;
-}
-
 
 /*****************/
 /* New Task item */
@@ -347,5 +343,35 @@ header {
     line-height: 25px;
     font-size: var(--font-size-medium);
 }
+
+/***********************/
+/* Task Delete confirm */
+/***********************/
+.task-deleteConfirmation{
+    padding: 10px;
+}
+
+.task-deleteConfirmation p{
+    font-size: var(--font-size-xsmall);
+    line-height: 1.7;
+}
+
+#task-delete-name{
+    font-size: var(--font-size-xxsmall);
+    text-align: center;
+}
+
+.task-deleteConfirmation div{
+    margin-top: 10px;
+}
+
+#task-delete-confirm{
+    background-color: var(--green-color);
+}
+
+#task-delete-cancel{
+    background-color: var(--red-color);
+}
+
 
 /**************************************************************/

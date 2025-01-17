@@ -60,12 +60,12 @@
                   <button class="tasks-control" id="close">x</button>
                 </div>
               </header>
-              <form id="add-task" hidden="true">
+              <form id="add-task">
                 <label for="task-name">Task name:</label>
                 <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="20">
                 <input type="checkbox" id="task-finish">
                 <label for="task-finish">Finished</label>
-                <div id="add-task_buttons">
+                <div class="form_buttons">
                   <button id="save-task">Guardar</button>
                   <button id="cancel-task">Cancelar</button>
                 </div>
@@ -90,6 +90,14 @@
           
                 <li id="new-task">Add Task <span>+</span></li>
               </ul>
+              <div class="task-deleteConfirmation" >
+                <p>Confirmar borrado de:</p>
+                <p id="task-delete-name">Nombre tarea</p>
+                <div class="form_buttons">
+                    <button id="task-delete-confirm">Aceptar</button>
+                    <button id="task-delete-cancel">Cancelar</button>
+                </div>
+            </div>
         </section>      
     </main>
     <footer></footer>
