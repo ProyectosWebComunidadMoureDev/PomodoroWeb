@@ -6,7 +6,7 @@
     line-height: 1.75rem;
     text-decoration: none;
     color: inherit;
-    margin: 0;  
+    margin: 0;
     font-family: var(--font-family-main);
     font-size: var(--font-size-large);
 }
@@ -18,8 +18,8 @@
 }
 
 body {
-    background-color: var(--bg-color-main);        
-    color: var(--text-color-main);    
+    background-color: var(--bg-color-main);
+    color: var(--text-color-main);
 }
 
 main {
@@ -28,4 +28,15 @@ main {
     justify-content: start;
     align-items: center;
     width: 100%;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--font-size-medium);
+    color: var(--text-color-main);
+    line-height: 1.5;
+    justify-content: center;
 }
