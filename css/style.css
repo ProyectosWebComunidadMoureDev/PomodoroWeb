@@ -1,4 +1,173 @@
 /**************************************************************/
+/************************* GENERAL ****************************/
+/**************************************************************/
+body {
+    background-color: var(--bg-color-main);
+    color: var(--text-color-main);
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-medium);
+  }
+  
+  button {
+    font-size: var(--font-size-medium);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:focus-visible {
+    outline: 4px solid var(--blue-color);
+    outline-offset: 5px;
+  }
+  
+  /**************************************************************/
+  /************************** HEADER ****************************/
+  /**************************************************************/
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    height: 25vh;
+    padding: 2rem 5rem;
+    color: var(--text-color-main);
+  }
+  
+  .header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+  }
+  
+  .logo-img {
+    width: 3rem;
+  }
+  
+  .logo-name {
+    font-size: var(--font-size-large);
+    font-weight: 900;
+  }
+  
+  .logo-name-pill {
+    position: absolute;
+    right: -1.5rem;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    height: 30px;
+    font-size: var(--font-size-small);
+    color: var(--bg-color-main);
+    background-color: var(--blue-color);
+    border-radius: 20px;
+    transform: rotate(-10deg);
+    transition: transform 0.3s ease;
+  }
+  
+  .logo-name-pill:hover {
+    transform: rotate(0deg);
+  }
+  
+  /**************************************************************/
+  /*************************** MENU *****************************/
+  /**************************************************************/
+  .menu__container {
+    position: relative;
+  }
+  
+  .btn-menu {
+    padding: 6px 10px;
+    font-size: var(--font-size-medium);
+    color: var(--text-color-main);
+    background: var(--bg-color-main);
+    border: 2px solid var(--white-color);
+    box-shadow: 5px 5px var(--white-color);
+    position: relative;
+  }
+  
+  .btn-menu::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    height: 2px;
+    background: var(--white-color);
+    width: 0%;
+    transition: width 0.1s ease-in-out;
+  }
+  
+  .btn-menu:hover::after {
+    width: 80%;
+  }
+  
+  .btn-menu:active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
+  }
+  
+  .menu-content {
+    display: none;
+    position: absolute;
+    top: 80px;
+    flex-direction: column;
+    border: 1px solid var(--white-color);
+    padding: 10px;
+    background: var(--bg-color-alt);
+  }
+  
+  .menu-content.show {
+    display: flex;
+  }
+  
+  .btn {
+    font-size: var(--font-size-medium);
+  }
+  
+  .btn:hover {
+    background-color: var(--white-color);
+    color: var(--bg-color-alt);
+  }
+  
+  /**************************************************************/
+  /**************** BOTONES DE ESTADO ***************************/
+  /**************************************************************/
+  .state__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: var(--font-size-medium);
+    height: 100%;
+  }
+  
+  .btn-state {
+    padding: 6px 10px;
+    border: 5px solid var(--gray-color);
+    color: var(--white-color);
+  }
+  
+  .work {
+    border-color: var(--blue-color);
+  }
+  
+  .brake {
+    border-color: var(--orange-color);
+  }
+  
+  .rest {
+    border-color: var(--green-color);
+  }
+  
+  
+/**************************************************************/
 /****************** ANIMACIÓN DEL FONDO **********************/
 /************************************************************/
 main {

@@ -16,6 +16,10 @@
     background: var(--white-color);
     text-shadow: 2px 2px var(--bg-color-alt);
 }
+*:focus-visible {
+    outline: 5px solid var(--blue-color);
+    outline-offset: 6px;
+}
 
 body {
     background-color: var(--bg-color-main);

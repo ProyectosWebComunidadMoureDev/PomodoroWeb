@@ -2,6 +2,7 @@
 :root {    
     --bg-color-main: #1A1A1A; /* Color de Fondo */
     --bg-color-alt: #212121;  /* Color de Fondo Secundario */
+    --gray-color:#515151;
     --blue-color: #3EB0F9;    /* Color Azul */    
     --green-color: #00aa47;    /* Color Verde */    
     --red-color: #FF0000;     /* Color Rojo */
