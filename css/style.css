@@ -16,3 +16,78 @@ main {
     }
 }
 /**************************************************************/
+
+/**************************************************************/
+/********************* RELOJ POMODORO ************************/
+/************************************************************/
+
+/* Ahora mismo se ve mal, pero al cargar el archivo js ya se ve */
+/* los círculos completos */
+#pomodoro_core {
+    width: 100%;
+    height: 55vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;    
+}
+
+#clock {
+    position: absolute;
+    & span {
+        -webkit-user-select: none;
+        user-select: none;
+        font-family: var(--font-family-main);
+        font-size: var(--font-size-xxxlarge);
+        font-weight: bolder;
+        color: var(--blue-color);            
+    }
+}
+
+.circle-container {
+    position: relative;       
+}
+
+.progress-ring {
+    transform: rotate(-90deg); /* Ajustar el inicio del stroke al tope del círculo */
+    overflow: visible;    
+}
+
+.progress-ring__circle {
+    z-index: 2;
+    stroke: var(--blue-color); /* Color del stroke */
+    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear; /* Transición suave */    
+    stroke-linecap: round; /* Bordes redondeados */    
+}
+
+.out-ring__circle {
+    stroke: var(--blue-color); /* Color del stroke */
+    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
+    stroke-linecap: round; /* Bordes redondeados */
+    opacity: 1;
+}
+.in-ring__circle {
+    stroke: var(--blue-color); /* Color del stroke */
+    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
+    stroke-linecap: round; /* Bordes redondeados */
+    opacity: 1;
+}
+/**************************************************************/
+
