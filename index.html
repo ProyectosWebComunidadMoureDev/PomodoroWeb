@@ -18,9 +18,41 @@
         <section class="tabs">
             <button>Tasks</button>
         </section>
-        <section>AQUÍ IRA EL CRONOMETRO</section>
-        <section class="tasks"></section>      
+        <section>
+            <div id="pomodoro_core">
+                <div id="timer">
+                    <div class="circle-container">
+                        <svg class="progress-ring">
+                            <circle class="progress-ring__circle"
+                                    cx="150"
+                                    cy="80"
+                                    r="225"
+                                    stroke-width="22"
+                                    fill="transparent" />
+                            <circle class="out-ring__circle"
+                                    cx="150"
+                                    cy="80"
+                                    r="240"
+                                    stroke-width="3"
+                                    fill="transparent" />
+                            <circle class="in-ring__circle"
+                                    cx="150"
+                                    cy="80"
+                                    r="210"
+                                    stroke-width="3"
+                                    fill="transparent" />
+                        </svg>
+                    </div>
+                    <div id="clock">
+                        <span id="mins">12</span>
+                        <span>:</span>
+                        <span id="secs">12</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="tasks"></section>
     </main>
-    <footer></footer>   
+    <footer></footer>
 </body>
 </html>
