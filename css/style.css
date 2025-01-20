@@ -185,6 +185,17 @@ main {
     }
 }
 
+
+
+/**************************************************************/
+/************* TABS DE ESTADISTICAS Y TAREAS ******************/
+/**************************************************************/
+.tabs{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
 /**************************************************************/
 /********************* RELOJ POMODORO ************************/
 /************************************************************/
@@ -258,6 +269,271 @@ main {
     opacity: 1;
 }
 
+/**************************************************************/
+/*********************** LISTA DE TAREAS **********************/
+/**************************************************************/
+
+/******************/
+/* Task container */
+/******************/
+#tasks {
+    width: 250px;
+    background: var(--bg-color-main);
+    border: 1px solid var(--white-color);
+    position: absolute;
+    top: 200px;
+    left: 90px;
+
+}
+
+#tasks header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: var(--bg-color-main);
+    border-bottom: 1px solid var(--white-color);
+}
+
+#tasks header h2 {
+    color: var(--text-color-main);
+    font-size: var(--font-size-xsmall);
+
+}
+
+#tasks-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.tasks-control {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--white-color);
+    cursor: pointer;
+    font-size: var(--font-size-xxsmall);
+    line-height: 1.2;
+    background-color: var(--bg-color-main);
+    opacity: 0.4;
+}
+
+.tasks-control:hover {
+    background-color: var(--bg-color-alt);
+    opacity: 0.8;
+}
+
+/****************/
+/* add-task form*/
+/****************/
+#add-task {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 10px;
+
+}
+
+#add-task label {
+    font-size: var(--font-size-xsmall);
+    line-height: normal;
+    padding: 5px;
+}
+
+#add-task input {
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding: 0 5px;
+    border-radius: 9px;
+    font-size: var(--font-size-xxsmall);
+    color: var(--bg-color-main);
+    opacity: 0.8;
+}
+
+#add-task input:focus,
+#add-task input:active {
+    outline: none;
+    opacity: 1;
+}
+
+#add-task #task-finish{
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    margin-left: 5px;
+}
+
+#add-task label[for="task-finish"]{
+    vertical-align: middle;
+    font-size: var(--font-size-xxsmall);
+}
+
+
+.form_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form_buttons button {
+    padding: 0 15px;
+    border: 1px dashed var(--white-color);
+    border-radius: 9px;
+    opacity: 0.32;
+    cursor: pointer;
+    font-size: var(--font-size-xxsmall);
+    background-color: var(--bg-color-alt);
+    margin-bottom: 5px;
+}
+
+.form_buttons button:hover {
+    opacity: 0.8;
+}
+
+/**************/
+/* Task Item */
+/**************/
+
+.task {
+    height: 40px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid var(--white-color);
+    border-radius: 9px;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color-main);
+}
+
+.task.dragging {
+    opacity: 0.5;
+}
+
+.task-text {
+    font-size: var(--font-size-xxsmall);
+    flex-grow: 1;
+    position: relative;
+}
+
+.task-finished {
+    opacity: 0.3;
+}
+
+.task-finished span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 90%;
+    height: 2px;
+    background-color: var(--white-color);
+    z-index: 2;
+}
+
+.task-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.task-buttons button {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.task-buttons button:hover{
+    opacity:1;
+}
+
+.task-buttons button.edit {
+    background-color: var(--blue-color);
+}
+
+.task-buttons button.finish {
+    background-color: var(--green-color);
+}
+
+.task-buttons button.delete {
+    background-color: var(--red-color);
+}
+
+/*****************/
+/* New Task item */
+/*****************/
+#new-task {
+    padding: 5px;
+    margin: 10px;
+    border: 1px dashed var(--white-color);
+    background-color: var(--bg-color-alt);
+    border-radius: 9px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-color-main);
+    opacity: 0.40;
+    font-size: var(--font-size-xsmall);
+    font-weight: bold;
+}
+
+#new-task:hover {
+    opacity: 0.7;
+}
+
+#new-task span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-left: 25px;
+    border-radius: 50%;
+    font-weight: 100;
+    background-color: var(--bg-color-main);
+    color: var(--text-color-main);
+    text-align: center;
+    line-height: 25px;
+    font-size: var(--font-size-medium);
+}
+
+/***********************/
+/* Task Delete confirm */
+/***********************/
+.task-deleteConfirmation{
+    padding: 10px;
+}
+
+.task-deleteConfirmation p{
+    font-size: var(--font-size-xsmall);
+    line-height: 1.7;
+}
+
+#task-delete-name{
+    font-size: var(--font-size-xxsmall);
+    text-align: center;
+}
+
+.task-deleteConfirmation div{
+    margin-top: 10px;
+}
+
+#task-delete-confirm{
+    background-color: var(--green-color);
+}
+
+#task-delete-cancel{
+    background-color: var(--red-color);
+=======
 /**************************************************************/
 /********************* FOOTER ********************************/
 /************************************************************/
@@ -446,6 +722,8 @@ footer .background-text {
     background-color: var(--bg-color-main);
     box-shadow: none;
     color: var(--text-color-main);
+
 }
 
 
+/**************************************************************/
