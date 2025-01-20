@@ -1,4 +1,173 @@
 /**************************************************************/
+/************************* GENERAL ****************************/
+/**************************************************************/
+body {
+    background-color: var(--bg-color-main);
+    color: var(--text-color-main);
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-medium);
+  }
+  
+  button {
+    font-size: var(--font-size-medium);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:focus-visible {
+    outline: 4px solid var(--blue-color);
+    outline-offset: 5px;
+  }
+  
+  /**************************************************************/
+  /************************** HEADER ****************************/
+  /**************************************************************/
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    height: 25vh;
+    padding: 2rem 5rem;
+    color: var(--text-color-main);
+  }
+  
+  .header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+  }
+  
+  .logo-img {
+    width: 3rem;
+  }
+  
+  .logo-name {
+    font-size: var(--font-size-large);
+    font-weight: 900;
+  }
+  
+  .logo-name-pill {
+    position: absolute;
+    right: -1.5rem;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    height: 30px;
+    font-size: var(--font-size-small);
+    color: var(--bg-color-main);
+    background-color: var(--blue-color);
+    border-radius: 20px;
+    transform: rotate(-10deg);
+    transition: transform 0.3s ease;
+  }
+  
+  .logo-name-pill:hover {
+    transform: rotate(0deg);
+  }
+  
+  /**************************************************************/
+  /*************************** MENU *****************************/
+  /**************************************************************/
+  .menu__container {
+    position: relative;
+  }
+  
+  .btn-menu {
+    padding: 6px 10px;
+    font-size: var(--font-size-medium);
+    color: var(--text-color-main);
+    background: var(--bg-color-main);
+    border: 2px solid var(--white-color);
+    box-shadow: 5px 5px var(--white-color);
+    position: relative;
+  }
+  
+  .btn-menu::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    height: 2px;
+    background: var(--white-color);
+    width: 0%;
+    transition: width 0.1s ease-in-out;
+  }
+  
+  .btn-menu:hover::after {
+    width: 80%;
+  }
+  
+  .btn-menu:active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
+  }
+  
+  .menu-content {
+    display: none;
+    position: absolute;
+    top: 80px;
+    flex-direction: column;
+    border: 1px solid var(--white-color);
+    padding: 10px;
+    background: var(--bg-color-alt);
+  }
+  
+  .menu-content.show {
+    display: flex;
+  }
+  
+  .btn {
+    font-size: var(--font-size-medium);
+  }
+  
+  .btn:hover {
+    background-color: var(--white-color);
+    color: var(--bg-color-alt);
+  }
+  
+  /**************************************************************/
+  /**************** BOTONES DE ESTADO ***************************/
+  /**************************************************************/
+  .state__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: var(--font-size-medium);
+    height: 100%;
+  }
+  
+  .btn-state {
+    padding: 6px 10px;
+    border: 5px solid var(--gray-color);
+    color: var(--white-color);
+  }
+  
+  .work {
+    border-color: var(--blue-color);
+  }
+  
+  .brake {
+    border-color: var(--orange-color);
+  }
+  
+  .rest {
+    border-color: var(--green-color);
+  }
+  
+  
+/**************************************************************/
 /****************** ANIMACIÓN DEL FONDO **********************/
 /************************************************************/
 main {
@@ -16,13 +185,7 @@ main {
     }
 }
 
-/**************************************************************/
-/******* HEADER - SOLO PARA PREVISUALIZAR TAMAÑO **************/
-/**************************************************************/
-header {
-    height: 120px;
-    border: 1px solid white;
-}
+
 
 /**************************************************************/
 /************* TABS DE ESTADISTICAS Y TAREAS ******************/
@@ -105,7 +268,6 @@ header {
     stroke-linecap: round; /* Bordes redondeados */
     opacity: 1;
 }
-
 
 /**************************************************************/
 /*********************** LISTA DE TAREAS **********************/
@@ -371,6 +533,196 @@ header {
 
 #task-delete-cancel{
     background-color: var(--red-color);
+=======
+/**************************************************************/
+/********************* FOOTER ********************************/
+/************************************************************/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 3rem;
+    position: relative;
+}
+
+footer .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+footer .container .container__left {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+footer .container .container__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+footer .container .container__right a {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer .container .container__right a p {
+    font-size: var(--font-size-xsmall);
+}
+
+footer .container .container__left .logo{
+    width: fit-content;
+}
+
+footer .container .container__left .description {
+    font-size: var(--font-size-regular);
+    font-weight: 700;
+}
+
+footer .container .container__left .subcontainer__links {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 2rem;
+}
+
+footer .container .container__left .subcontainer__links .links__moure .moure__rrss{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+footer .container .container__left .subcontainer__links .btn-participe {
+    font-size: var(--font-size-regular);
+    width: fit-content;
+    font-weight: 500;
+    cursor: pointer;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    white-space: nowrap;
+    transition: transform 0.05s ease;
+    color: #F7F7F7;
+    border: 1px solid #F7F7F7;
+    box-shadow: 4px 4px 0px 0px #F7F7F7;
+    background: #1A1A1A;
+}
+
+footer .container .container__left .subcontainer__links .btn-participe:active {
+    color: #F7F7F7;
+    background: #1A1A1A;
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
+
+footer .container .container__left .subcontainer__links .links__githubs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer .container .container__left .subcontainer__links .links__githubs .github-link {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .container .container__left .subcontainer__links .links__githubs .github-link p {
+    font-size: var(--font-size-xxsmall);
+    line-height: 0.75rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    padding: 0 0.2rem;
+    border-radius: 1rem;
+    color: var(--bg-color-main);  
+}
+
+footer .container .container__left .subcontainer__links .links__githubs .github-link .links__swift {
+    background-color: var(--blue-color);
+}
+
+footer .container .container__left .subcontainer__links .links__githubs .github-link .links__kotlin {
+    background-color: var(--green-color);
+}
+
+footer .container .container__left .subcontainer__links .links__githubs .github-link .links__web {
+    background-color: var(--yellow-color);
+}
+
+footer .final-text {
+    font-size: var(--font-size-xsmall);
+    font-weight: 700;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+footer .background-text {
+    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    margin: -3rem auto;
+    z-index: -9999;
+}
+
+/************************************************************/
+/********************* BOTONES TIMER ************************/
+/************************************************************/
+
+.pomodoro_bottom {
+    width: 100%;
+} 
+.container-timer-buttons {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--blue-color);
+    display: flex;
+    gap: 64px;
+    justify-content: center;
+    align-items:center;  
+}
+
+.timer-button {
+    font-size: var(--font-size-medium);
+    color: var(--bg-color-main);
+    text-align: center;
+    width: 120px;
+    border-radius: 30px;
+    box-shadow: 8px 2px 0px var(--bg-color-main);
+    border: none;
+}
+
+
+.start {
+    background-color: var(--green-color);
+    
+}
+
+.pause {
+    background-color:var(--red-color);
+}
+
+.reset {
+    background-color: var(--purple-color);
+}
+
+.active {
+    background-color: var(--bg-color-main);
+    box-shadow: none;
+    color: var(--text-color-main);
+
 }
 
 
