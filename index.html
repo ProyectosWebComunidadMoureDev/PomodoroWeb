@@ -13,8 +13,12 @@
         <title>pomouredev</title>
     </head>
 <body>
+      
     <header></header>
     <main>
+      
+        <script src="script/buttontimer.js"></script>
+
         <section class="tabs">
             <button>Tasks</button>
         </section>
@@ -52,6 +56,21 @@
             </div>
         </section>
         <section class="tasks"></section>
+
+        <section id="pomodor_bottom" class="pomodoro_bottom">
+
+            <div id="container-timer-buttons" class="container-timer-buttons">
+
+                <!--En CSS se creo una clase Active, para cuando ocurra el evento click del boton y cambie el diseño -->
+                <button id="startbutton" class="timer-button star active">Start</button> 
+      
+                <button id="pausebutton" class="timer-button pause">Pause</button>
+            
+                <button id="resetbutton" class="timer-button reset">Reset</button>
+              </div>
+
+        </section>
+
     </main>
     <footer>
         <div class="container">

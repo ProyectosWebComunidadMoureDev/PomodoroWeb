@@ -15,7 +15,6 @@ main {
         background-position: 73px 73px; /* Ajustar el tamaño a un múltiplo del patrón */
     }
 }
-/**************************************************************/
 
 /**************************************************************/
 /********************* RELOJ POMODORO ************************/
@@ -89,8 +88,6 @@ main {
     stroke-linecap: round; /* Bordes redondeados */
     opacity: 1;
 }
-/**************************************************************/
-
 
 /**************************************************************/
 /********************* FOOTER ********************************/
@@ -236,3 +233,50 @@ footer .background-text {
 }
 
 /************************************************************/
+/********************* BOTONES TIMER ************************/
+/************************************************************/
+
+.pomodoro_bottom {
+    width: 100%;
+} 
+.container-timer-buttons {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--blue-color);
+    display: flex;
+    gap: 64px;
+    justify-content: center;
+    align-items:center;  
+}
+
+.timer-button {
+    font-size: var(--font-size-medium);
+    color: var(--bg-color-main);
+    text-align: center;
+    width: 120px;
+    border-radius: 30px;
+    box-shadow: 8px 2px 0px var(--bg-color-main);
+    border: none;
+}
+
+
+.start {
+    background-color: var(--green-color);
+    
+}
+
+.pause {
+    background-color:var(--red-color);
+}
+
+.reset {
+    background-color: var(--purple-color);
+}
+
+.active {
+    background-color: var(--bg-color-main);
+    box-shadow: none;
+    color: var(--text-color-main);
+}
+
+
