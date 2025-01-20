@@ -13,8 +13,34 @@
         <title>pomouredev</title>
     </head>
 <body>
-      
-    <header></header>
+   <header>
+        <div class="header__top">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/" class="logo" aria-label="Ir al inicio">
+              <img class="logo-img" src="/img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
+              <span class="logo-name">PomoureDev</span>
+            </a>
+            <div class="logo-name-pill">beta</div>
+          </div>
+          <nav class="menu__container" aria-label="Menú principal">
+            <button class="btn-menu" aria-expanded="false" aria-controls="menu-content">
+              MENU
+            </button>
+            <div class="menu-content" id="menu-content" role="menu" tabindex="-1">
+              <button class="btn settings" role="menuitem">Settings</button>
+              <button class="btn login" role="menuitem">Log In</button>
+              <button class="btn signup" role="menuitem">Sign Up</button>
+            </div>
+          </nav>
+        </div>
+        <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
+        <div class="state__container" role="group" aria-label="Estados de temporizador">
+            <button class="btn-state " aria-pressed="false">Work Time</button>
+            <button class="btn-state " aria-pressed="false">Break Time</button>
+            <button class="btn-state " aria-pressed="false">Rest Time</button>
+          </div>
+        </header>
     <main>
       
         <script src="script/buttontimer.js"></script>
@@ -72,7 +98,7 @@
         </section>
 
     </main>
-    <footer>
+  <footer>
         <div class="container">
             <div class="container__left">
                 <a class="logo" href="#">
@@ -137,5 +163,6 @@
             <img src="img/svg/pomouredevpro.svg" alt="" width="100%">
         </div>
     </footer>
-</body>
+/body>
+<script src="/script/main.js"></script>
 </html>
