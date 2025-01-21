@@ -171,7 +171,7 @@ body {
 /****************** ANIMACIÓN DEL FONDO **********************/
 /************************************************************/
 main {
-    height: 100vh;
+    height: fit-content;
     background: url("/img/png/bg_dark_pattern.png") repeat;
     background-color: var(--bg-color-main);
     animation: bg-scrolling-reverse 5s linear infinite;        
@@ -533,7 +533,7 @@ main {
 
 #task-delete-cancel{
     background-color: var(--red-color);
-=======
+}
 /**************************************************************/
 /********************* FOOTER ********************************/
 /************************************************************/
@@ -724,6 +724,73 @@ footer .background-text {
     color: var(--text-color-main);
 
 }
+
+
+/**************************************************************/
+
+/************************************************************/
+/********************* SECCION POMODORO ************************/
+/************************************************************/
+
+.pomodoro-description {
+    width: 100%;
+    height: fit-content;
+    background-color: var(--bg-color-main);
+    position: relative;
+}
+.pomodoro-description .key-new {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    transform: rotate(-20deg);
+    @media (width < 1200px){
+        display: none;
+    }
+}
+
+.pomodoro-description .key-new:hover {
+    transform: rotate(-10deg);
+    transition: transform 0.2s ease;
+}
+
+.pomodoro-description .key-enter {
+    position: absolute;
+    top: -60px;
+    right: 180px;
+    transform: rotate(25deg);
+    
+    @media (width < 1200px){
+        display: none;
+    }
+}
+
+.pomodoro-description .key-enter:hover {
+    transform: rotate(15deg);
+    transition: transform 0.2s ;
+}
+
+.pomodoro-description .container{
+    width: 80%;
+    margin: 0 auto;
+    padding-block: 5rem 3.5rem;
+}
+
+.pomodoro-description .container .container__title{
+    font-size: var(--font-size-xxlarge);
+    font-weight: 800;
+    text-align: left;
+    padding-bottom: 2rem;
+    line-height: 2.5rem;
+}
+
+.pomodoro-description .container .container__description{
+    font-size: var(--font-size-regular);
+    letter-spacing: 0.01rem;
+}
+
+
+
+
 
 
 /**************************************************************/
