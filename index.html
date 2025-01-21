@@ -13,12 +13,13 @@
         <title>pomouredev</title>
     </head>
 <body>
-   <header>
+  <!-- HEADER -->
+  <header>
         <div class="header__top">
           <!-- Logo -->
           <div class="logo">
             <a href="/" class="logo" aria-label="Ir al inicio">
-              <img class="logo-img" src="/img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
+              <img class="logo-img" src="img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
               <span class="logo-name">PomoureDev</span>
             </a>
             <div class="logo-name-pill">beta</div>
@@ -40,14 +41,14 @@
             <button class="btn-state " aria-pressed="false">Break Time</button>
             <button class="btn-state " aria-pressed="false">Rest Time</button>
           </div>
-        </header>
-    <main>
-      
-        <script src="script/buttontimer.js"></script>
-
+  </header>
+  <main>
+    <script src="script/buttontimer.js"></script>
+    <!-- TABS -->
         <section class="tabs">
             <button>Tasks</button>
         </section>
+    <!-- POMODORO CORE -->
         <section>
             <div id="pomodoro_core">
                 <div id="timer">
@@ -81,7 +82,7 @@
                 </div>
             </div>
         </section>
-
+    <!-- TASKS WINDOW -->
         <section id="tasks">
             <header>
                 <h2>Tasks</h2>
@@ -91,7 +92,7 @@
                   <button class="tasks-control" id="close">x</button>
                 </div>
               </header>
-              <form id="add-task">
+              <form id="add-task" hidden>
                 <label for="task-name">Task name:</label>
                 <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="20">
                 <input type="checkbox" id="task-finish">
@@ -102,7 +103,8 @@
                 </div>
               </form>
               <ul id="task-list">
-                <li class="task" draggable="true" >
+                <li id="new-task">Add Task <span>+</span></li>
+                <li class="task">
                   <span class="task-text ">Tarea 1</span> 
                   <div class="task-buttons">
                     <button class="edit"><img src="./img/svg/edit.svg"></button>
@@ -110,7 +112,7 @@
                     <button class="delete"><img src="./img/svg/delete.svg"></button>
                   </div>
                 </li>
-                <li class="task task-finished" draggable="true" >
+                <li class="task task-finished">
                   <span class="task-text ">Tarea 2</span> 
                   <div class="task-buttons">
                     <button class="edit"><img src="./img/svg/edit.svg"></button>
@@ -118,10 +120,8 @@
                     <button class="delete"><img src="./img/svg/delete.svg"></button>
                   </div>
                 </li>
-          
-                <li id="new-task">Add Task <span>+</span></li>
               </ul>
-              <div class="task-deleteConfirmation" >
+              <div class="task-deleteConfirmation" hidden>
                 <p>Confirmar borrado de:</p>
                 <p id="task-delete-name">Nombre tarea</p>
                 <div class="form_buttons">
@@ -130,9 +130,7 @@
                 </div>
             </div>
         </section>      
-
-        <section class="tasks"></section>
-
+    <!-- BOTTOM BUTTONS -->
         <section id="pomodor_bottom" class="pomodoro_bottom">
 
             <div id="container-timer-buttons" class="container-timer-buttons">
@@ -146,10 +144,9 @@
               </div>
 
         </section>
-
-
     </main>
-  <footer>
+    <!-- FOOTER -->
+    <footer>
         <div class="container">
             <div class="container__left">
                 <a class="logo" href="#">
@@ -214,6 +211,6 @@
             <img src="img/svg/pomouredevpro.svg" alt="" width="100%">
         </div>
     </footer>
-/body>
+  </body>
 <script src="/script/main.js"></script>
 </html>

@@ -194,6 +194,26 @@ main {
     width: 100%;
     display: flex;
     flex-direction: row;
+
+}
+
+.tabs button{
+  border: 2px solid var(--white-color);
+}
+
+.tabs button::after {
+  content: "";
+  display: block;
+  position: relative;
+  bottom: 7px;
+  height: 2px;
+  background: var(--white-color);
+  width: 0%;
+  transition: width 0.1s ease-in-out;
+}
+
+.tabs button:hover::after {
+  width: 100%;
 }
 
 /**************************************************************/
@@ -273,15 +293,13 @@ main {
 /*********************** LISTA DE TAREAS **********************/
 /**************************************************************/
 
-/******************/
 /* Task container */
-/******************/
 #tasks {
     width: 250px;
     background: var(--bg-color-main);
     border: 1px solid var(--white-color);
     position: absolute;
-    top: 200px;
+    top: 35vh;
     left: 90px;
 
 }
@@ -289,6 +307,7 @@ main {
 #tasks header {
     height: 40px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
@@ -308,14 +327,14 @@ main {
 }
 
 .tasks-control {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid var(--white-color);
     cursor: pointer;
-    font-size: var(--font-size-xxsmall);
+    font-size: var(--font-size-xsmall);
     line-height: 1.2;
     background-color: var(--bg-color-main);
     opacity: 0.4;
@@ -326,9 +345,7 @@ main {
     opacity: 0.8;
 }
 
-/****************/
 /* add-task form*/
-/****************/
 #add-task {
     width: 100%;
     padding: 0 10px;
@@ -393,10 +410,7 @@ main {
     opacity: 0.8;
 }
 
-/**************/
 /* Task Item */
-/**************/
-
 .task {
     height: 40px;
     padding: 10px;
@@ -432,7 +446,6 @@ main {
     width: 90%;
     height: 2px;
     background-color: var(--white-color);
-    z-index: 2;
 }
 
 .task-buttons {
@@ -471,9 +484,7 @@ main {
     background-color: var(--red-color);
 }
 
-/*****************/
 /* New Task item */
-/*****************/
 #new-task {
     padding: 5px;
     margin: 10px;
@@ -496,19 +507,17 @@ main {
     display: inline-block;
     width: 25px;
     height: 25px;
-    margin-left: 25px;
+    margin-left: 20px;
     border-radius: 50%;
-    font-weight: 100;
-    background-color: var(--bg-color-main);
-    color: var(--text-color-main);
+    font-weight: 300;
+    background-color: var(--white-color);
+    color: var(--bg-color-main);
     text-align: center;
     line-height: 25px;
     font-size: var(--font-size-medium);
 }
 
-/***********************/
 /* Task Delete confirm */
-/***********************/
 .task-deleteConfirmation{
     padding: 10px;
 }
@@ -533,7 +542,8 @@ main {
 
 #task-delete-cancel{
     background-color: var(--red-color);
-=======
+}
+
 /**************************************************************/
 /********************* FOOTER ********************************/
 /************************************************************/
