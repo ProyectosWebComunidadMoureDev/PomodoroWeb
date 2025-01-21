@@ -6,24 +6,24 @@ body {
     color: var(--text-color-main);
     font-family: var(--font-family-main);
     font-size: var(--font-size-medium);
-  }
-  
-  button {
+}
+
+button {
     font-size: var(--font-size-medium);
     background-color: transparent;
     border: none;
     cursor: pointer;
-  }
-  
-  button:focus-visible {
+}
+
+button:focus-visible {
     outline: 4px solid var(--blue-color);
     outline-offset: 5px;
-  }
-  
-  /**************************************************************/
-  /************************** HEADER ****************************/
-  /**************************************************************/
-  header {
+}
+
+/**************************************************************/
+/************************** HEADER ****************************/
+/**************************************************************/
+header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,31 +31,31 @@ body {
     height: 25vh;
     padding: 2rem 5rem;
     color: var(--text-color-main);
-  }
-  
-  .header__top {
+}
+
+.header__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  
-  .logo {
+}
+
+.logo {
     display: flex;
     gap: 1rem;
     align-items: center;
     position: relative;
-  }
-  
-  .logo-img {
+}
+
+.logo-img {
     width: 3rem;
-  }
-  
-  .logo-name {
+}
+
+.logo-name {
     font-size: var(--font-size-large);
     font-weight: 900;
-  }
-  
-  .logo-name-pill {
+}
+
+.logo-name-pill {
     position: absolute;
     right: -1.5rem;
     top: 50px;
@@ -70,20 +70,20 @@ body {
     border-radius: 20px;
     transform: rotate(-10deg);
     transition: transform 0.3s ease;
-  }
-  
-  .logo-name-pill:hover {
+}
+
+.logo-name-pill:hover {
     transform: rotate(0deg);
-  }
-  
-  /**************************************************************/
-  /*************************** MENU *****************************/
-  /**************************************************************/
-  .menu__container {
+}
+
+/**************************************************************/
+/*************************** MENU *****************************/
+/**************************************************************/
+.menu__container {
     position: relative;
-  }
-  
-  .btn-menu {
+}
+
+.btn-menu {
     padding: 6px 10px;
     font-size: var(--font-size-medium);
     color: var(--text-color-main);
@@ -91,9 +91,9 @@ body {
     border: 2px solid var(--white-color);
     box-shadow: 5px 5px var(--white-color);
     position: relative;
-  }
-  
-  .btn-menu::after {
+}
+
+.btn-menu::after {
     content: "";
     position: absolute;
     bottom: 10px;
@@ -102,18 +102,18 @@ body {
     background: var(--white-color);
     width: 0%;
     transition: width 0.1s ease-in-out;
-  }
-  
-  .btn-menu:hover::after {
+}
+
+.btn-menu:hover::after {
     width: 80%;
-  }
-  
-  .btn-menu:active {
+}
+
+.btn-menu:active {
     transform: translate(5px, 5px);
     box-shadow: none;
-  }
-  
-  .menu-content {
+}
+
+.menu-content {
     display: none;
     position: absolute;
     top: 80px;
@@ -121,52 +121,52 @@ body {
     border: 1px solid var(--white-color);
     padding: 10px;
     background: var(--bg-color-alt);
-  }
-  
-  .menu-content.show {
+}
+
+.menu-content.show {
     display: flex;
-  }
-  
-  .btn {
+}
+
+.btn {
     font-size: var(--font-size-medium);
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     background-color: var(--white-color);
     color: var(--bg-color-alt);
-  }
-  
-  /**************************************************************/
-  /**************** BOTONES DE ESTADO ***************************/
-  /**************************************************************/
-  .state__container {
+}
+
+/**************************************************************/
+/**************** BOTONES DE ESTADO ***************************/
+/**************************************************************/
+.state__container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     font-size: var(--font-size-medium);
     height: 100%;
-  }
-  
-  .btn-state {
+}
+
+.btn-state {
     padding: 6px 10px;
     border: 5px solid var(--gray-color);
     color: var(--white-color);
-  }
-  
-  .work {
+}
+
+.work {
     border-color: var(--blue-color);
-  }
-  
-  .brake {
+}
+
+.brake {
     border-color: var(--orange-color);
-  }
-  
-  .rest {
+}
+
+.rest {
     border-color: var(--green-color);
-  }
-  
-  
+}
+
+
 /**************************************************************/
 /****************** ANIMACIÓN DEL FONDO **********************/
 /************************************************************/
@@ -174,14 +174,17 @@ main {
     height: 100vh;
     background: url("/img/png/bg_dark_pattern.png") repeat;
     background-color: var(--bg-color-main);
-    animation: bg-scrolling-reverse 5s linear infinite;        
+    animation: bg-scrolling-reverse 5s linear infinite;
 }
+
 @keyframes bg-scrolling-reverse {
     from {
         background-position: 0 0;
     }
+
     to {
-        background-position: 73px 73px; /* Ajustar el tamaño a un múltiplo del patrón */
+        background-position: 73px 73px;
+        /* Ajustar el tamaño a un múltiplo del patrón */
     }
 }
 
@@ -190,30 +193,30 @@ main {
 /**************************************************************/
 /************* TABS DE ESTADISTICAS Y TAREAS ******************/
 /**************************************************************/
-.tabs{
+.tabs {
     width: 100%;
     display: flex;
     flex-direction: row;
 
 }
 
-.tabs button{
-  border: 2px solid var(--white-color);
+.tabs button {
+    border: 2px solid var(--white-color);
 }
 
 .tabs button::after {
-  content: "";
-  display: block;
-  position: relative;
-  bottom: 7px;
-  height: 2px;
-  background: var(--white-color);
-  width: 0%;
-  transition: width 0.1s ease-in-out;
+    content: "";
+    display: block;
+    position: relative;
+    bottom: 7px;
+    height: 2px;
+    background: var(--white-color);
+    width: 0%;
+    transition: width 0.1s ease-in-out;
 }
 
 .tabs button:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
 /**************************************************************/
@@ -239,53 +242,71 @@ main {
     align-items: center;
     position: relative;
     width: 100%;
-    height: 100%;    
+    height: 100%;
 }
 
 #clock {
     position: absolute;
+
     & span {
         -webkit-user-select: none;
         user-select: none;
         font-family: var(--font-family-main);
         font-size: var(--font-size-xxxlarge);
         font-weight: bolder;
-        color: var(--blue-color);            
+        color: var(--blue-color);
     }
 }
 
 .circle-container {
-    position: relative;       
+    position: relative;
 }
 
 .progress-ring {
-    transform: rotate(-90deg); /* Ajustar el inicio del stroke al tope del círculo */
-    overflow: visible;    
+    transform: rotate(-90deg);
+    /* Ajustar el inicio del stroke al tope del círculo */
+    overflow: visible;
 }
 
 .progress-ring__circle {
     z-index: 2;
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */    
-    stroke-linecap: round; /* Bordes redondeados */    
+    stroke: var(--blue-color);
+    /* Color del stroke */
+    stroke-dasharray: 314.16;
+    /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16;
+    /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear;
+    /* Transición suave */
+    stroke-linecap: round;
+    /* Bordes redondeados */
 }
 
 .out-ring__circle {
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
-    stroke-linecap: round; /* Bordes redondeados */
+    stroke: var(--blue-color);
+    /* Color del stroke */
+    stroke-dasharray: 314.16;
+    /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16;
+    /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear;
+    /* Transición suave */
+    stroke-linecap: round;
+    /* Bordes redondeados */
     opacity: 1;
 }
+
 .in-ring__circle {
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
-    stroke-linecap: round; /* Bordes redondeados */
+    stroke: var(--blue-color);
+    /* Color del stroke */
+    stroke-dasharray: 314.16;
+    /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16;
+    /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear;
+    /* Transición suave */
+    stroke-linecap: round;
+    /* Bordes redondeados */
     opacity: 1;
 }
 
@@ -301,7 +322,6 @@ main {
     position: absolute;
     top: 35vh;
     left: 90px;
-
 }
 
 #tasks header {
@@ -321,12 +341,12 @@ main {
 
 }
 
-#tasks-controls {
+#tasks-window-controls {
     display: flex;
     gap: 5px;
 }
 
-.tasks-control {
+.tasks-window-control {
     width: 20px;
     height: 20px;
     display: flex;
@@ -340,7 +360,7 @@ main {
     opacity: 0.4;
 }
 
-.tasks-control:hover {
+.tasks-window-control:hover {
     background-color: var(--bg-color-alt);
     opacity: 0.8;
 }
@@ -376,14 +396,14 @@ main {
     opacity: 1;
 }
 
-#add-task #task-finish{
+#add-task #task-finish {
     display: inline-block;
     height: 14px;
     width: 14px;
     margin-left: 5px;
 }
 
-#add-task label[for="task-finish"]{
+#add-task label[for="task-finish"] {
     vertical-align: middle;
     font-size: var(--font-size-xxsmall);
 }
@@ -402,8 +422,15 @@ main {
     opacity: 0.32;
     cursor: pointer;
     font-size: var(--font-size-xxsmall);
-    background-color: var(--bg-color-alt);
     margin-bottom: 5px;
+}
+
+.form-submit {
+    background-color: var(--green-color);
+}
+
+.form-cancel {
+    background-color: var(--red-color);
 }
 
 .form_buttons button:hover {
@@ -431,7 +458,11 @@ main {
 .task-text {
     font-size: var(--font-size-xxsmall);
     flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: relative;
+    text-overflow: ellipsis;
 }
 
 .task-finished {
@@ -468,8 +499,8 @@ main {
     opacity: 0.7;
 }
 
-.task-buttons button:hover{
-    opacity:1;
+.task-buttons button:hover {
+    opacity: 1;
 }
 
 .task-buttons button.edit {
@@ -493,7 +524,6 @@ main {
     border-radius: 9px;
     text-align: center;
     cursor: pointer;
-    color: var(--text-color-main);
     opacity: 0.40;
     font-size: var(--font-size-xsmall);
     font-weight: bold;
@@ -513,36 +543,41 @@ main {
     background-color: var(--white-color);
     color: var(--bg-color-main);
     text-align: center;
-    line-height: 25px;
+    line-height: 1.2;
     font-size: var(--font-size-medium);
 }
 
 /* Task Delete confirm */
-.task-deleteConfirmation{
+#task-deleteConfirmation {
     padding: 10px;
 }
 
-.task-deleteConfirmation p{
+#task-deleteConfirmation p {
     font-size: var(--font-size-xsmall);
     line-height: 1.7;
 }
 
-#task-delete-name{
+#task-delete-name {
     font-size: var(--font-size-xxsmall);
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.task-deleteConfirmation div{
+#task-deleteConfirmation div {
     margin-top: 10px;
 }
 
-#task-delete-confirm{
-    background-color: var(--green-color);
+#more-items {
+    position: relative;
+    text-align: end;
+    line-height: 0.5;
+    justify-content: center;
+    margin-right: 10px;
+    top: -10px;
 }
 
-#task-delete-cancel{
-    background-color: var(--red-color);
-}
 
 /**************************************************************/
 /********************* FOOTER ********************************/
@@ -589,7 +624,7 @@ footer .container .container__right a p {
     font-size: var(--font-size-xsmall);
 }
 
-footer .container .container__left .logo{
+footer .container .container__left .logo {
     width: fit-content;
 }
 
@@ -605,7 +640,7 @@ footer .container .container__left .subcontainer__links {
     gap: 2rem;
 }
 
-footer .container .container__left .subcontainer__links .links__moure .moure__rrss{
+footer .container .container__left .subcontainer__links .links__moure .moure__rrss {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -635,7 +670,7 @@ footer .container .container__left .subcontainer__links .btn-participe:active {
     transform: translate(3px, 3px);
 }
 
-footer .container .container__left .subcontainer__links .links__githubs{
+footer .container .container__left .subcontainer__links .links__githubs {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -657,7 +692,7 @@ footer .container .container__left .subcontainer__links .links__githubs .github-
     margin-top: 0.5rem;
     padding: 0 0.2rem;
     border-radius: 1rem;
-    color: var(--bg-color-main);  
+    color: var(--bg-color-main);
 }
 
 footer .container .container__left .subcontainer__links .links__githubs .github-link .links__swift {
@@ -693,7 +728,8 @@ footer .background-text {
 
 .pomodoro_bottom {
     width: 100%;
-} 
+}
+
 .container-timer-buttons {
     width: 100%;
     padding: 20px;
@@ -701,7 +737,7 @@ footer .background-text {
     display: flex;
     gap: 64px;
     justify-content: center;
-    align-items:center;  
+    align-items: center;
 }
 
 .timer-button {
@@ -717,11 +753,11 @@ footer .background-text {
 
 .start {
     background-color: var(--green-color);
-    
+
 }
 
 .pause {
-    background-color:var(--red-color);
+    background-color: var(--red-color);
 }
 
 .reset {
