@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-        <title>pomouredev</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>pomouredev</title>
+</head>
+
 <body>
-   <header>
+    <header>
         <div class="header__top">
-          <!-- Logo -->
-          <div class="logo">
-            <a href="/" class="logo" aria-label="Ir al inicio">
-              <img class="logo-img" src="/img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
-              <span class="logo-name">PomoureDev</span>
-            </a>
-            <div class="logo-name-pill">beta</div>
-          </div>
-          <nav class="menu__container" aria-label="Menú principal">
-            <button class="btn-menu" aria-expanded="false" aria-controls="menu-content">
-              MENU
-            </button>
-            <div class="menu-content" id="menu-content" role="menu" tabindex="-1">
-              <button class="btn settings" role="menuitem">Settings</button>
-              <button class="btn login" role="menuitem">Log In</button>
-              <button class="btn signup" role="menuitem">Sign Up</button>
+            <!-- Logo -->
+            <div class="logo">
+                <a href="/" class="logo" aria-label="Ir al inicio">
+                    <img class="logo-img" src="/img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
+                    <span class="logo-name">PomoureDev</span>
+                </a>
+                <div class="logo-name-pill">beta</div>
             </div>
-          </nav>
+            <nav class="menu__container" aria-label="Menú principal">
+                <button class="btn-menu" aria-expanded="false" aria-controls="menu-content">
+                    MENU
+                </button>
+                <div class="menu-content" id="menu-content" role="menu" tabindex="-1">
+                    <button class="btn settings" role="menuitem">Settings</button>
+                    <button class="btn login" role="menuitem">Log In</button>
+                    <button class="btn signup" role="menuitem">Sign Up</button>
+                </div>
+            </nav>
         </div>
         <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
         <div class="state__container" role="group" aria-label="Estados de temporizador">
             <button class="btn-state " aria-pressed="false">Work Time</button>
             <button class="btn-state " aria-pressed="false">Break Time</button>
             <button class="btn-state " aria-pressed="false">Rest Time</button>
-          </div>
-        </header>
+        </div>
+    </header>
     <main>
-      
+
 
         <section class="tabs">
             <button>Tasks</button>
@@ -52,24 +56,12 @@
                 <div id="timer">
                     <div class="circle-container">
                         <svg class="progress-ring">
-                            <circle class="progress-ring__circle"
-                                    cx="150"
-                                    cy="80"
-                                    r="225"
-                                    stroke-width="22"
-                                    fill="transparent" />
-                            <circle class="out-ring__circle"
-                                    cx="150"
-                                    cy="80"
-                                    r="240"
-                                    stroke-width="3"
-                                    fill="transparent" />
-                            <circle class="in-ring__circle"
-                                    cx="150"
-                                    cy="80"
-                                    r="210"
-                                    stroke-width="3"
-                                    fill="transparent" />
+                            <circle class="progress-ring__circle" cx="150" cy="80" r="225" stroke-width="22"
+                                fill="transparent" />
+                            <circle class="out-ring__circle" cx="150" cy="80" r="240" stroke-width="3"
+                                fill="transparent" />
+                            <circle class="in-ring__circle" cx="150" cy="80" r="210" stroke-width="3"
+                                fill="transparent" />
                         </svg>
                     </div>
                     <div id="clock">
@@ -85,42 +77,42 @@
             <header>
                 <h2>Tasks</h2>
                 <div id="tasks-controls">
-                  <button class="tasks-control" id="minimize">_</button>
-                  <button class="tasks-control" id="maximize">+</button>
-                  <button class="tasks-control" id="close">x</button>
+                    <button class="tasks-control" id="minimize">_</button>
+                    <button class="tasks-control" id="maximize">+</button>
+                    <button class="tasks-control" id="close">x</button>
                 </div>
-              </header>
-              <form id="add-task">
+            </header>
+            <form id="add-task">
                 <label for="task-name">Task name:</label>
                 <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="20">
                 <input type="checkbox" id="task-finish">
                 <label for="task-finish">Finished</label>
                 <div class="form_buttons">
-                  <button id="save-task">Guardar</button>
-                  <button id="cancel-task">Cancelar</button>
+                    <button id="save-task">Guardar</button>
+                    <button id="cancel-task">Cancelar</button>
                 </div>
-              </form>
-              <ul id="task-list">
-                <li class="task" draggable="true" >
-                  <span class="task-text ">Tarea 1</span> 
-                  <div class="task-buttons">
-                    <button class="edit"><img src="./img/svg/edit.svg"></button>
-                    <button class="finish"><img src="./img/svg/check.svg"></button>
-                    <button class="delete"><img src="./img/svg/delete.svg"></button>
-                  </div>
+            </form>
+            <ul id="task-list">
+                <li class="task" draggable="true">
+                    <span class="task-text ">Tarea 1</span>
+                    <div class="task-buttons">
+                        <button class="edit"><img src="./img/svg/edit.svg"></button>
+                        <button class="finish"><img src="./img/svg/check.svg"></button>
+                        <button class="delete"><img src="./img/svg/delete.svg"></button>
+                    </div>
                 </li>
-                <li class="task task-finished" draggable="true" >
-                  <span class="task-text ">Tarea 2</span> 
-                  <div class="task-buttons">
-                    <button class="edit"><img src="./img/svg/edit.svg"></button>
-                    <button class="finish"><img src="./img/svg/check.svg"></button>
-                    <button class="delete"><img src="./img/svg/delete.svg"></button>
-                  </div>
+                <li class="task task-finished" draggable="true">
+                    <span class="task-text ">Tarea 2</span>
+                    <div class="task-buttons">
+                        <button class="edit"><img src="./img/svg/edit.svg"></button>
+                        <button class="finish"><img src="./img/svg/check.svg"></button>
+                        <button class="delete"><img src="./img/svg/delete.svg"></button>
+                    </div>
                 </li>
-          
+
                 <li id="new-task">Add Task <span>+</span></li>
-              </ul>
-              <div class="task-deleteConfirmation" >
+            </ul>
+            <div class="task-deleteConfirmation">
                 <p>Confirmar borrado de:</p>
                 <p id="task-delete-name">Nombre tarea</p>
                 <div class="form_buttons">
@@ -128,7 +120,7 @@
                     <button id="task-delete-cancel">Cancelar</button>
                 </div>
             </div>
-        </section>      
+        </section>
 
         <section class="tasks"></section>
 
@@ -137,30 +129,58 @@
             <div id="container-timer-buttons" class="container-timer-buttons">
 
                 <!--En CSS se creo una clase Active, para cuando ocurra el evento click del boton y cambie el diseño -->
-                <button id="startbutton" class="timer-button star active">Start</button> 
-      
+                <button id="startbutton" class="timer-button star active">Start</button>
+
                 <button id="pausebutton" class="timer-button pause">Pause</button>
-            
+
                 <button id="resetbutton" class="timer-button reset">Reset</button>
-              </div>
+            </div>
 
         </section>
-      <section class="pomodoro-description">
-        <img class="key-enter" src="img/icons/key_enter_light.svg" alt="figura de tecla enter" width="90px" >
-        <img class="key-new"src="img/icons/key_new.svg" alt="figura de tecla new" width="100px"> 
-        <div class="container">
-          <h2 class="container__title">¿Qué es la Técnica Pomodoro?</h2>
-          <p class="container__description">
-              La Técnica Pomodoro es un método de gestión del tiempo diseñado para potenciar la productividad. Se basa en 
-              utilizar un temporizador que fracciona tu jornada laboral en segmentos denominados pomodoros y pausas. Por 
-              lo general, cada pomodoro dura 25 minutos y se complementa con un descanso de 5 minutos, aunque la duración 
-              exacta puede ajustarse en función de tu nivel de concentración.
-          </p>
-        </div>
-      </section>
+        <section class="pomodoro-description">
+            <img class="key-enter" src="img/icons/key_enter_light.svg" alt="figura de tecla enter" width="90px">
+            <img class="key-new" src="img/icons/key_new.svg" alt="figura de tecla new" width="100px">
+            <div class="container">
+                <h2 class="container__title">¿Qué es la Técnica Pomodoro?</h2>
+                <p class="container__description">
+                    La Técnica Pomodoro es un método de gestión del tiempo diseñado para potenciar la productividad. Se
+                    basa en
+                    utilizar un temporizador que fracciona tu jornada laboral en segmentos denominados pomodoros y
+                    pausas. Por
+                    lo general, cada pomodoro dura 25 minutos y se complementa con un descanso de 5 minutos, aunque la
+                    duración
+                    exacta puede ajustarse en función de tu nivel de concentración.
+                </p>
+            </div>
+        </section>
+        <section class="comunity-description">
+            <div>
+                <img class="folder" src="img/icons/folder_orange.svg" alt="figura de tecla enter" width="90px">
+                <span class="folder-pill">comunity-folder</span>
+
+            </div>
+            <img class="certificate" src="img/webp/achievement.webp" alt="figura de mano haciendo unso cuernos"
+                width="100px">
+            <div class="container">
+                <h2 class="container__title">La comunidad</h2>
+                <div class="container__description">
+                    <p>Rodéate de una comunidad que comparte tus intereses y te acompaña en tu crecimiento personal y
+                        profesional dentro del campus, un espacio diseñado especialmente para inspirarte y motivarte.
+                        Aquí puedes hacer preguntas, compartir tus conocimientos, brindar apoyo y aprender de otros
+                        estudiantes que están recorriendo un camino similar al tuyo..</p>
+                    <p>
+                        Construir conexiones significativas no solo enriquece tu experiencia, sino que también te ayuda
+                        a afrontar los desafíos con mayor confianza. El camino siempre es más ligero, inspirador y
+                        gratificante cuando lo recorres junto a personas que comparten tus objetivos y te impulsan a
+                        alcanzar tu máximo potencial
+                    </p>
+
+                </div>
+            </div>
+        </section>
 
     </main>
-  <footer>
+    <footer>
         <div class="container">
             <div class="container__left">
                 <a class="logo" href="#">
@@ -193,20 +213,21 @@
                             <img src="img/social/github_green.svg" alt="Logo github team kotlin" width=24>
                             <p class="links__kotlin">team-kotlin</p>
                         </a>
-                        <a class="github-link" href="https://github.com/ProyectosWebComunidadMoureDev/PomodoroWeb" target="_blank">
+                        <a class="github-link" href="https://github.com/ProyectosWebComunidadMoureDev/PomodoroWeb"
+                            target="_blank">
                             <img src="img/social/github_yellow.svg" alt="Logo github team web" width=24>
                             <p class="links__web">team-web</p>
                         </a>
                     </div>
                 </div>
-                    
+
             </div>
             <div class="container__right">
                 <a href="https://retosdeprogramacion.com/" target="_blank">
                     <img src="img/icons/code_blue.svg" alt="Archivo de código azul" width=24>
                     <p>Lógica de programación.</p>
                 </a>
-                <a href="https://discord.com/invite/mouredev" target="_blank" >
+                <a href="https://discord.com/invite/mouredev" target="_blank">
                     <img src="img/icons/binary_green.svg" alt="archivo de texto amarillo" width=24>
                     <p>Desarrollo de software.</p>
                 </a>
@@ -220,11 +241,13 @@
                 </a>
             </div>
         </div>
-        <p class="final-text">Desarrollado con HTML, CSS y JavaScript, por <span><img src="img/icons/heart.svg" alt=""></span> al código y gracias al trabajo de toda la comunidad.</p>
+        <p class="final-text">Desarrollado con HTML, CSS y JavaScript, por <span><img src="img/icons/heart.svg"
+                    alt=""></span> al código y gracias al trabajo de toda la comunidad.</p>
         <div class="background-text">
             <img src="img/svg/pomouredevpro.svg" alt="" width="100%">
         </div>
     </footer>
 </body>
 <script src="/script/main.js"></script>
+
 </html>
