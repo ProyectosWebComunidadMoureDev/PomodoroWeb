@@ -6,194 +6,226 @@ body {
     color: var(--text-color-main);
     font-family: var(--font-family-main);
     font-size: var(--font-size-medium);
-  }
-  
+}
+
   button {
-    font-size: var(--font-size-medium);
     background-color: transparent;
     border: none;
     cursor: pointer;
-  }
-  
+    font-size: var(--font-size-medium);
+}
+
   button:focus-visible {
     outline: 4px solid var(--blue-color);
     outline-offset: 5px;
-  }
-  
+}
+
   /**************************************************************/
   /************************** HEADER ****************************/
   /**************************************************************/
   header {
+    color: var(--text-color-main);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
     height: 25vh;
-    padding: 2rem 5rem;
-    color: var(--text-color-main);
-  }
-  
+    padding: 20px 25px;
+}
+
   .header__top {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
+    gap: 15px;
+    justify-content: center;
+
+    @media(width > 570px){
+        justify-content: space-between;
+    }
+}
+
   .logo {
-    display: flex;
-    gap: 1rem;
     align-items: center;
+    display: flex;
+    gap: 0.5rem;
     position: relative;
-  }
-  
+
+    @media (width > 720px) {
+        gap: 1rem;
+    }
+}
+
   .logo-img {
     width: 3rem;
-  }
-  
+}
+
   .logo-name {
-    font-size: var(--font-size-large);
+    font-size: clamp(1rem, 2.5vw, 3rem);
     font-weight: 900;
-  }
-  
+
+    /* font-size: var(--font-size-large); */
+}
+
   .logo-name-pill {
+    align-items: center;
+    background-color: var(--blue-color);
+    border-radius: 20px;
+    color: var(--bg-color-main);
+    display: flex;
+    font-size: var(--font-size-small);
+    height: 30px;
+    justify-content: center;
+    padding: 0 15px;
     position: absolute;
     right: -1.5rem;
     top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 15px;
-    height: 30px;
-    font-size: var(--font-size-small);
-    color: var(--bg-color-main);
-    background-color: var(--blue-color);
-    border-radius: 20px;
     transform: rotate(-10deg);
     transition: transform 0.3s ease;
-  }
-  
+}
+
   .logo-name-pill:hover {
     transform: rotate(0deg);
-  }
-  
+}
+
   /**************************************************************/
   /*************************** MENU *****************************/
   /**************************************************************/
   .menu__container {
     position: relative;
-  }
-  
+    z-index: 2;
+}
+
   .btn-menu {
-    padding: 6px 10px;
-    font-size: var(--font-size-medium);
-    color: var(--text-color-main);
-    background: var(--bg-color-main);
+    background: white;
     border: 2px solid var(--white-color);
-    box-shadow: 5px 5px var(--white-color);
+    color: black;
+    font-size: var(--responsive-btns);
+    font-weight: bold;
+    padding: 0 25px;
     position: relative;
-  }
-  
-  .btn-menu::after {
+}
+
+  .btn-menu::before {
+    border: 1px solid white;
     content: "";
+    display: block;
+    height: 100%;
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    height: 2px;
+    top: 7px;
+    transform: translateX(-15px);
+    width: 100%;
+    z-index: -1;
+}
+
+  .btn-menu::after {
     background: var(--white-color);
-    width: 0%;
+    bottom: 10px;
+    content: "";
+    height: 2px;
+    left: 10px;
+    position: absolute;
     transition: width 0.1s ease-in-out;
-  }
-  
+    width: 0%;
+}
+
   .btn-menu:hover::after {
     width: 80%;
-  }
-  
+}
+
   .btn-menu:active {
-    transform: translate(5px, 5px);
     box-shadow: none;
-  }
-  
+    transform: translate(5px, 5px);
+}
+
   .menu-content {
-    display: none;
-    position: absolute;
-    top: 80px;
-    flex-direction: column;
-    border: 1px solid var(--white-color);
-    padding: 10px;
     background: var(--bg-color-alt);
-  }
-  
+    border: 1px solid var(--white-color);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    position: absolute;
+    right: 1px;
+    top: 80px;
+    transform: translateX(10px);
+}
+
   .menu-content.show {
     display: flex;
-  }
-  
+}
+
   .btn {
     font-size: var(--font-size-medium);
-  }
-  
+}
+
   .btn:hover {
     background-color: var(--white-color);
     color: var(--bg-color-alt);
-  }
-  
+}
+
   /**************************************************************/
   /**************** BOTONES DE ESTADO ***************************/
   /**************************************************************/
   .state__container {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    font-size: var(--font-size-medium);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--responsive-btns);
+    gap: 10px;
     height: 100%;
-  }
-  
+    justify-content: center;
+
+    @media (width > 720px) {
+        gap: 50px;
+    }
+}
+
   .btn-state {
-    padding: 6px 10px;
-    border: 5px solid var(--gray-color);
+    border: 2px solid var(--gray-color);
     color: var(--white-color);
-  }
-  
+    font-size: var(--responsive-btns);
+    padding: 0 15px;
+}
+
+.btn-state:focus {
+    border: 5px solid var(--blue-color);
+}
+
   .work {
     border-color: var(--blue-color);
-  }
-  
+}
+
   .brake {
     border-color: var(--orange-color);
-  }
-  
+}
+
   .rest {
     border-color: var(--green-color);
-  }
-  
-  
+}  
 /**************************************************************/
 /****************** ANIMACIÓN DEL FONDO **********************/
 /************************************************************/
 main {
-    height: fit-content;
+    animation: bg-scrolling-reverse 5s linear infinite;
     background: url("/img/png/bg_dark_pattern.png") repeat;
     background-color: var(--bg-color-main);
-    animation: bg-scrolling-reverse 5s linear infinite;        
+    height: fit-content;
 }
 @keyframes bg-scrolling-reverse {
     from {
         background-position: 0 0;
     }
     to {
-        background-position: 73px 73px; /* Ajustar el tamaño a un múltiplo del patrón */
+        background-position: 73px 73px;
+
+        /* Ajustar el tamaño a un múltiplo del patrón */
     }
 }
-
-
 
 /**************************************************************/
 /************* TABS DE ESTADISTICAS Y TAREAS ******************/
 /**************************************************************/
 .tabs{
-    width: 100%;
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 /**************************************************************/
@@ -203,70 +235,91 @@ main {
 /* Ahora mismo se ve mal, pero al cargar el archivo js ya se ve */
 /* los círculos completos */
 #pomodoro_core {
-    width: 100%;
-    height: 55vh;
-    padding: 1rem;
+    align-items: center;
     display: flex;
     flex-direction: column;
+    height: 55vh;
     justify-content: center;
-    align-items: center;
+    padding: 1rem;
+    width: 100%;
 }
 
 #timer {
+    align-items: center;
     display: flex;
     flex-direction: column;
+    height: 100%;
     justify-content: center;
-    align-items: center;
     position: relative;
     width: 100%;
-    height: 100%;    
 }
 
 #clock {
     position: absolute;
+
     & span {
         -webkit-user-select: none;
-        user-select: none;
+        color: var(--blue-color);
         font-family: var(--font-family-main);
         font-size: var(--font-size-xxxlarge);
         font-weight: bolder;
-        color: var(--blue-color);            
+        user-select: none;
     }
 }
 
 .circle-container {
-    position: relative;       
+    position: relative;
 }
 
 .progress-ring {
-    transform: rotate(-90deg); /* Ajustar el inicio del stroke al tope del círculo */
-    overflow: visible;    
+    overflow: visible;
+    transform: rotate(-90deg);
+
+    /* Ajustar el inicio del stroke al tope del círculo */
 }
 
 .progress-ring__circle {
+    stroke: var(--blue-color);
+    stroke-dasharray: 314.16;
+    stroke-dashoffset: 314.16;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s linear;
     z-index: 2;
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */    
-    stroke-linecap: round; /* Bordes redondeados */    
+
+    /* Color del stroke */
+    /* Longitud total del perímetro del círculo */
+    /* Empieza con stroke completamente oculto */
+    /* Transición suave */
+    /* Bordes redondeados */
 }
 
 .out-ring__circle {
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
-    stroke-linecap: round; /* Bordes redondeados */
     opacity: 1;
+    stroke: var(--blue-color);
+    stroke-dasharray: 314.16;
+    stroke-dashoffset: 314.16;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s linear;
+
+    /* Color del stroke */
+    /* Longitud total del perímetro del círculo */
+    /* Empieza con stroke completamente oculto */
+    /* Transición suave */
+    /* Bordes redondeados */
 }
 .in-ring__circle {
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
-    stroke-linecap: round; /* Bordes redondeados */
     opacity: 1;
+    stroke: var(--blue-color);
+    stroke-dasharray: 314.16;
+    stroke-dashoffset: 314.16;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s linear;
+
+    /* Color del stroke */
+    /* Longitud total del perímetro del círculo */
+    /* Empieza con stroke completamente oculto */
+    /* Transición suave */
+    /* Bordes redondeados */
 }
 
 /**************************************************************/
@@ -277,29 +330,27 @@ main {
 /* Task container */
 /******************/
 #tasks {
-    width: 250px;
     background: var(--bg-color-main);
     border: 1px solid var(--white-color);
+    left: 90px;
     position: absolute;
     top: 200px;
-    left: 90px;
-
+    width: 250px;
 }
 
 #tasks header {
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
     background-color: var(--bg-color-main);
     border-bottom: 1px solid var(--white-color);
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    padding: 5px 10px;
 }
 
 #tasks header h2 {
     color: var(--text-color-main);
     font-size: var(--font-size-xsmall);
-
 }
 
 #tasks-controls {
@@ -308,17 +359,17 @@ main {
 }
 
 .tasks-control {
-    width: 14px;
-    height: 14px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    background-color: var(--bg-color-main);
     border: 1px solid var(--white-color);
     cursor: pointer;
+    display: flex;
     font-size: var(--font-size-xxsmall);
+    height: 14px;
+    justify-content: center;
     line-height: 1.2;
-    background-color: var(--bg-color-main);
     opacity: 0.4;
+    width: 14px;
 }
 
 .tasks-control:hover {
@@ -330,10 +381,9 @@ main {
 /* add-task form*/
 /****************/
 #add-task {
-    width: 100%;
-    padding: 0 10px;
     margin-bottom: 10px;
-
+    padding: 0 10px;
+    width: 100%;
 }
 
 #add-task label {
@@ -343,34 +393,33 @@ main {
 }
 
 #add-task input {
-    display: block;
-    width: 100%;
-    height: 30px;
-    padding: 0 5px;
     border-radius: 9px;
-    font-size: var(--font-size-xxsmall);
     color: var(--bg-color-main);
+    display: block;
+    font-size: var(--font-size-xxsmall);
+    height: 30px;
     opacity: 0.8;
+    padding: 0 5px;
+    width: 100%;
 }
 
 #add-task input:focus,
 #add-task input:active {
-    outline: none;
     opacity: 1;
+    outline: none;
 }
 
 #add-task #task-finish{
     display: inline-block;
     height: 14px;
-    width: 14px;
     margin-left: 5px;
+    width: 14px;
 }
 
 #add-task label[for="task-finish"]{
-    vertical-align: middle;
     font-size: var(--font-size-xxsmall);
+    vertical-align: middle;
 }
-
 
 .form_buttons {
     display: flex;
@@ -379,14 +428,14 @@ main {
 }
 
 .form_buttons button {
-    padding: 0 15px;
+    background-color: var(--bg-color-alt);
     border: 1px dashed var(--white-color);
     border-radius: 9px;
-    opacity: 0.32;
     cursor: pointer;
     font-size: var(--font-size-xxsmall);
-    background-color: var(--bg-color-alt);
     margin-bottom: 5px;
+    opacity: 0.32;
+    padding: 0 15px;
 }
 
 .form_buttons button:hover {
@@ -398,16 +447,16 @@ main {
 /**************/
 
 .task {
-    height: 40px;
-    padding: 10px;
-    margin: 10px;
+    align-items: center;
     border: 1px solid var(--white-color);
     border-radius: 9px;
+    color: var(--text-color-main);
     cursor: grab;
     display: flex;
+    height: 40px;
     justify-content: space-between;
-    align-items: center;
-    color: var(--text-color-main);
+    margin: 10px;
+    padding: 10px;
 }
 
 .task.dragging {
@@ -415,8 +464,8 @@ main {
 }
 
 .task-text {
-    font-size: var(--font-size-xxsmall);
     flex-grow: 1;
+    font-size: var(--font-size-xxsmall);
     position: relative;
 }
 
@@ -425,34 +474,34 @@ main {
 }
 
 .task-finished span::after {
+    background-color: var(--white-color);
     content: '';
-    position: absolute;
+    height: 2px;
     left: 0;
+    position: absolute;
     top: 50%;
     width: 90%;
-    height: 2px;
-    background-color: var(--white-color);
     z-index: 2;
 }
 
 .task-buttons {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 6px;
 }
 
 .task-buttons button {
-    height: 20px;
-    width: 20px;
-    display: flex;
     align-items: center;
-    justify-content: center;
     border: none;
-    padding: 0;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    height: 20px;
+    justify-content: center;
     opacity: 0.7;
+    padding: 0;
+    width: 20px;
 }
 
 .task-buttons button:hover{
@@ -475,17 +524,17 @@ main {
 /* New Task item */
 /*****************/
 #new-task {
-    padding: 5px;
-    margin: 10px;
-    border: 1px dashed var(--white-color);
     background-color: var(--bg-color-alt);
+    border: 1px dashed var(--white-color);
     border-radius: 9px;
-    text-align: center;
-    cursor: pointer;
     color: var(--text-color-main);
-    opacity: 0.40;
+    cursor: pointer;
     font-size: var(--font-size-xsmall);
     font-weight: bold;
+    margin: 10px;
+    opacity: 0.40;
+    padding: 5px;
+    text-align: center;
 }
 
 #new-task:hover {
@@ -493,17 +542,17 @@ main {
 }
 
 #new-task span {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin-left: 25px;
-    border-radius: 50%;
-    font-weight: 100;
     background-color: var(--bg-color-main);
+    border-radius: 50%;
     color: var(--text-color-main);
-    text-align: center;
-    line-height: 25px;
+    display: inline-block;
     font-size: var(--font-size-medium);
+    font-weight: 100;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 25px;
+    text-align: center;
+    width: 25px;
 }
 
 /***********************/
@@ -547,32 +596,32 @@ footer {
 }
 
 footer .container {
-    width: 100%;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 footer .container .container__left {
     display: flex;
-    width: 50%;
     flex-direction: column;
     padding: 1rem;
+    width: 50%;
 }
 
 footer .container .container__right {
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 1rem;
     gap: 0.5rem;
+    justify-content: flex-end;
+    padding: 1rem;
 }
 
 footer .container .container__right a {
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
+    display: flex;
     gap: 1rem;
+    justify-content: flex-end;
 }
 
 footer .container .container__right a p {
@@ -591,63 +640,63 @@ footer .container .container__left .description {
 footer .container .container__left .subcontainer__links {
     display: flex;
     flex-direction: row;
-    justify-content: left;
     gap: 2rem;
+    justify-content: left;
 }
 
 footer .container .container__left .subcontainer__links .links__moure .moure__rrss{
     display: flex;
     flex-direction: row;
-    justify-content: center;
     gap: 1rem;
+    justify-content: center;
     padding: 0.5rem;
 }
 
 footer .container .container__left .subcontainer__links .btn-participe {
-    font-size: var(--font-size-regular);
-    width: fit-content;
-    font-weight: 500;
-    cursor: pointer;
-    padding-inline-start: 1rem;
-    padding-inline-end: 1rem;
-    white-space: nowrap;
-    transition: transform 0.05s ease;
-    color: #F7F7F7;
+    background: #1A1A1A;
     border: 1px solid #F7F7F7;
     box-shadow: 4px 4px 0px 0px #F7F7F7;
-    background: #1A1A1A;
+    color: #F7F7F7;
+    cursor: pointer;
+    font-size: var(--font-size-regular);
+    font-weight: 500;
+    padding-inline-end: 1rem;
+    padding-inline-start: 1rem;
+    transition: transform 0.05s ease;
+    white-space: nowrap;
+    width: fit-content;
 }
 
 footer .container .container__left .subcontainer__links .btn-participe:active {
-    color: #F7F7F7;
     background: #1A1A1A;
     box-shadow: none;
+    color: #F7F7F7;
     transform: translate(3px, 3px);
 }
 
 footer .container .container__left .subcontainer__links .links__githubs{
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
     gap: 1rem;
+    justify-content: center;
 }
 
 footer .container .container__left .subcontainer__links .links__githubs .github-link {
-    width: fit-content;
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    width: fit-content;
 }
 
 footer .container .container__left .subcontainer__links .links__githubs .github-link p {
+    border-radius: 1rem;
+    color: var(--bg-color-main);
     font-size: var(--font-size-xxsmall);
-    line-height: 0.75rem;
     font-weight: 700;
+    line-height: 0.75rem;
     margin-top: 0.5rem;
     padding: 0 0.2rem;
-    border-radius: 1rem;
-    color: var(--bg-color-main);  
 }
 
 footer .container .container__left .subcontainer__links .links__githubs .github-link .links__swift {
@@ -665,15 +714,15 @@ footer .container .container__left .subcontainer__links .links__githubs .github-
 footer .final-text {
     font-size: var(--font-size-xsmall);
     font-weight: 700;
-    text-align: center;
     margin-top: 2rem;
+    text-align: center;
 }
 
 footer .background-text {
-    width: 100vw;
-    position: absolute;
     bottom: 0px;
     margin: -3rem auto;
+    position: absolute;
+    width: 100vw;
     z-index: -9999;
 }
 
@@ -685,29 +734,27 @@ footer .background-text {
     width: 100%;
 } 
 .container-timer-buttons {
-    width: 100%;
-    padding: 20px;
+    align-items:center;
     background-color: var(--blue-color);
     display: flex;
     gap: 64px;
     justify-content: center;
-    align-items:center;  
+    padding: 20px;
+    width: 100%;
 }
 
 .timer-button {
-    font-size: var(--font-size-medium);
-    color: var(--bg-color-main);
-    text-align: center;
-    width: 120px;
+    border: none;
     border-radius: 30px;
     box-shadow: 8px 2px 0px var(--bg-color-main);
-    border: none;
+    color: var(--bg-color-main);
+    font-size: var(--font-size-medium);
+    text-align: center;
+    width: 120px;
 }
-
 
 .start {
     background-color: var(--green-color);
-    
 }
 
 .pause {
@@ -722,9 +769,7 @@ footer .background-text {
     background-color: var(--bg-color-main);
     box-shadow: none;
     color: var(--text-color-main);
-
 }
-
 
 /**************************************************************/
 
@@ -733,16 +778,17 @@ footer .background-text {
 /************************************************************/
 
 .pomodoro-description {
-    width: 100%;
-    height: fit-content;
     background-color: var(--bg-color-main);
+    height: fit-content;
     position: relative;
+    width: 100%;
 }
 .pomodoro-description .key-new {
+    left: 100px;
     position: absolute;
     top: 50px;
-    left: 100px;
     transform: rotate(-20deg);
+
     @media (width < 1200px){
         display: none;
     }
@@ -755,10 +801,10 @@ footer .background-text {
 
 .pomodoro-description .key-enter {
     position: absolute;
-    top: -60px;
     right: 180px;
+    top: -60px;
     transform: rotate(25deg);
-    
+
     @media (width < 1200px){
         display: none;
     }
@@ -770,27 +816,22 @@ footer .background-text {
 }
 
 .pomodoro-description .container{
-    width: 80%;
     margin: 0 auto;
     padding-block: 5rem 3.5rem;
+    width: 80%;
 }
 
 .pomodoro-description .container .container__title{
     font-size: var(--font-size-xxlarge);
     font-weight: 800;
-    text-align: left;
-    padding-bottom: 2rem;
     line-height: 2.5rem;
+    padding-bottom: 2rem;
+    text-align: left;
 }
 
 .pomodoro-description .container .container__description{
     font-size: var(--font-size-regular);
     letter-spacing: 0.01rem;
 }
-
-
-
-
-
 
 /**************************************************************/
