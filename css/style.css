@@ -322,7 +322,6 @@ main {
     position: absolute;
     top: 35vh;
     left: 90px;
-
 }
 
 #tasks header {
@@ -342,12 +341,12 @@ main {
 
 }
 
-#tasks-controls {
+#tasks-window-controls {
     display: flex;
     gap: 5px;
 }
 
-.tasks-control {
+.tasks-window-control {
     width: 20px;
     height: 20px;
     display: flex;
@@ -361,7 +360,7 @@ main {
     opacity: 0.4;
 }
 
-.tasks-control:hover {
+.tasks-window-control:hover {
     background-color: var(--bg-color-alt);
     opacity: 0.8;
 }
@@ -423,8 +422,15 @@ main {
     opacity: 0.32;
     cursor: pointer;
     font-size: var(--font-size-xxsmall);
-    background-color: var(--bg-color-alt);
     margin-bottom: 5px;
+}
+
+.form-submit {
+    background-color: var(--green-color);
+}
+
+.form-cancel {
+    background-color: var(--red-color);
 }
 
 .form_buttons button:hover {
@@ -452,7 +458,11 @@ main {
 .task-text {
     font-size: var(--font-size-xxsmall);
     flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: relative;
+    text-overflow: ellipsis;
 }
 
 .task-finished {
@@ -514,7 +524,6 @@ main {
     border-radius: 9px;
     text-align: center;
     cursor: pointer;
-    color: var(--text-color-main);
     opacity: 0.40;
     font-size: var(--font-size-xsmall);
     font-weight: bold;
@@ -534,16 +543,16 @@ main {
     background-color: var(--white-color);
     color: var(--bg-color-main);
     text-align: center;
-    line-height: 25px;
+    line-height: 1.2;
     font-size: var(--font-size-medium);
 }
 
 /* Task Delete confirm */
-.task-deleteConfirmation {
+#task-deleteConfirmation {
     padding: 10px;
 }
 
-.task-deleteConfirmation p {
+#task-deleteConfirmation p {
     font-size: var(--font-size-xsmall);
     line-height: 1.7;
 }
@@ -551,19 +560,24 @@ main {
 #task-delete-name {
     font-size: var(--font-size-xxsmall);
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.task-deleteConfirmation div {
+#task-deleteConfirmation div {
     margin-top: 10px;
 }
 
-#task-delete-confirm {
-    background-color: var(--green-color);
+#more-items {
+    position: relative;
+    text-align: end;
+    line-height: 0.5;
+    justify-content: center;
+    margin-right: 10px;
+    top: -10px;
 }
 
-#task-delete-cancel {
-    background-color: var(--red-color);
-}
 
 /**************************************************************/
 /********************* FOOTER ********************************/

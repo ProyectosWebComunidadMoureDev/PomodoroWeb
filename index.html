@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script type="module" src="script/taskList.js"></script>
         <title>pomouredev</title>
     </head>
 <body>
@@ -46,7 +47,7 @@
       
 
         <section class="tabs">
-            <button>Tasks</button>
+            <button id="tab-tasks">Tasks</button>
         </section>
     <!-- POMODORO CORE -->
         <section>
@@ -83,52 +84,37 @@
             </div>
         </section>
     <!-- TASKS WINDOW -->
-        <section id="tasks">
+        <section id="tasks" hidden>
             <header>
                 <h2>Tasks</h2>
-                <div id="tasks-controls">
-                  <button class="tasks-control" id="minimize">_</button>
-                  <button class="tasks-control" id="maximize">+</button>
-                  <button class="tasks-control" id="close">x</button>
+                <div id="tasks-window-controls">
+                  <button class="tasks-window-control" id="minimize">_</button>
+                  <button class="tasks-window-control" id="maximize">+</button>
+                  <button class="tasks-window-control" id="close">x</button>
                 </div>
               </header>
               <form id="add-task" hidden>
                 <label for="task-name">Task name:</label>
-                <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="20">
+                <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="25" required>
                 <input type="checkbox" id="task-finish">
                 <label for="task-finish">Finished</label>
                 <div class="form_buttons">
-                  <button id="save-task">Guardar</button>
-                  <button id="cancel-task">Cancelar</button>
+                  <button class="form-submit" id="save-task" type="submit">Guardar</button>
+                  <button class="form-cancel" id="cancel-task" type="button">Cancelar</button>
                 </div>
               </form>
               <ul id="task-list">
                 <li id="new-task">Add Task <span>+</span></li>
-                <li class="task">
-                  <span class="task-text ">Tarea 1</span> 
-                  <div class="task-buttons">
-                    <button class="edit"><img src="./img/svg/edit.svg"></button>
-                    <button class="finish"><img src="./img/svg/check.svg"></button>
-                    <button class="delete"><img src="./img/svg/delete.svg"></button>
-                  </div>
-                </li>
-                <li class="task task-finished">
-                  <span class="task-text ">Tarea 2</span> 
-                  <div class="task-buttons">
-                    <button class="edit"><img src="./img/svg/edit.svg"></button>
-                    <button class="finish"><img src="./img/svg/check.svg"></button>
-                    <button class="delete"><img src="./img/svg/delete.svg"></button>
-                  </div>
-                </li>
               </ul>
-              <div class="task-deleteConfirmation" hidden>
+              <p id="more-items" hidden>...</p>
+              <form id="task-deleteConfirmation" hidden>
                 <p>Confirmar borrado de:</p>
-                <p id="task-delete-name">Nombre tarea</p>
+                <p id="task-delete-name"></p>
                 <div class="form_buttons">
-                    <button id="task-delete-confirm">Aceptar</button>
-                    <button id="task-delete-cancel">Cancelar</button>
+                    <button class="form-submit" id="task-delete-confirm" type="submit" >Aceptar</button>
+                    <button class="form-cancel" id="task-delete-cancel" type="button">Cancelar</button>
                 </div>
-            </div>
+            </form>
         </section>      
     <!-- BOTTOM BUTTONS -->
         <section id="pomodor_bottom" class="pomodoro_bottom">
