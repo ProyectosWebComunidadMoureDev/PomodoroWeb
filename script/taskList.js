@@ -7,6 +7,26 @@ const formNewTask = document.getElementById('add-task');
 const formConfirmDeleteTask = document.getElementById('task-deleteConfirmation');
 
 
+let draggedItem = null;
+
+//insert new task
+const insertTask=(item)=>{
+  const tasksItems = tasksWindow.querySelectorAll('li');
+  // busca la ultima tarea sin terminar para inserta la nueva tarea
+  let lastNonFinishedTask = null;
+  for (let i = 0; i < tasksItems.length; i++) {
+    if (!tasksItems[i].classList.contains('task-finished')) {
+      lastNonFinishedTask = tasksItems[i];
+    }
+  }
+  //insertamos la tarea
+  if (lastNonFinishedTask) {
+    tasksList.insertBefore(item, lastNonFinishedTask.nextSibling);
+  } else {
+    tasksList.appendChild(item);
+  }
+}
+
 //edit task
 const editTask = (form, itemIndex) => {
   const itemsArray = Array.from(tasksList.children);
@@ -16,8 +36,10 @@ const editTask = (form, itemIndex) => {
 
   if (form.querySelector('#task-finish').checked) {
     itemToEdit.classList.add('task-finished');
+    itemToEdit.draggable=false;
   } else {
     itemToEdit.classList.remove('task-finished');
+    itemToEdit.draggable=true;
   }
 }
 
@@ -45,7 +67,7 @@ const addNewTask = (form) => {
   const tasksItems = tasksWindow.querySelectorAll('li');
 
   // se crea el nuevo elemento
-  const taskName = form.querySelector('#task-name').value;
+  const taskName = form.querySelector('#task-name').value.trim();
   const taskStateFinished = form.querySelector('#task-finish').checked;
   const finishClass = taskStateFinished ? "task-finished" : "";
   const item = document.createElement('li');
@@ -58,6 +80,7 @@ const addNewTask = (form) => {
     item.style.display = 'none';
   }
   if (finishClass) { item.classList.add(finishClass) }
+  item.draggable=taskStateFinished ? false:true;
 
   item.innerHTML = `
     <span class="task-text">${taskName}</span>
@@ -67,20 +90,33 @@ const addNewTask = (form) => {
       <button class="delete"><img src="./img/svg/delete.svg"></button>
     </div>
   `;
+  //insertamos la tarea
+  insertTask(item);
 
-  // busca la ultima tarea sin terminar
-  let lastNonFinishedTask = null;
-  for (let i = 0; i < tasksItems.length; i++) {
-    if (!tasksItems[i].classList.contains('task-finished')) {
-      lastNonFinishedTask = tasksItems[i];
+  // Añadimos eventos drag and drop
+  item.addEventListener("dragstart", (e) => {
+    draggedItem = item;
+    e.dataTransfer.effectAllowed = "move";
+  });
+
+  item.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+
+  item.addEventListener("drop", (e) => {
+    e.preventDefault();
+    if (draggedItem !== item) {
+      const draggedIndex = Array.from(tasksList.children).indexOf(draggedItem);
+      const targetIndex = Array.from(tasksList.children).indexOf(item);
+
+      if (draggedIndex < targetIndex) {
+        tasksList.insertBefore(draggedItem, item.nextSibling);
+      } else {
+        tasksList.insertBefore(draggedItem, item);
+      }
     }
-  }
-  //insertamos la nueva tarea
-  if (lastNonFinishedTask) {
-    tasksList.insertBefore(item, lastNonFinishedTask.nextSibling);
-  } else {
-    tasksList.appendChild(item);
-  }
+  });
+
 }
 
 //submit form
