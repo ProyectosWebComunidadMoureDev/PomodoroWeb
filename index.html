@@ -40,9 +40,9 @@
         </div>
         <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
         <div class="state__container" role="group" aria-label="Estados de temporizador">
-            <button class="btn-state " aria-pressed="false">Work Time</button>
-            <button class="btn-state " aria-pressed="false">Break Time</button>
-            <button class="btn-state " aria-pressed="false">Rest Time</button>
+            <button class="btn-state " id="worktime_btn" aria-pressed="false">Work Time</button>
+            <button class="btn-state " id="breaktime_btn" aria-pressed="false">Break Time</button>
+            <button class="btn-state " id="resttime_btn" aria-pressed="false">Rest Time</button>
         </div>
     </header>
     <main>
@@ -51,7 +51,7 @@
         <section class="tabs">
             <button>Tasks</button>
         </section>
-        <section>
+        <section id="pomodoro">
             <div id="pomodoro_core">
                 <div id="timer">
                     <div class="circle-container">
@@ -65,9 +65,9 @@
                         </svg>
                     </div>
                     <div id="clock">
-                        <span id="mins">12</span>
+                        <span id="mins">25</span>
                         <span>:</span>
-                        <span id="secs">12</span>
+                        <span id="secs">00</span>
                     </div>
                 </div>
             </div>
@@ -249,5 +249,5 @@
     </footer>
 </body>
 <script src="/script/main.js"></script>
-
+<script src="/script/pomodoro.js"></script>
 </html>
