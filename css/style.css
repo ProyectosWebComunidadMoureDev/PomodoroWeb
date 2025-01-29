@@ -232,8 +232,10 @@ main {
 /********************* RELOJ POMODORO ************************/
 /************************************************************/
 
-/* Ahora mismo se ve mal, pero al cargar el archivo js ya se ve */
-/* los círculos completos */
+#pomodoro {
+    width: 100%;
+}
+
 #pomodoro_core {
     align-items: center;
     display: flex;
@@ -252,10 +254,12 @@ main {
     justify-content: center;
     position: relative;
     width: 100%;
+    height: 100%; /* REVISAR */     
 }
 
 #clock {
     position: absolute;
+    color: var(--blue-color);
 
     & span {
         -webkit-user-select: none;
@@ -264,6 +268,7 @@ main {
         font-size: var(--font-size-xxxlarge);
         font-weight: bolder;
         user-select: none;
+        color: inherit
     }
 }
 
@@ -274,7 +279,6 @@ main {
 .progress-ring {
     overflow: visible;
     transform: rotate(-90deg);
-
     /* Ajustar el inicio del stroke al tope del círculo */
 }
 
@@ -285,7 +289,6 @@ main {
     stroke-linecap: round;
     transition: stroke-dashoffset 0.3s linear;
     z-index: 2;
-
     /* Color del stroke */
     /* Longitud total del perímetro del círculo */
     /* Empieza con stroke completamente oculto */
@@ -300,7 +303,6 @@ main {
     stroke-dashoffset: 314.16;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.3s linear;
-
     /* Color del stroke */
     /* Longitud total del perímetro del círculo */
     /* Empieza con stroke completamente oculto */
@@ -314,7 +316,6 @@ main {
     stroke-dashoffset: 314.16;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.3s linear;
-
     /* Color del stroke */
     /* Longitud total del perímetro del círculo */
     /* Empieza con stroke completamente oculto */
@@ -505,7 +506,7 @@ main {
 }
 
 .task-buttons button:hover{
-    opacity:1;
+    opacity: 1;
 }
 
 .task-buttons button.edit {
@@ -821,7 +822,8 @@ footer .background-text {
     width: 80%;
 }
 
-.pomodoro-description .container .container__title{
+.pomodoro-description .container .container__title,
+.comunity-description .container .container__title{
     font-size: var(--font-size-xxlarge);
     font-weight: 800;
     line-height: 2.5rem;
@@ -829,9 +831,60 @@ footer .background-text {
     text-align: left;
 }
 
-.pomodoro-description .container .container__description{
+.pomodoro-description .container .container__description,
+.comunity-description .container .container__description{
     font-size: var(--font-size-regular);
     letter-spacing: 0.01rem;
 }
 
 /**************************************************************/
+
+.comunity-description{
+    width: 100%;
+    position: relative;
+    color: var(--bg-color-main);
+    font-weight: 800;
+    background-color: var(--blue-color);
+}
+
+.comunity-description .container{
+    padding: 8rem 8rem 5rem;
+}
+.comunity-description .container__description{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--bg-color-alt);
+    font-weight: 600;
+}
+.comunity-description .container__description p{
+    font-size: var(--font-size-regular);
+    letter-spacing: 0.01rem;
+}
+
+/**************************************************************/
+
+.folder,.folder-pill , .certificate{
+    position: absolute;
+}
+
+.folder{
+    left: 190px;
+    top: 60px;
+}
+
+.folder-pill{
+    left: 55px;
+    top: 140px;
+    scale: 0.5;
+    background-color: var(--orange-color);
+    padding: 5px 1rem;
+    border-radius: 1rem;
+}
+
+.certificate{
+    right:190px;
+    top: 110px;
+    scale: 2.5;
+    transform: rotate(-10deg);
+}
