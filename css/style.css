@@ -841,7 +841,70 @@ footer .background-text {
     transform: rotate(-10deg);
 }
 
+/************************************************************/
+/********************* STATUS WINDOWS ************************/
+/************************************************************/
 
+
+.status-container {
+    border: 1px solid var(--white-color);;
+    width: 250px; /*tamaño cuadrado ancho*/
+    background-color: var(--bg-color-main);
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+  }
+  
+  .status-header {
+    /* titulo*/
+    
+    background-color: var(--bg-color-main);
+    border-bottom: 1px solid var(--white-color);;
+    padding: 4px 16px; /*Separa el titulo del borde*/
+    display: flex; /*cuadrados pequeños*/
+    justify-content: space-between; /*mantiene los cuadrados a la derecha*/
+  }
+
+  .status-title {
+    color: var(--text-color-main);
+    font-size: var(--font-size-xsmall);
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 5px; /* espacio entre los botones x, -, + */
+    justify-content: center;
+    align-items: center;
+  }
+
+.status-control {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--white-color);
+    cursor: pointer;
+    font-size: var(--font-size-xsmall);
+    line-height: 1.2;
+    background-color: var(--bg-color-main);
+    opacity: 0.4;
+}
+
+.status-control:hover {
+    background-color: var(--bg-color-alt);
+    opacity: 0.8;
+}
+  
+  .status-content {
+    padding: 4px 16px;
+  }
+
+  .status-content p, .status-content span {
+    font-size: var(--font-size-xsmall); /* Tamaño letra items*/
+    font-weight: 500; /* Negrita*/
+  }
+  
 
 
 
