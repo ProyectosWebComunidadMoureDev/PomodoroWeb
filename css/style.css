@@ -1,3 +1,6 @@
+@import url(variables.css);
+@import url(reset.css);
+
 /**************************************************************/
 /************************* GENERAL ****************************/
 /**************************************************************/
@@ -6,194 +9,246 @@ body {
     color: var(--text-color-main);
     font-family: var(--font-family-main);
     font-size: var(--font-size-medium);
-  }
-  
+}
+
   button {
-    font-size: var(--font-size-medium);
     background-color: transparent;
     border: none;
     cursor: pointer;
-  }
-  
+    font-size: var(--font-size-medium);
+}
+
   button:focus-visible {
     outline: 4px solid var(--blue-color);
     outline-offset: 5px;
-  }
-  
-  /**************************************************************/
-  /************************** HEADER ****************************/
-  /**************************************************************/
-  header {
+}
+
+/**************************************************************/
+/************************** HEADER ****************************/
+/**************************************************************/
+header {
+    color: var(--text-color-main);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
     height: 25vh;
-    padding: 2rem 5rem;
-    color: var(--text-color-main);
-  }
-  
+    padding: 20px 25px;
+}
+
   .header__top {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
+    gap: 15px;
+    justify-content: center;
+
+    @media(width > 570px){
+        justify-content: space-between;
+    }
+}
+
   .logo {
-    display: flex;
-    gap: 1rem;
     align-items: center;
+    display: flex;
+    gap: 0.5rem;
     position: relative;
-  }
-  
+
+    @media (width > 720px) {
+        gap: 1rem;
+    }
+}
+
   .logo-img {
     width: 3rem;
-  }
-  
+}
+
   .logo-name {
-    font-size: var(--font-size-large);
+    font-size: clamp(1rem, 2.5vw, 3rem);
     font-weight: 900;
-  }
-  
+
+    /* font-size: var(--font-size-large); */
+}
+
   .logo-name-pill {
+    align-items: center;
+    background-color: var(--blue-color);
+    border-radius: 20px;
+    color: var(--bg-color-main);
+    display: flex;
+    font-size: var(--font-size-small);
+    height: 30px;
+    justify-content: center;
+    padding: 0 15px;
     position: absolute;
     right: -1.5rem;
     top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 15px;
-    height: 30px;
-    font-size: var(--font-size-small);
-    color: var(--bg-color-main);
-    background-color: var(--blue-color);
-    border-radius: 20px;
     transform: rotate(-10deg);
     transition: transform 0.3s ease;
-  }
-  
+}
+
   .logo-name-pill:hover {
     transform: rotate(0deg);
-  }
-  
+}
   /**************************************************************/
   /*************************** MENU *****************************/
   /**************************************************************/
   .menu__container {
     position: relative;
-  }
-  
+    z-index: 2;
+}
+
   .btn-menu {
-    padding: 6px 10px;
-    font-size: var(--font-size-medium);
-    color: var(--text-color-main);
-    background: var(--bg-color-main);
+    background: white;
     border: 2px solid var(--white-color);
-    box-shadow: 5px 5px var(--white-color);
+    color: black;
+    font-size: var(--responsive-btns);
+    font-weight: bold;
+    padding: 0 25px;
     position: relative;
-  }
-  
-  .btn-menu::after {
+}
+
+  .btn-menu::before {
+    border: 1px solid white;
     content: "";
+    display: block;
+    height: 100%;
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    height: 2px;
+    top: 7px;
+    transform: translateX(-15px);
+    width: 100%;
+    z-index: -1;
+}
+
+  .btn-menu::after {
     background: var(--white-color);
-    width: 0%;
+    bottom: 10px;
+    content: "";
+    height: 2px;
+    left: 10px;
+    position: absolute;
     transition: width 0.1s ease-in-out;
-  }
-  
+    width: 0%;
+}
+
   .btn-menu:hover::after {
     width: 80%;
-  }
-  
+}
+
   .btn-menu:active {
-    transform: translate(5px, 5px);
     box-shadow: none;
-  }
-  
+    transform: translate(5px, 5px);
+}
+
   .menu-content {
-    display: none;
-    position: absolute;
-    top: 80px;
-    flex-direction: column;
-    border: 1px solid var(--white-color);
-    padding: 10px;
     background: var(--bg-color-alt);
-  }
-  
+    border: 1px solid var(--white-color);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    position: absolute;
+    right: 1px;
+    top: 80px;
+    transform: translateX(10px);
+}
+
   .menu-content.show {
     display: flex;
-  }
-  
+}
+
   .btn {
     font-size: var(--font-size-medium);
-  }
-  
+}
+
   .btn:hover {
     background-color: var(--white-color);
     color: var(--bg-color-alt);
-  }
-  
+}
+
   /**************************************************************/
   /**************** BOTONES DE ESTADO ***************************/
   /**************************************************************/
   .state__container {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    font-size: var(--font-size-medium);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--responsive-btns);
+    gap: 10px;
     height: 100%;
-  }
-  
+    justify-content: center;
+
+    @media (width > 720px) {
+        gap: 50px;
+    }
+}
+
   .btn-state {
-    padding: 6px 10px;
-    border: 5px solid var(--gray-color);
+    border: 2px solid var(--gray-color);
     color: var(--white-color);
-  }
-  
+    font-size: var(--responsive-btns);
+    padding: 0 15px;
+}
+
+.btn-state:focus {
+    border: 5px solid var(--blue-color);
+}
+
   .work {
     border-color: var(--blue-color);
-  }
-  
+}
+
   .brake {
     border-color: var(--orange-color);
-  }
-  
+}
+
   .rest {
     border-color: var(--green-color);
-  }
-  
-  
+}  
 /**************************************************************/
 /****************** ANIMACIÓN DEL FONDO **********************/
 /************************************************************/
 main {
-    height: fit-content;
+    animation: bg-scrolling-reverse 5s linear infinite;
     background: url("/img/png/bg_dark_pattern.png") repeat;
     background-color: var(--bg-color-main);
-    animation: bg-scrolling-reverse 5s linear infinite;        
+    height: fit-content;
 }
 @keyframes bg-scrolling-reverse {
     from {
         background-position: 0 0;
     }
     to {
-        background-position: 73px 73px; /* Ajustar el tamaño a un múltiplo del patrón */
+        background-position: 73px 73px;
+
+        /* Ajustar el tamaño a un múltiplo del patrón */
     }
 }
-
-
 
 /**************************************************************/
 /************* TABS DE ESTADISTICAS Y TAREAS ******************/
 /**************************************************************/
-.tabs{
-    width: 100%;
+.tabs {
     display: flex;
     flex-direction: row;
+    width: 100%;
+
+}
+
+.tabs button {    
+    border: 2px solid var(--white-color);
+    position: absolute;
+}
+
+.tabs button::after {
+    background: var(--white-color);
+    bottom: 7px;
+    content: "";
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: width 0.1s ease-in-out;
+    width: 0%;
+}
+
+.tabs button:hover::after {
+    width: 100%;
 }
 
 /**************************************************************/
@@ -227,48 +282,66 @@ main {
 #clock {
     position: absolute;
     color: var(--blue-color);
+
     & span {
         -webkit-user-select: none;
         user-select: none;
         font-family: var(--font-family-main);
         font-size: var(--font-size-xxxlarge);
         font-weight: bolder;
-        color: inherit
+        color: inherit;
     }
 }
 
 .circle-container {
-    position: relative;       
+    position: relative;
 }
 
 .progress-ring {
-    transform: rotate(-90deg); /* Ajustar el inicio del stroke al tope del círculo */
-    overflow: visible;    
+    transform: rotate(-90deg);
+    /* Ajustar el inicio del stroke al tope del círculo */
+    overflow: visible;
 }
 
 .progress-ring__circle {
     z-index: 2;
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */    
-    stroke-linecap: round; /* Bordes redondeados */    
+    stroke: var(--blue-color);
+    /* Color del stroke */
+    stroke-dasharray: 314.16;
+    /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16;
+    /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear;
+    /* Transición suave */
+    stroke-linecap: round;
+    /* Bordes redondeados */
 }
 
 .out-ring__circle {
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
-    stroke-linecap: round; /* Bordes redondeados */
+    stroke: var(--blue-color);
+    /* Color del stroke */
+    stroke-dasharray: 314.16;
+    /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16;
+    /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear;
+    /* Transición suave */
+    stroke-linecap: round;
+    /* Bordes redondeados */
     opacity: 1;
 }
+
 .in-ring__circle {
-    stroke: var(--blue-color); /* Color del stroke */
-    stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-    stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-    transition: stroke-dashoffset 0.3s linear; /* Transición suave */
-    stroke-linecap: round; /* Bordes redondeados */
+    stroke: var(--blue-color);
+    /* Color del stroke */
+    stroke-dasharray: 314.16;
+    /* Longitud total del perímetro del círculo */
+    stroke-dashoffset: 314.16;
+    /* Empieza con stroke completamente oculto */
+    transition: stroke-dashoffset 0.3s linear;
+    /* Transición suave */
+    stroke-linecap: round;
+    /* Bordes redondeados */
     opacity: 1;
 }
 
@@ -276,22 +349,20 @@ main {
 /*********************** LISTA DE TAREAS **********************/
 /**************************************************************/
 
-/******************/
 /* Task container */
-/******************/
 #tasks {
     width: 250px;
     background: var(--bg-color-main);
     border: 1px solid var(--white-color);
     position: absolute;
-    top: 200px;
+    top: 35vh;
     left: 90px;
-
 }
 
 #tasks header {
     height: 40px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
@@ -305,33 +376,31 @@ main {
 
 }
 
-#tasks-controls {
+#tasks-window-controls {
     display: flex;
     gap: 5px;
 }
 
-.tasks-control {
-    width: 14px;
-    height: 14px;
+.tasks-window-control {
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid var(--white-color);
     cursor: pointer;
-    font-size: var(--font-size-xxsmall);
+    font-size: var(--font-size-xsmall);
     line-height: 1.2;
     background-color: var(--bg-color-main);
     opacity: 0.4;
 }
 
-.tasks-control:hover {
+.tasks-window-control:hover {
     background-color: var(--bg-color-alt);
     opacity: 0.8;
 }
 
-/****************/
 /* add-task form*/
-/****************/
 #add-task {
     width: 100%;
     padding: 0 10px;
@@ -362,14 +431,14 @@ main {
     opacity: 1;
 }
 
-#add-task #task-finish{
+#add-task #task-finish {
     display: inline-block;
     height: 14px;
     width: 14px;
     margin-left: 5px;
 }
 
-#add-task label[for="task-finish"]{
+#add-task label[for="task-finish"] {
     vertical-align: middle;
     font-size: var(--font-size-xxsmall);
 }
@@ -388,18 +457,22 @@ main {
     opacity: 0.32;
     cursor: pointer;
     font-size: var(--font-size-xxsmall);
-    background-color: var(--bg-color-alt);
     margin-bottom: 5px;
+}
+
+.form-submit {
+    background-color: var(--green-color);
+}
+
+.form-cancel {
+    background-color: var(--red-color);
 }
 
 .form_buttons button:hover {
     opacity: 0.8;
 }
 
-/**************/
 /* Task Item */
-/**************/
-
 .task {
     height: 40px;
     padding: 10px;
@@ -420,7 +493,11 @@ main {
 .task-text {
     font-size: var(--font-size-xxsmall);
     flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: relative;
+    text-overflow: ellipsis;
 }
 
 .task-finished {
@@ -435,7 +512,6 @@ main {
     width: 90%;
     height: 2px;
     background-color: var(--white-color);
-    z-index: 2;
 }
 
 .task-buttons {
@@ -458,8 +534,8 @@ main {
     opacity: 0.7;
 }
 
-.task-buttons button:hover{
-    opacity:1;
+.task-buttons button:hover {
+    opacity: 1;
 }
 
 .task-buttons button.edit {
@@ -474,9 +550,7 @@ main {
     background-color: var(--red-color);
 }
 
-/*****************/
 /* New Task item */
-/*****************/
 #new-task {
     padding: 5px;
     margin: 10px;
@@ -485,7 +559,6 @@ main {
     border-radius: 9px;
     text-align: center;
     cursor: pointer;
-    color: var(--text-color-main);
     opacity: 0.40;
     font-size: var(--font-size-xsmall);
     font-weight: bold;
@@ -499,44 +572,48 @@ main {
     display: inline-block;
     width: 25px;
     height: 25px;
-    margin-left: 25px;
+    margin-left: 20px;
     border-radius: 50%;
-    font-weight: 100;
-    background-color: var(--bg-color-main);
-    color: var(--text-color-main);
+    font-weight: 300;
+    background-color: var(--white-color);
+    color: var(--bg-color-main);
     text-align: center;
-    line-height: 25px;
+    line-height: 1.2;
     font-size: var(--font-size-medium);
 }
 
-/***********************/
 /* Task Delete confirm */
-/***********************/
-.task-deleteConfirmation{
+.task-deleteConfirmation {
     padding: 10px;
 }
 
-.task-deleteConfirmation p{
-    font-size: var(--font-size-xsmall);
+.task-deleteConfirmation p {
+    font-size: var(--font-size-xxsmall);
     line-height: 1.7;
 }
 
-#task-delete-name{
+#task-delete-name {
     font-size: var(--font-size-xxsmall);
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.task-deleteConfirmation div{
+.task-deleteConfirmation div {
     margin-top: 10px;
 }
 
-#task-delete-confirm{
-    background-color: var(--green-color);
+#more-items {
+    position: relative;
+    text-align: end;
+    line-height: 0.5;
+    justify-content: center;
+    margin-right: 10px;
+    top: -10px;
 }
 
-#task-delete-cancel{
-    background-color: var(--red-color);
-}
+
 /**************************************************************/
 /********************* FOOTER ********************************/
 /************************************************************/
@@ -582,7 +659,7 @@ footer .container .container__right a p {
     font-size: var(--font-size-xsmall);
 }
 
-footer .container .container__left .logo{
+footer .container .container__left .logo {
     width: fit-content;
 }
 
@@ -598,7 +675,7 @@ footer .container .container__left .subcontainer__links {
     gap: 2rem;
 }
 
-footer .container .container__left .subcontainer__links .links__moure .moure__rrss{
+footer .container .container__left .subcontainer__links .links__moure .moure__rrss {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -628,7 +705,7 @@ footer .container .container__left .subcontainer__links .btn-participe:active {
     transform: translate(3px, 3px);
 }
 
-footer .container .container__left .subcontainer__links .links__githubs{
+footer .container .container__left .subcontainer__links .links__githubs {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -650,7 +727,7 @@ footer .container .container__left .subcontainer__links .links__githubs .github-
     margin-top: 0.5rem;
     padding: 0 0.2rem;
     border-radius: 1rem;
-    color: var(--bg-color-main);  
+    color: var(--bg-color-main);
 }
 
 footer .container .container__left .subcontainer__links .links__githubs .github-link .links__swift {
@@ -686,7 +763,8 @@ footer .background-text {
 
 .pomodoro_bottom {
     width: 100%;
-} 
+}
+
 .container-timer-buttons {
     width: 100%;
     padding: 20px;
@@ -694,7 +772,7 @@ footer .background-text {
     display: flex;
     gap: 64px;
     justify-content: center;
-    align-items:center;  
+    align-items: center;
 }
 
 .timer-button {
@@ -710,11 +788,11 @@ footer .background-text {
 
 .start {
     background-color: var(--green-color);
-    
+
 }
 
 .pause {
-    background-color:var(--red-color);
+    background-color: var(--red-color);
 }
 
 .reset {
@@ -741,12 +819,14 @@ footer .background-text {
     background-color: var(--bg-color-main);
     position: relative;
 }
+
 .pomodoro-description .key-new {
     position: absolute;
     top: 50px;
     left: 100px;
     transform: rotate(-20deg);
-    @media (width < 1200px){
+
+    @media (width < 1200px) {
         display: none;
     }
 }
@@ -761,18 +841,18 @@ footer .background-text {
     top: -60px;
     right: 180px;
     transform: rotate(25deg);
-    
-    @media (width < 1200px){
+
+    @media (width < 1200px) {
         display: none;
     }
 }
 
 .pomodoro-description .key-enter:hover {
     transform: rotate(15deg);
-    transition: transform 0.2s ;
+    transition: transform 0.2s;
 }
 
-.pomodoro-description .container{
+.pomodoro-description .container {
     width: 80%;
     margin: 0 auto;
     padding-block: 5rem 3.5rem;
@@ -806,6 +886,7 @@ footer .background-text {
 .comunity-description .container{
     padding: 8rem 8rem 5rem;
 }
+
 .comunity-description .container__description{
     display: flex;
     flex-direction: column;
@@ -813,6 +894,7 @@ footer .background-text {
     color: var(--bg-color-alt);
     font-weight: 600;
 }
+
 .comunity-description .container__description p{
     font-size: var(--font-size-regular);
     letter-spacing: 0.01rem;
@@ -820,12 +902,13 @@ footer .background-text {
 
 .folder,.folder-pill , .certificate{
     position: absolute;
-
 }
+
 .folder{
     left: 190px;
     top: 60px;
 }
+
 .folder-pill{
     left: 55px;
     top: 140px;
@@ -834,14 +917,10 @@ footer .background-text {
     padding: 5px 1rem;
     border-radius: 1rem;
 }
+
 .certificate{
     right:190px;
     top: 110px;
     scale: 2.5;
     transform: rotate(-10deg);
 }
-
-
-
-
-

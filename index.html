@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/variables.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">    
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +12,6 @@
         rel="stylesheet">
     <title>pomouredev</title>
 </head>
-
 <body>
     <header>
         <div class="header__top">
@@ -46,11 +42,11 @@
         </div>
     </header>
     <main>
-
-
         <section class="tabs">
-            <button>Tasks</button>
+            <button id="tab-tasks">Tasks</button>
         </section>
+    <!-- POMODORO CORE -->
+        <section>
         <section id="pomodoro">
             <div id="pomodoro_core">
                 <div id="timer">
@@ -72,26 +68,37 @@
                 </div>
             </div>
         </section>
-
-        <section id="tasks">
+    <!-- TASKS WINDOW -->
+        <section id="tasks" hidden>
             <header>
                 <h2>Tasks</h2>
-                <div id="tasks-controls">
-                    <button class="tasks-control" id="minimize">_</button>
-                    <button class="tasks-control" id="maximize">+</button>
-                    <button class="tasks-control" id="close">x</button>
-                </div>
+                <div id="tasks-window-controls">
+                    <button class="tasks-window-control" id="minimize">_</button>
+                    <button class="tasks-window-control" id="maximize">+</button>
+                    <button class="tasks-window-control" id="close">x</button>
+                </div>                
             </header>
-            <form id="add-task">
+            <form id="add-task" hidden>
                 <label for="task-name">Task name:</label>
-                <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="20">
+                <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="25" required>
                 <input type="checkbox" id="task-finish">
                 <label for="task-finish">Finished</label>
                 <div class="form_buttons">
-                    <button id="save-task">Guardar</button>
-                    <button id="cancel-task">Cancelar</button>
+                    <button class="form-submit" id="save-task" type="submit">Guardar</button>
+                    <button class="form-cancel" id="cancel-task" type="button">Cancelar</button>
                 </div>
             </form>
+            <ul id="task-list">
+                <li id="new-task">Add Task <span>+</span></li>
+            </ul>
+            <!-- REVISAR
+            <p id="more-items" hidden>...</p>
+                    <form id="task-deleteConfirmation" hidden>
+                        <button id="save-task">Guardar</button>
+                        <button id="cancel-task">Cancelar</button>
+                    </form>
+            -->
+            <!-- BORRAR
             <ul id="task-list">
                 <li class="task" draggable="true">
                     <span class="task-text ">Tarea 1</span>
@@ -109,33 +116,26 @@
                         <button class="delete"><img src="./img/svg/delete.svg"></button>
                     </div>
                 </li>
-
                 <li id="new-task">Add Task <span>+</span></li>
             </ul>
+            -->
             <div class="task-deleteConfirmation">
                 <p>Confirmar borrado de:</p>
-                <p id="task-delete-name">Nombre tarea</p>
+                <p id="task-delete-name"></p>
                 <div class="form_buttons">
-                    <button id="task-delete-confirm">Aceptar</button>
-                    <button id="task-delete-cancel">Cancelar</button>
-                </div>
+                    <button class="form-submit" id="task-delete-confirm" type="submit" >Aceptar</button>
+                    <button class="form-cancel" id="task-delete-cancel" type="button">Cancelar</button>
             </div>
-        </section>
-
+        </section>      
+    <!-- BOTTOM BUTTONS -->
         <section class="tasks"></section>
-
         <section id="pomodor_bottom" class="pomodoro_bottom">
-
             <div id="container-timer-buttons" class="container-timer-buttons">
-
                 <!--En CSS se creo una clase Active, para cuando ocurra el evento click del boton y cambie el diseño -->
                 <button id="startbutton" class="timer-button star active">Start</button>
-
                 <button id="pausebutton" class="timer-button pause">Pause</button>
-
                 <button id="resetbutton" class="timer-button reset">Reset</button>
             </div>
-
         </section>
         <section class="pomodoro-description">
             <img class="key-enter" src="img/icons/key_enter_light.svg" alt="figura de tecla enter" width="90px">
@@ -157,10 +157,8 @@
             <div>
                 <img class="folder" src="img/icons/folder_orange.svg" alt="figura de tecla enter" width="90px">
                 <span class="folder-pill">comunity-folder</span>
-
             </div>
-            <img class="certificate" src="img/webp/achievement.webp" alt="figura de mano haciendo unso cuernos"
-                width="100px">
+            <img class="certificate" src="img/webp/achievement.webp" alt="figura de mano haciendo unso cuernos" width="100px">
             <div class="container">
                 <h2 class="container__title">La comunidad</h2>
                 <div class="container__description">
@@ -178,8 +176,8 @@
                 </div>
             </div>
         </section>
-
     </main>
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="container__left">
@@ -250,4 +248,5 @@
 </body>
 <script src="/script/main.js"></script>
 <script src="/script/pomodoro.js"></script>
+<script src="/script/taskList.js"></script>
 </html>
