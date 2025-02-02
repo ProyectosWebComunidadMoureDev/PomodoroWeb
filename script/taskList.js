@@ -45,7 +45,7 @@ const editTask = (form, itemIndex) => {
 
 //delete task
 const deleteTask = (item) => {
-  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;
+  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;  
   tasksList.hidden = true;
   moreItems.hidden = true;
 
@@ -133,7 +133,7 @@ const submitAddForm = (form) => {
 //close form
 const closeForm = (form) => {
   form.removeAttribute('data-submit');
-  form.reset();
+  //form.reset();
   form.hidden = true;
   tasksList.hidden = false;
   if (tasksList.getAttribute('data-minimized') === "true") {

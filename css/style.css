@@ -206,7 +206,7 @@ header {
 /************************************************************/
 main {
     animation: bg-scrolling-reverse 5s linear infinite;
-    background: url("/img/png/bg_dark_pattern.png") repeat;
+    background: url("../img/png/bg_dark_pattern.png") repeat;
     background-color: var(--bg-color-main);
     height: fit-content;
 }
@@ -584,11 +584,11 @@ main {
 }
 
 /* Task Delete confirm */
-.task-deleteConfirmation {
+#task-deleteConfirmation {
     padding: 10px;
 }
 
-.task-deleteConfirmation p {
+#task-deleteConfirmation p {
     font-size: var(--font-size-xxsmall);
     line-height: 1.7;
 }
@@ -601,7 +601,7 @@ main {
     text-overflow: ellipsis;
 }
 
-.task-deleteConfirmation div {
+#task-deleteConfirmation div {
     margin-top: 10px;
 }
 
