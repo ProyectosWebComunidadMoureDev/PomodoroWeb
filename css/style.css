@@ -234,6 +234,7 @@ main {
 .tabs button {    
     border: 2px solid var(--white-color);
     position: absolute;
+    z-index: 1;
 }
 
 .tabs button::after {
