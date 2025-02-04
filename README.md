@@ -63,16 +63,34 @@ Todos los niveles de experiencia son bienvenidos.
 ---
 
 ## ⁉️ ¿Cómo contribuir?
-  1️⃣ **Clona el repositorio** y familiarízate con los archivos existentes:        
+  1️⃣ **Haz un fork del repositorio** para poder realizar cambios en tu propio espacio. Para ello:
+     - Ve al repositorio original en GitHub: [PomodoroWeb](https://github.com/ProyectosWebComunidadMoureDev/PomodoroWeb)
+     - Haz clic en el botón **Fork** para crear una copia en tu repositorio en gitHub:
 
-        git clone https://github.com/ProyectosWebComunidadMoureDev/PomodoroWeb    
-  2️⃣ **Contribuye** creando nuevas funcionalidades, mejorando el diseño o refactorizando el código.
-  3️⃣ Confirma y sube tus cambios:
+  
+  [![Fork](https://img.shields.io/github/forks/ProyectosWebComunidadMoureDev/PomodoroWeb?style=social)](https://github.com/ProyectosWebComunidadMoureDev/PomodoroWeb/fork)
+
+     - Esto creará una copia del repositorio en tu cuenta de GitHub.
+
+        
+
+  2️⃣ **Clona tu fork** y familiarízate con los archivos existentes:    
+
+        git clone https://github.com/TU_USUARIO/PomodoroWeb    
+
+  3️⃣ **Contribuye** creando nuevas funcionalidades, mejorando el diseño o refactorizando el código.    
+
+  4️⃣ Confirma y sube tus cambios:    
 
         git commit -m "Descripción breve del cambio"
-  4️⃣ Abre un Pull Request para revisión.
-    
-  5️⃣ **Explora las issues** en la sección correspondiente. Busca algo interesante para empezar o crea tu propia issue si detectas algo que mejorar.
+        git push origin main    
+
+  5️⃣ Abre un **Pull Request** desde tu fork hacia el repositorio original para revisión. Para hacerlo:
+     - Ve a la página de tu fork en GitHub.
+     - Haz clic en **Compare & pull request**.
+     - Escribe una descripción clara de los cambios y envía el Pull Request.
+
+  6️⃣ **Explora las issues** en la sección correspondiente. Busca algo interesante para empezar o crea tu propia issue si detectas algo que mejorar.
 
 ## 📄 Licencia
 
