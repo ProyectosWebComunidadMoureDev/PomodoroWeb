@@ -69,62 +69,41 @@
             </div>
         </section>
     <!-- TASKS WINDOW -->
-        <section id="tasks" hidden>
-            <header>
-                <h2>Tasks</h2>
-                <div id="tasks-window-controls">
-                    <button class="tasks-window-control" id="minimize">_</button>
-                    <button class="tasks-window-control" id="maximize">+</button>
-                    <button class="tasks-window-control" id="close">x</button>
-                </div>                
-            </header>
-            <form id="add-task" hidden>
-                <label for="task-name">Task name:</label>
-                <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="25" required>
-                <input type="checkbox" id="task-finish">
-                <label for="task-finish">Finished</label>
-                <div class="form_buttons">
-                    <button class="form-submit" id="save-task" type="submit">Guardar</button>
-                    <button class="form-cancel" id="cancel-task" type="button">Cancelar</button>
-                </div>
-            </form>
-            <ul id="task-list">
-                <li id="new-task">Add Task <span>+</span></li>
-            </ul>
-            <p id="more-items" hidden>...</p>
-            <form id="task-deleteConfirmation2" hidden>
-                <button id="save-task">Guardar</button>
-                <button id="cancel-task">Cancelar</button>
-            </form>            
-            <!-- PARA DEBUG
-            <ul id="task-list">
-                <li class="task" draggable="true">
-                    <span class="task-text ">Tarea 1</span>
-                    <div class="task-buttons">
-                        <button class="edit"><img src="./img/svg/edit.svg"></button>
-                        <button class="finish"><img src="./img/svg/check.svg"></button>
-                        <button class="delete"><img src="./img/svg/delete.svg"></button>
-                    </div>
-                </li>
-                <li class="task task-finished" draggable="true">
-                    <span class="task-text ">Tarea 2</span>
-                    <div class="task-buttons">
-                        <button class="edit"><img src="./img/svg/edit.svg"></button>
-                        <button class="finish"><img src="./img/svg/check.svg"></button>
-                        <button class="delete"><img src="./img/svg/delete.svg"></button>
-                    </div>
-                </li>
-                <li id="new-task">Add Task <span>+</span></li>
-            </ul>
-            -->
-            <div id="task-deleteConfirmation" >
-                <p>Confirmar borrado de:</p>
-                <p id="task-delete-name"></p>
-                <div class="form_buttons">
-                    <button class="form-submit" id="task-delete-confirm" type="submit" >Aceptar</button>
-                    <button class="form-cancel" id="task-delete-cancel" type="button">Cancelar</button>
+    <section id="tasks" hidden>
+        <header>
+            <h2>Tasks</h2>
+            <div id="tasks-window-controls">
+              <button class="tasks-window-control" id="minimize">_</button>
+              <button class="tasks-window-control" id="maximize">+</button>
+              <button class="tasks-window-control" id="close">x</button>
             </div>
-        </section>      
+          </header>
+          <form id="add-task" hidden>
+            <label for="task-name">Task name:</label>
+            <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="25" required>
+            <input type="checkbox" id="task-finish">
+            <label for="task-finish">Finished</label>
+            <div class="form_buttons">
+              <button class="form-submit" id="save-task" type="submit">Guardar</button>
+              <button class="form-cancel" id="cancel-task" type="button">Cancelar</button>
+            </div>
+          </form>
+          <ul id="task-list">
+            <li id="new-task">Add Task <span>+</span></li>
+          </ul>
+          <p id="more-items" hidden>...</p>
+          <form id="task-deleteConfirmation" hidden>
+            <p>Confirmar borrado de:</p>
+            <p id="task-delete-name"></p>
+            <div class="form_buttons">
+                <button class="form-submit" id="task-delete-confirm" type="submit" >Aceptar</button>
+                <button class="form-cancel" id="task-delete-cancel" type="button">Cancelar</button>
+            </div>
+        </form>
+    </section>
+    
+    
+
     <!-- BOTTOM BUTTONS -->
         <section class="tasks"></section>
         <section id="pomodor_bottom" class="pomodoro_bottom">
