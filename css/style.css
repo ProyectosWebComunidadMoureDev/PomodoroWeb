@@ -930,7 +930,6 @@ footer .background-text {
 /********************* STATUS WINDOWS ************************/
 /************************************************************/
 
-
 .status-container {
     border: 1px solid var(--white-color);;
     width: 250px; /*tamaño cuadrado ancho*/
