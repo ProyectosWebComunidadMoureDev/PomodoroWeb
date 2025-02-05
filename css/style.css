@@ -1,4 +1,4 @@
-@import url(variables.css);
+import url(variables.css);
 @import url(reset.css);
 
 /**************************************************************/
@@ -924,4 +924,3 @@ footer .background-text {
     top: 110px;
     scale: 2.5;
     transform: rotate(-10deg);
-}
