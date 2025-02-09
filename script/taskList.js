@@ -233,13 +233,13 @@ const handleWindowControl = (e) => {
 
 
   switch (action) {
-    case "close":
+    case "tasks-close":
       closeTaskWindow();
       break;
-    case "maximize":
+    case "tasks-maximize":
       maximizeTaskWindow();
       break;
-    case "minimize":
+    case "tasks-minimize":
       minimizeTaskWindow();
       break;
     default:

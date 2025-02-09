@@ -69,13 +69,13 @@
             </div>
         </section>
     <!-- TASKS WINDOW -->
-    <section id="tasks" hidden>
+    <section id="tasks" class="window-container" hidden>
         <header>
             <h2>Tasks</h2>
-            <div id="tasks-window-controls">
-              <button class="tasks-window-control" id="minimize">_</button>
-              <button class="tasks-window-control" id="maximize">+</button>
-              <button class="tasks-window-control" id="close">x</button>
+            <div id="tasks-window-controls" class="window-controls">
+              <button class="window-control" id="tasks-minimize">_</button>
+              <button class="window-control" id="tasks-maximize">+</button>
+              <button class="window-control" id="tasks-close">x</button>
             </div>
           </header>
           <form id="add-task" hidden>
@@ -116,7 +116,6 @@
           <p>Long Break: <span id="long-break-count">0</span></p>
         </div>
     </div>
-
     <!-- BOTTOM BUTTONS -->
         <section class="tasks"></section>
         <section id="pomodor_bottom" class="pomodoro_bottom">

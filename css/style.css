@@ -228,12 +228,11 @@ main {
     display: flex;
     flex-direction: row;
     width: 100%;
-
+    gap: 5px;
 }
 
 .tabs button {    
     border: 2px solid var(--white-color);
-    position: absolute;
     z-index: 1;
 }
 
@@ -347,58 +346,64 @@ main {
 }
 
 /**************************************************************/
+/************* ESTILOS GENERALES PARA VENTANAS ****************/
+/**************************************************************/
+.window-container{
+  background: var(--bg-color-main);
+  border: 1px solid var(--white-color);
+}
+
+.window-container header{
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: var(--bg-color-main);
+  border-bottom: 1px solid var(--white-color);
+}
+
+.window-container header h2 {
+  color: var(--text-color-main);
+  font-size: var(--font-size-xsmall);
+}
+
+.window-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.window-control {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--white-color);
+  cursor: pointer;
+  font-size: var(--font-size-xsmall);
+  line-height: 1.2;
+  background-color: var(--bg-color-main);
+  opacity: 0.4;
+}
+
+.window-control:hover {
+  background-color: var(--bg-color-alt);
+  opacity: 0.8;
+}
+
+
+/**************************************************************/
 /*********************** LISTA DE TAREAS **********************/
 /**************************************************************/
 
 /* Task container */
 #tasks {
-    width: 250px;
-    background: var(--bg-color-main);
-    border: 1px solid var(--white-color);
+    width: 250px;  
     position: absolute;
     top: 35vh;
     left: 90px;
-}
-
-#tasks header {
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-    background-color: var(--bg-color-main);
-    border-bottom: 1px solid var(--white-color);
-}
-
-#tasks header h2 {
-    color: var(--text-color-main);
-    font-size: var(--font-size-xsmall);
-
-}
-
-#tasks-window-controls {
-    display: flex;
-    gap: 5px;
-}
-
-.tasks-window-control {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--white-color);
-    cursor: pointer;
-    font-size: var(--font-size-xsmall);
-    line-height: 1.2;
-    background-color: var(--bg-color-main);
-    opacity: 0.4;
-}
-
-.tasks-window-control:hover {
-    background-color: var(--bg-color-alt);
-    opacity: 0.8;
 }
 
 /* add-task form*/
@@ -406,7 +411,6 @@ main {
     width: 100%;
     padding: 0 10px;
     margin-bottom: 10px;
-
 }
 
 #add-task label {
