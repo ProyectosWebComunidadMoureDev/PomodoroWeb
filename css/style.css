@@ -992,3 +992,53 @@ footer .background-text {
     font-size: var(--font-size-xsmall); /* Tamaño letra items*/
     font-weight: 500; /* Negrita*/
   }
+
+/************************************************************/
+/****************** STATISTICS WINDOW ***********************/
+/************************************************************/
+#statistics{
+  width: 420px;  
+  position: absolute;
+  top: 65vh;
+  left: 90px;
+}
+
+#statistics-table{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+#statistics-table th:nth-child(1) /* Task */ {
+  width: 40%;
+}
+
+#statistics-table th:nth-child(2),
+#statistics-table th:nth-child(3),
+#statistics-table th:nth-child(4){
+  width: 13%;
+}
+
+#statistics-table tr:nth-child(5) /* Date */{
+  width: fit-content;
+} 
+
+#statistics-table th,
+#statistics-table td{
+  font-size: var(--font-size-xxsmall);
+  border: 1px solid var(--white-color);
+  text-align: center;
+  line-height: 1.2rem;
+  opacity: 0.5;
+}
+
+#statistics-table td:nth-child(1){
+  text-align: left;
+}
+
+#statistics-table td{
+  padding-left: 5px;
+  text-wrap:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
