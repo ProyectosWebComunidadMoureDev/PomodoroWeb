@@ -44,6 +44,7 @@
     <main>
         <section class="tabs">
             <button id="tab-tasks">Tasks</button>
+            <button id="tab-statistics">Statistics</button>
         </section>
     <!-- POMODORO CORE -->
         <section>
@@ -69,13 +70,13 @@
             </div>
         </section>
     <!-- TASKS WINDOW -->
-    <section id="tasks" hidden>
+    <section id="tasks" class="window-container" hidden>
         <header>
             <h2>Tasks</h2>
-            <div id="tasks-window-controls">
-              <button class="tasks-window-control" id="minimize">_</button>
-              <button class="tasks-window-control" id="maximize">+</button>
-              <button class="tasks-window-control" id="close">x</button>
+            <div id="tasks-window-controls" class="window-controls">
+              <button class="window-control" id="tasks-minimize">_</button>
+              <button class="window-control" id="tasks-maximize">+</button>
+              <button class="window-control" id="tasks-close">x</button>
             </div>
           </header>
           <form id="add-task" hidden>
@@ -116,6 +117,36 @@
           <p>Long Break: <span id="long-break-count">0</span></p>
         </div>
     </div>
+    <!-- STATISTICS WINDOW -->
+    <section id="statistics" class="window-container">
+      <header>
+          <h2>Statistics</h2>
+          <div id="statistics-window-controls" class="window-controls">
+            <button class="window-control" id="statistics-minimize">_</button>
+            <button class="window-control" id="statistics-maximize">+</button>
+            <button class="window-control" id="statistics-close">x</button>
+          </div>          
+      </header>
+      <table id="statistics-table">
+        <thead>
+          <th>Task</th>
+          <th>Time</th>
+          <th>Rest</th>
+          <th>Extra T.</th>
+          <th>Date</th>
+        </thead>
+        <tbody>
+          <!-- ESTAS FILAS SON DE PRUEBA, ELIMINAR CUANDO SE CARGEN DE FORMA DINAMICA -->
+          <tr>
+            <td>Leer</td><td>1h.</td><td>20m.</td><td>15m.</td><td>09/02/2025</td>
+          </tr>
+          <tr>
+            <td>Tarea de nombre largo que no cabe</td><td>2h.</td><td>10m.</td><td>5m.</td><td>10/02/2025</td>
+          </tr>
+          <!-- ELIMINAR HASTA AQUI -->
+          </tbody>
+      </table>
+    </section>
 
     <!-- BOTTOM BUTTONS -->
         <section class="tasks"></section>
