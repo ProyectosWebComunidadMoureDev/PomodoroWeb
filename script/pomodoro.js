@@ -66,8 +66,11 @@ let test = 75; setProgress(test);
 /* ************************************************* */
 
 const worktime_btn = document.getElementById("worktime_btn");
+const worktime_btn_resp = document.getElementById("worktime_btn_resp");
 const breaktime_btn = document.getElementById("breaktime_btn");
+const breaktime_btn_resp = document.getElementById("breaktime_btn_resp");
 const resttime_btn = document.getElementById("resttime_btn");
+const resttime_btn_resp = document.getElementById("resttime_btn_resp");
 const start_btn = document.getElementById("startbutton");
 const pause_btn = document.getElementById("pausebutton");
 const clock =  document.getElementById("clock");
@@ -77,11 +80,21 @@ worktime_btn.addEventListener("click", function () {
     changeMode(0);
 });
 
+worktime_btn_resp.addEventListener("click", function () {
+    changeMode(0);
+});
+
 breaktime_btn.addEventListener("click", function () {
+    changeMode(1);
+});
+breaktime_btn_resp.addEventListener("click", function () {
     changeMode(1);
 });
 
 resttime_btn.addEventListener("click", function () {   
+    changeMode(2);
+});
+resttime_btn_resp.addEventListener("click", function () {   
     changeMode(2);
 });
 
@@ -109,8 +122,11 @@ function changeMode(mode) {
                 console.log("ERROR");
 
     workTime ? worktime_btn.classList.add('work') : worktime_btn.classList.remove('work');
+    workTime ? worktime_btn_resp.classList.add('work') : worktime_btn_resp.classList.remove('work');
     breakTime ? breaktime_btn.classList.add('brake') : breaktime_btn.classList.remove('brake');
+    breakTime ? breaktime_btn_resp.classList.add('brake') : breaktime_btn_resp.classList.remove('brake');
     restTime ? resttime_btn.classList.add('rest') : resttime_btn.classList.remove('rest');
+    restTime ? resttime_btn_resp.classList.add('rest') : resttime_btn_resp.classList.remove('rest');
     
     start_btn.classList.remove('active');
     pause_btn.classList.remove('active');
