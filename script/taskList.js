@@ -1,4 +1,5 @@
 const tabTasks = document.getElementById('tab-tasks');
+const tabTasksresp = document.getElementById('tab-tasks-resp');
 const tasksWindow = document.getElementById('tasks');
 const taskWindowControls = document.getElementById('tasks-window-controls');
 const tasksList = document.getElementById('task-list');
@@ -200,6 +201,7 @@ const handleTaskControl = (e) => {
 //close Task Window
 const closeTaskWindow = () => {
   tabTasks.hidden = false;
+  tabTasksresp.hidden = false;
   tasksWindow.hidden = true;
   closeForm(formNewTask);
   closeForm(formConfirmDeleteTask);
@@ -252,6 +254,12 @@ const handleWindowControl = (e) => {
 // Pestaña
 tabTasks.addEventListener('click', () => {
   tabTasks.hidden = true;
+  tabTasksresp.hidden = true;
+  tasksWindow.hidden = false;
+});
+tabTasksresp.addEventListener('click', () => {
+  tabTasks.hidden = true;
+  tabTasksresp.hidden = true;
   tasksWindow.hidden = false;
 });
 

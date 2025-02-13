@@ -32,19 +32,43 @@
                     <button class="btn login" role="menuitem">Log In</button>
                     <button class="btn signup" role="menuitem">Sign Up</button>
                 </div>
+                <button id="smallmenu"><span class="material-symbols-outlined">menu</span></button>
+                
             </nav>
         </div>
         <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
         <div class="state__container" role="group" aria-label="Estados de temporizador">
             <button class="btn-state " id="worktime_btn" aria-pressed="false">Work Time</button>
+            <button class="btn-state " id="worktime_btn_resp" aria-pressed="false">
+                <img src="./img/png/25.png" alt="">                
+                Work
+            </button>
             <button class="btn-state " id="breaktime_btn" aria-pressed="false">Break Time</button>
+            <button class="btn-state " id="breaktime_btn_resp" aria-pressed="false">
+                <img src="./img/png/5.png" alt="">
+                Break
+            </button>
             <button class="btn-state " id="resttime_btn" aria-pressed="false">Rest Time</button>
+            <button class="btn-state" id="resttime_btn_resp" aria-pressed="false">
+                <img src="./img/png/15.png" alt="">
+                Rest
+            </button>
         </div>
     </header>
     <main>
         <section class="tabs">
             <button id="tab-tasks">Tasks</button>
+            <button id="tab-tasks-resp">                
+                <span class="material-symbols-outlined">
+                    task
+                </span>
+            </button>
             <button id="tab-statistics">Statistics</button>
+            <button id="tab-statistics-resp">
+                <span class="material-symbols-outlined">
+                    monitoring
+                </span>
+            </button>
         </section>
     <!-- POMODORO CORE -->
         <section>
@@ -164,15 +188,11 @@
             <img class="key-new" src="./img/icons/key_new.svg" alt="figura de tecla new" width="100px">
             <div class="container">
                 <h2 class="container__title">¿Qué es la Técnica Pomodoro?</h2>
-                <p class="container__description">
-                    La Técnica Pomodoro es un método de gestión del tiempo diseñado para potenciar la productividad. Se
-                    basa en
-                    utilizar un temporizador que fracciona tu jornada laboral en segmentos denominados pomodoros y
-                    pausas. Por
-                    lo general, cada pomodoro dura 25 minutos y se complementa con un descanso de 5 minutos, aunque la
-                    duración
-                    exacta puede ajustarse en función de tu nivel de concentración.
-                </p>
+                <div class="container__description">                    
+                    <p>La Técnica Pomodoro es un método de gestión del tiempo diseñado para potenciar la productividad.</p>
+                    <p>Se basa en utilizar un temporizador que fracciona tu jornada laboral en segmentos denominados pomodoros y pausas.</p>
+                    <p>Por lo general, cada pomodoro dura 25 minutos y se complementa con un descanso de 5 minutos, aunque la duración exacta puede ajustarse en función de tu nivel de concentración.</p>                    
+                </div>
             </div>
         </section>
         <section class="comunity-description">
