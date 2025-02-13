@@ -7,11 +7,10 @@ const moreItems = document.getElementById('more-items');
 const formNewTask = document.getElementById('add-task');
 const formConfirmDeleteTask = document.getElementById('task-deleteConfirmation');
 
-
 let draggedItem = null;
 
 //insert new task
-const insertTask=(item)=>{
+const insertTask = (item) => {
   const tasksItems = tasksWindow.querySelectorAll('li');
   // busca la ultima tarea sin terminar para inserta la nueva tarea
   let lastNonFinishedTask = null;
@@ -37,16 +36,16 @@ const editTask = (form, itemIndex) => {
 
   if (form.querySelector('#task-finish').checked) {
     itemToEdit.classList.add('task-finished');
-    itemToEdit.draggable=false;
+    itemToEdit.draggable = false;
   } else {
     itemToEdit.classList.remove('task-finished');
-    itemToEdit.draggable=true;
+    itemToEdit.draggable = true;
   }
 }
 
 //delete task
 const deleteTask = (item) => {
-  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;  
+  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;
   tasksList.hidden = true;
   moreItems.hidden = true;
 
@@ -81,7 +80,7 @@ const addNewTask = (form) => {
     item.style.display = 'none';
   }
   if (finishClass) { item.classList.add(finishClass) }
-  item.draggable=taskStateFinished ? false:true;
+  item.draggable = taskStateFinished ? false : true;
 
   item.innerHTML = `
     <span class="task-text">${taskName}</span>
@@ -229,10 +228,9 @@ const minimizeTaskWindow = () => {
   }
 }
 
-// coltroles de la ventana
+// controles de la ventana
 const handleWindowControl = (e) => {
   const action = e.target.id;
-
 
   switch (action) {
     case "tasks-close":
@@ -269,5 +267,3 @@ taskWindowControls.addEventListener("click", handleWindowControl);
 tasksList.addEventListener("click", handleTaskControl);
 formNewTask.addEventListener('click', handleFormEvent);
 formNewTask.addEventListener('submit', handleFormEvent);
-
-
