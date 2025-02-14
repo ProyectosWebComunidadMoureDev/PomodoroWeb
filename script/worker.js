@@ -20,5 +20,5 @@ function runTimer() {
             clearInterval(self.interval);
             self.postMessage({ finished: true });
         }
-    }, 1000);
+    }, 100);
 }

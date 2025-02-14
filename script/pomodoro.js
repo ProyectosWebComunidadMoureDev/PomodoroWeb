@@ -53,12 +53,12 @@ tiempoTotal = pomodoroMins * 60 + pomodoroSecs;
 function setProgress(percentage) {
     const offset = (percentage / 100) * circumference;
     circle.style.strokeDashoffset = offset;
-    console.log(offset);
+    console.log(percentage);
 }
 
 /* A LA FUNCIÓN setProgress HAY QUE PASARLE EL PORCENTAJE RESTANTE */
 /* EMPIEZA CON UN 100% Y TERMINA EN 0% */
-let test = 75; setProgress(test);
+//let test = 75; setProgress(test);
 /* *************************************************** */
 /* *************************************************** */
 /* *************************************************** */
@@ -189,6 +189,7 @@ function workerMode() {
             let sec = e.data.timeLeft % 60;
             mins.innerHTML = min.toString().padStart(2, "0");
             secs.innerHTML = sec.toString().padStart(2, "0");
+            setProgress((e.data.timeLeft*100)/totalSegundos);
         }
     }
 }
