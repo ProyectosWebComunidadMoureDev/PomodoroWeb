@@ -2,8 +2,12 @@
 /* ************** *  CIRCULAR PROGRESS  ** *********** */
 /* *************************************************** */
 const TIMER = document.getElementById('timer');
-const mins = document.getElementById("mins");
-const secs = document.getElementById("secs");
+//const mins = document.getElementById("mins");
+//const secs = document.getElementById("secs");
+
+const segments = document.querySelectorAll('#clock span');
+const separator = document.getElementById("separator");
+const separator_two = document.getElementById("separator_two");
 
 // Configuración del Tiempo para cada modo
 let workTime = true; let workTime_Mins = 25;
@@ -16,6 +20,10 @@ let nocounter = 0; // SE SETEA A 0, Y EN EL COMIENZO DEL TEMPORIZADOR SE SUMA 1 
 let cycle_resttime = 0; // ESTA VARIABLE AUMENTARA CADA 4 CICLOS COMPLETOS, O SEA CUANDO COUNTER SEA IGUAL A 4 PARA QUE SE IGUALE AL OBJETO HABLADO EN GRUPO "initialData.cyclesCompleted = cycle_resttime"
 let totalSegundos = 0;
 let totalSeconds;
+let tiempoRestante = 0;
+let running = false;
+let inpause = false;
+let sec = 0;
 
 // Selecciona cada uno de los círculos
 const circle = document.querySelector(".progress-ring__circle");
@@ -51,14 +59,50 @@ outcircle.style.strokeDashoffset = outoffset;
 let pomodoroMins;
 let pomodoroSecs;
 let tiempoTotal;
-pomodoroMins = parseInt(mins.innerText);
-pomodoroSecs = parseInt(secs.innerText);
+
+pomodoroMins = workTime_Mins;
+pomodoroSecs = 0;
 tiempoTotal = pomodoroMins * 60 + pomodoroSecs;
+
+totalSegundos = pomodoroMins * 60 + pomodoroSecs;
+segundos_restantes = totalSeconds;
+tiempoRestante = totalSegundos;
+const numbers = {
+    0: "1110111",
+    1: "0010010",
+    2: "1011101",
+    3: "1011011",
+    4: "0111010",
+    5: "1101011",
+    6: "1101111",
+    7: "1010010",
+    8: "1111111",
+    9: "1111011"    
+};
+
+function updateclock(m, mm, s, ss) {
+    draw_number(parseInt(m), "first_minutes");
+    draw_number(parseInt(mm), "second_minutes");
+    draw_number(parseInt(s), "first_seconds");
+    draw_number(parseInt(ss), "second_seconds");
+}
+
+function draw_number(number, id) {    
+    const segments = numbers[number];
+    const digit = document.getElementById(id);
+    const elements = digit.querySelectorAll('span');
+    elements.forEach((element, index) => {
+        if (segments[index] == 0) {
+            element.classList.add("novisible");
+        } else {
+            element.classList.remove("novisible");
+        }
+    }); 
+}
 
 function setProgress(percentage) {
     const offset = (percentage / 100) * circumference;
     circle.style.strokeDashoffset = offset;
-    // console.log(percentage);
 }
 
 /* A LA FUNCIÓN setProgress HAY QUE PASARLE EL PORCENTAJE RESTANTE */
@@ -113,23 +157,33 @@ function changeColor(colorVar) {
     circle.style.stroke = 'var(' + colorVar + ')';
     outcircle.style.stroke = 'var(' + colorVar + ')';
     incircle.style.stroke = 'var(' + colorVar + ')';
-    mins.style.color = 'var(' + colorVar + ')';
-    secs.style.color = 'var(' + colorVar + ')';
-    clock.style.color = 'var(' + colorVar + ')';
+    //mins.style.color = 'var(' + colorVar + ')';
+    //secs.style.color = 'var(' + colorVar + ')';
+    //clock.style.color = 'var(' + colorVar + ')';
+    segments.forEach((span) => {
+        span.style.backgroundColor = 'var(' + colorVar + ')';
+    });
+    separator.style.backgroundColor = 'var(' + colorVar + ')';
+    separator_two.style.backgroundColor = 'var(' + colorVar + ')';
+    //incircle.setAttribute("fill", "rgba(144, 144, 144, .05)");
+    //const colorVars = getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim();
+    //incircle.setAttribute("fill", colorVars+"07");
 }
 
 function changeMode(mode) {
+    
+    //pauseTimer();
+
     mode == 0 ? workTime = true : workTime = false;
     mode == 1 ? breakTime = true : breakTime = false;
-    mode == 2 ? restTime = true : restTime = false;
-
-    console.log(workTime)
-    console.log(breakTime)
-    console.log(restTime)
+    mode == 2 ? restTime = true : restTime = false;    
 
     workTime ? pomodoroMins = workTime_Mins :
         breakTime ? pomodoroMins = breakTime_Mins :
             restTime ? pomodoroMins = restTime_Mins : console.log("ERROR");
+    
+    
+    segundos_restantes = totalSeconds;
 
     workTime ? changeColor("--blue-color") :
         breakTime ? changeColor("--orange-color") :
@@ -146,39 +200,78 @@ function changeMode(mode) {
     start_btn.classList.remove('active');
     pause_btn.classList.remove('active');
 
-    mins.innerText = pomodoroMins;
-    secs.innerText = "00";
+    //mins.innerText = pomodoroMins;
+    //secs.innerText = "00";
+    let minutos = "00";
+    let segundos = "00";
+    minutos = (pomodoroMins.toString());
+    segundos = (pomodoroSecs.toString());
+    if (minutos.length < 2) {
+        minutos = "0" + minutos;
+    }
+    if (segundos.length < 2) {
+        segundos = "0" + segundos;
+    }
+    updateclock(minutos[0], minutos[1], segundos[0], segundos[1]);    
 }
 
 start_btn.addEventListener('click', () => {
-    if (workTime) {
-        totalSeconds = workTime_Mins * 60 + parseInt(secs.innerHTML);
-        rounds = false
-        workerMode()
-        blockModes()
-        if(nocounter < 1){
-            nocounter++
+    
+    if (!running && !inpause) {
+        running = true;
+        start_btn.classList.add("active");
+        if (workTime) {
+            totalSeconds = workTime_Mins * 60;
+            totalSeconds = pomodoroMins * 60;            
+            rounds = false
+            workerMode()
+            blockModes()
+            if(nocounter < 1){
+                nocounter++
+            }
+            console.log('NOCOUNTER: ', nocounter)
+        } else if (breakTime) {
+            totalSeconds = breakTime_Mins * 60;
+            workerMode()
+        } else {
+            totalSeconds = restTime_Mins * 60;
+            workerMode()
         }
-        console.log('NOCOUNTER: ', nocounter)
-    } else if (breakTime) {
-        totalSeconds = breakTime_Mins * 60 + parseInt(secs.innerHTML);
-        workerMode()
-    } else {
-        totalSeconds = restTime_Mins * 60 + parseInt(secs.innerHTML);
-        workerMode()
+        startMode();
+    } else if (inpause) {
+        inpause = false;
+        running = true;
+        rounds = false
+        pause_btn.classList.remove("active");
+        start_btn.classList.add("active");
+        pause_btn.disabled = false;
+        totalSeconds = tiempoRestante;
+        workerMode();
+        blockModes();
+        if(nocounter < 1){
+            nocounter++;
+        }
+        console.log('NOCOUNTER: ', nocounter);
     }
-    startMode()
 })
 
 pause_btn.addEventListener('click', () => {
-    pauseTimer()
+    if (!inpause && running) {
+        inpause = true;
+        running = false;
+        pause_btn.classList.add("active");
+        start_btn.classList.remove("active");
+        pauseTimer();
+    }
 })
 
 function workerMode() {
-    totalSegundos = parseInt(mins.innerHTML) * 60 + parseInt(secs.innerHTML);
+    //let totalSegundos = parseInt(mins.innerHTML) * 60 + parseInt(secs.innerHTML);    
+    let totalSegundos = pomodoroMins * 60 + pomodoroSecs;
     if (worker) worker.terminate();
-
+    totalSegundos = tiempoRestante;
     worker = new Worker("./script/worker.js");
+    //worker.postMessage({ action: "start", time: totalSegundos });
     worker.postMessage({ action: "start", time: totalSegundos });
     worker.onmessage = function (e) {
         if (e.data.finished) {
@@ -245,11 +338,33 @@ function workerMode() {
             }
         } else {
             let min = Math.floor(e.data.timeLeft / 60);
-            let sec = e.data.timeLeft % 60;
-            mins.innerHTML = min.toString().padStart(2, "0");
-            secs.innerHTML = sec.toString().padStart(2, "0");
-            setProgress((e.data.timeLeft * 100) / totalSeconds);
+            sec = e.data.timeLeft % 60;
+            //mins.innerHTML = min.toString().padStart(2, "0");
+            //secs.innerHTML = sec.toString().padStart(2, "0");
+            setProgress((e.data.timeLeft*100)/totalSegundos);            
+            minutos = (min.toString());
+            segundos = (sec.toString());
+            tiempoRestante = e.data.timeLeft;
+
+            if (minutos.length < 2) {
+                minutos = "0" + minutos;
+            }
+            if (segundos.length < 2) {
+                segundos = "0" + segundos;
+            }
+            updateclock(minutos[0], minutos[1], segundos[0], segundos[1]);
+            blink_separators();
         }
+    }
+}
+
+function blink_separators() {
+    if (segundos%2) {
+        separator.style.opacity = .6;
+        separator_two.style.opacity = .6;
+    } else {
+        separator.style.opacity = 1;
+        separator_two.style.opacity = 1;
     }
 }
 
