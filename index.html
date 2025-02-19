@@ -38,186 +38,228 @@
         </div>
         <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
         <div class="state__container" role="group" aria-label="Estados de temporizador">
-            <button class="btn-state " id="worktime_btn" aria-pressed="false">Work Time</button>
+            <button class="btn-state " id="worktime_btn" aria-pressed="false">
+                <img src="./img/svg/25.svg" alt="">
+                Work Time
+            </button>
             <button class="btn-state " id="worktime_btn_resp" aria-pressed="false">
-                <img src="./img/png/25.png" alt="">                
+                <img src="./img/svg/25.svg" alt="">
                 Work
             </button>
-            <button class="btn-state " id="breaktime_btn" aria-pressed="false">Break Time</button>
+            <button class="btn-state " id="breaktime_btn" aria-pressed="false">
+                <img src="./img/svg/5.svg" alt="">
+                Break Time
+            </button>
             <button class="btn-state " id="breaktime_btn_resp" aria-pressed="false">
-                <img src="./img/png/5.png" alt="">
+                <img src="./img/svg/5.svg" alt="">
                 Break
             </button>
-            <button class="btn-state " id="resttime_btn" aria-pressed="false">Rest Time</button>
+            <button class="btn-state " id="resttime_btn" aria-pressed="false">
+                <img src="./img/svg/15.svg" alt="">
+                Rest Time
+            </button>
             <button class="btn-state" id="resttime_btn_resp" aria-pressed="false">
-                <img src="./img/png/15.png" alt="">
+                <img src="./img/svg/15.svg" alt="">
                 Rest
             </button>
         </div>
     </header>
     <main>
-        <section class="tabs">
-            <button id="tab-tasks">Tasks</button>
-            <button id="tab-tasks-resp">                
-                <span class="material-symbols-outlined">
-                    task
-                </span>
-            </button>
-            <button id="tab-statistics">Statistics</button>
-            <button id="tab-statistics-resp">
-                <span class="material-symbols-outlined">
-                    monitoring
-                </span>
-            </button>
-        </section>
-    <!-- POMODORO CORE -->
         <section>
-        <section id="pomodoro">
-            <div id="pomodoro_core">
-                <div id="timer">
-                    <div class="circle-container">
-                        <svg class="progress-ring">
-                            <circle class="progress-ring__circle" cx="150" cy="80" r="225" stroke-width="22"
-                                fill="transparent" />
-                            <circle class="out-ring__circle" cx="150" cy="80" r="240" stroke-width="3"
-                                fill="transparent" />
-                            <circle class="in-ring__circle" cx="150" cy="80" r="210" stroke-width="3"
-                                fill="transparent" />
-                        </svg>
+            <section id="pomodoro_section">                  
+                <section class="tabs">
+                    <button id="tab-tasks">Tasks</button>
+                    <button id="tab-tasks-resp">                
+                        <span class="material-symbols-outlined">
+                            task
+                        </span>
+                    </button>
+                    <button id="tab-statistics">Statistics</button>
+                    <button id="tab-statistics-resp">
+                        <span class="material-symbols-outlined">
+                            monitoring
+                        </span>
+                    </button>
+                </section>
+                <section id="pomodoro_core">
+                    <div id="timer">
+                        <div class="circle-container">
+                            <svg class="progress-ring">
+                                <circle class="progress-ring__circle" cx="150" cy="80" r="225" stroke-width="22"
+                                    fill="transparent" />
+                                <circle class="out-ring__circle" cx="150" cy="80" r="240" stroke-width="3"
+                                    fill="transparent" />
+                                <circle class="in-ring__circle" cx="150" cy="80" r="210" stroke-width="3"
+                                    fill="transparent" />/>
+                            </svg>
+                        </div>
+                        <div id="clock">
+                            <div id="minutes">
+                                <div id="first_minutes">
+                                    <span class="a horizontal"></span>
+                                    <span class="b vertical"></span>
+                                    <span class="c vertical"></span>
+                                    <span class="d horizontal"></span>
+                                    <span class="e vertical"></span>
+                                    <span class="f vertical"></span>
+                                    <span class="g horizontal"></span>
+                                </div>
+                                <div id="second_minutes">
+                                    <span class="a horizontal"></span>
+                                    <span class="b vertical"></span>
+                                    <span class="c vertical"></span>
+                                    <span class="d horizontal"></span>
+                                    <span class="e vertical"></span>
+                                    <span class="f vertical"></span>
+                                    <span class="g horizontal"></span></div>
+                            </div>
+                            <div id="separator"></div>
+                            <div id="separator_two"></div>
+                            <div id="seconds">
+                                <div id="first_seconds">
+                                    <span class="a horizontal"></span>
+                                    <span class="b vertical"></span>
+                                    <span class="c vertical"></span>
+                                    <span class="d horizontal"></span>
+                                    <span class="e vertical"></span>
+                                    <span class="f vertical"></span>
+                                    <span class="g horizontal"></span></div>
+                                <div id="second_seconds">
+                                    <span class="a horizontal"></span>
+                                    <span class="b vertical"></span>
+                                    <span class="c vertical"></span>
+                                    <span class="d horizontal"></span>
+                                    <span class="e vertical"></span>
+                                    <span class="f vertical"></span>
+                                    <span class="g horizontal"></span></div>
+                            </div>
+                        </div>
+                        <audio src="./audio/oye_como_va.mp3" id="alarm" hidden></audio>
                     </div>
-                    <div id="clock">
-                        <span id="mins">25</span>
-                        <span>:</span>
-                        <span id="secs">00</span>
+                </section>
+                <section id="pomodoro_bottom">
+                    <div id="container-timer-buttons" class="container-timer-buttons">
+                        <!--En CSS se creo una clase Active, para cuando ocurra el evento click del boton y cambie el diseño -->
+                        <button id="startbutton" class="timer-button start">Start</button>
+                        <button id="pausebutton" class="timer-button pause">Pause</button>
+                        <button id="resetbutton" class="timer-button reset">Reset</button>
                     </div>
-                    <audio src="./audio/oye_como_va.mp3" id="alarm" hidden></audio>
+                </section>
+            </section>    
+            <section class="pomodoro-description">
+                <img class="key-enter" src="./img/icons/key_enter_light.svg" alt="figura de tecla enter" width="90px">
+                <img class="key-new" src="./img/icons/key_new.svg" alt="figura de tecla new" width="100px">
+                <div class="container">
+                    <h2 class="container__title">¿Qué es la Técnica Pomodoro?</h2>
+                    <div class="container__description">                    
+                        <p>La Técnica Pomodoro es un método de gestión del tiempo diseñado para potenciar la productividad.</p>
+                        <p>Se basa en utilizar un temporizador que fracciona tu jornada laboral en segmentos denominados pomodoros y pausas.</p>
+                        <p>Por lo general, cada pomodoro dura 25 minutos y se complementa con un descanso de 5 minutos, aunque la duración exacta puede ajustarse en función de tu nivel de concentración.</p>                    
+                    </div>
                 </div>
-            </div>
+            </section>
+            <section class="comunity-description">
+                <div>
+                    <img class="folder" src="./img/icons/folder_orange.svg" alt="figura de tecla enter" width="90px">
+                    <span class="folder-pill">comunity-folder</span>
+                </div>
+                <img class="certificate" src="./img/webp/achievement.webp" alt="figura de mano haciendo unos cuernos" width="100px">
+                <div class="container">
+                    <h2 class="container__title">La comunidad</h2>
+                    <div class="container__description">
+                        <p>Rodéate de una comunidad que comparte tus intereses y te acompaña en tu crecimiento personal y
+                            profesional dentro del campus, un espacio diseñado especialmente para inspirarte y motivarte.
+                            Aquí puedes hacer preguntas, compartir tus conocimientos, brindar apoyo y aprender de otros
+                            estudiantes que están recorriendo un camino similar al tuyo..</p>
+                        <p>
+                            Construir conexiones significativas no solo enriquece tu experiencia, sino que también te ayuda
+                            a afrontar los desafíos con mayor confianza. El camino siempre es más ligero, inspirador y
+                            gratificante cuando lo recorres junto a personas que comparten tus objetivos y te impulsan a
+                            alcanzar tu máximo potencial
+                        </p>
+                    </div>
+                </div>
+            </section>        
+        </section>        
+                                <!-- TASKS WINDOW -->
+        <section id="tasks" class="window-container" hidden>
+            <header>
+                <h2>Tasks</h2>
+                <div id="tasks-window-controls" class="window-controls">
+                <button class="window-control" id="tasks-minimize">_</button>
+                <button class="window-control" id="tasks-maximize">+</button>
+                <button class="window-control" id="tasks-close">x</button>
+                </div>
+            </header>
+            <form id="add-task" hidden>
+                <label for="task-name">Task name:</label>
+                <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="25" required>
+                <input type="checkbox" id="task-finish">
+                <label for="task-finish">Finished</label>
+                <div class="form_buttons">
+                <button class="form-submit" id="save-task" type="submit">Guardar</button>
+                <button class="form-cancel" id="cancel-task" type="button">Cancelar</button>
+                </div>
+            </form>
+            <ul id="task-list">
+                <li id="new-task">Add Task <span>+</span></li>
+            </ul>
+            <p id="more-items" hidden>...</p>
+            <form id="task-deleteConfirmation" hidden>
+                <p>Confirmar borrado de:</p>
+                <p id="task-delete-name"></p>
+                <div class="form_buttons">
+                    <button class="form-submit" id="task-delete-confirm" type="submit" >Aceptar</button>
+                    <button class="form-cancel" id="task-delete-cancel" type="button">Cancelar</button>
+                </div>
+            </form>
         </section>
-    <!-- TASKS WINDOW -->
-    <section id="tasks" class="window-container" hidden>
-        <header>
-            <h2>Tasks</h2>
-            <div id="tasks-window-controls" class="window-controls">
-              <button class="window-control" id="tasks-minimize">_</button>
-              <button class="window-control" id="tasks-maximize">+</button>
-              <button class="window-control" id="tasks-close">x</button>
+        <div class="status-container">
+            <div class="status-header">
+            <h2 class="status-title"> Status </h2>
+            <div class="buttons"> 
+                <button class="status-control" id="status-minimize">_</button>
+                <button class="status-control" id="status-maximize">+</button>
+                <button class="status-control" id="status-close">x</button>
             </div>
-          </header>
-          <form id="add-task" hidden>
-            <label for="task-name">Task name:</label>
-            <input type="text" id="task-name" placeholder="Study at mouredev.pro" maxlength="25" required>
-            <input type="checkbox" id="task-finish">
-            <label for="task-finish">Finished</label>
-            <div class="form_buttons">
-              <button class="form-submit" id="save-task" type="submit">Guardar</button>
-              <button class="form-cancel" id="cancel-task" type="button">Cancelar</button>
             </div>
-          </form>
-          <ul id="task-list">
-            <li id="new-task">Add Task <span>+</span></li>
-          </ul>
-          <p id="more-items" hidden>...</p>
-          <form id="task-deleteConfirmation" hidden>
-            <p>Confirmar borrado de:</p>
-            <p id="task-delete-name"></p>
-            <div class="form_buttons">
-                <button class="form-submit" id="task-delete-confirm" type="submit" >Aceptar</button>
-                <button class="form-cancel" id="task-delete-cancel" type="button">Cancelar</button>
+            <div class="status-content">
+            <p>Pomodoro: <span id="pomodoro-count">0</span></p>
+            <p>Breaks: <span id="breaks-count">0</span></p>
+            <p>Long Break: <span id="long-break-count">0</span></p>
             </div>
-        </form>
-    </section>
-    <div class="status-container">
-        <div class="status-header">
-          <h2 class="status-title"> Status </h2>
-          <div class="buttons"> 
-            <button class="status-control" id="status-minimize">_</button>
-            <button class="status-control" id="status-maximize">+</button>
-            <button class="status-control" id="status-close">x</button>
-          </div>
         </div>
-        <div class="status-content">
-          <p>Pomodoro: <span id="pomodoro-count">0</span></p>
-          <p>Breaks: <span id="breaks-count">0</span></p>
-          <p>Long Break: <span id="long-break-count">0</span></p>
-        </div>
-    </div>
-    <!-- STATISTICS WINDOW -->
-    <section id="statistics" class="window-container">
-      <header>
-          <h2>Statistics</h2>
-          <div id="statistics-window-controls" class="window-controls">
-            <button class="window-control" id="statistics-minimize">_</button>
-            <button class="window-control" id="statistics-maximize">+</button>
-            <button class="window-control" id="statistics-close">x</button>
-          </div>          
-      </header>
-      <table id="statistics-table">
-        <thead>
-          <th>Task</th>
-          <th>Time</th>
-          <th>Rest</th>
-          <th>Extra T.</th>
-          <th>Date</th>
-        </thead>
-        <tbody>
-          <!-- ESTAS FILAS SON DE PRUEBA, ELIMINAR CUANDO SE CARGEN DE FORMA DINAMICA -->
-          <tr>
-            <td>Leer</td><td>1h.</td><td>20m.</td><td>15m.</td><td>09/02/2025</td>
-          </tr>
-          <tr>
-            <td>Tarea de nombre largo que no cabe</td><td>2h.</td><td>10m.</td><td>5m.</td><td>10/02/2025</td>
-          </tr>
-          <!-- ELIMINAR HASTA AQUI -->
-          </tbody>
-      </table>
-    </section>
-
-    <!-- BOTTOM BUTTONS -->
+        <!-- STATISTICS WINDOW -->
+        <section id="statistics" class="window-container">
+            <header>
+                <h2>Statistics</h2>
+                <div id="statistics-window-controls" class="window-controls">
+                    <button class="window-control" id="statistics-minimize">_</button>
+                    <button class="window-control" id="statistics-maximize">+</button>
+                    <button class="window-control" id="statistics-close">x</button>
+                </div>          
+            </header>
+            <table id="statistics-table">
+                <thead>
+                <th>Task</th>
+                <th>Time</th>
+                <th>Rest</th>
+                <th>Extra T.</th>
+                <th>Date</th>
+                </thead>
+                <tbody>
+                <!-- ESTAS FILAS SON DE PRUEBA, ELIMINAR CUANDO SE CARGEN DE FORMA DINAMICA -->
+                <tr>
+                    <td>Leer</td><td>1h.</td><td>20m.</td><td>15m.</td><td>09/02/2025</td>
+                </tr>
+                <tr>
+                    <td>Tarea de nombre largo que no cabe</td><td>2h.</td><td>10m.</td><td>5m.</td><td>10/02/2025</td>
+                </tr>
+                <!-- ELIMINAR HASTA AQUI -->
+                </tbody>
+            </table>
+        </section>
         <section class="tasks"></section>
-        <section id="pomodor_bottom" class="pomodoro_bottom">
-            <div id="container-timer-buttons" class="container-timer-buttons">
-                <!--En CSS se creo una clase Active, para cuando ocurra el evento click del boton y cambie el diseño -->
-                <button id="startbutton" class="timer-button star active">Start</button>
-                <button id="pausebutton" class="timer-button pause">Pause</button>
-                <button id="resetbutton" class="timer-button reset">Reset</button>
-            </div>
-        </section>
-        <section class="pomodoro-description">
-            <img class="key-enter" src="./img/icons/key_enter_light.svg" alt="figura de tecla enter" width="90px">
-            <img class="key-new" src="./img/icons/key_new.svg" alt="figura de tecla new" width="100px">
-            <div class="container">
-                <h2 class="container__title">¿Qué es la Técnica Pomodoro?</h2>
-                <div class="container__description">                    
-                    <p>La Técnica Pomodoro es un método de gestión del tiempo diseñado para potenciar la productividad.</p>
-                    <p>Se basa en utilizar un temporizador que fracciona tu jornada laboral en segmentos denominados pomodoros y pausas.</p>
-                    <p>Por lo general, cada pomodoro dura 25 minutos y se complementa con un descanso de 5 minutos, aunque la duración exacta puede ajustarse en función de tu nivel de concentración.</p>                    
-                </div>
-            </div>
-        </section>
-        <section class="comunity-description">
-            <div>
-                <img class="folder" src="./img/icons/folder_orange.svg" alt="figura de tecla enter" width="90px">
-                <span class="folder-pill">comunity-folder</span>
-            </div>
-            <img class="certificate" src="./img/webp/achievement.webp" alt="figura de mano haciendo unos cuernos" width="100px">
-            <div class="container">
-                <h2 class="container__title">La comunidad</h2>
-                <div class="container__description">
-                    <p>Rodéate de una comunidad que comparte tus intereses y te acompaña en tu crecimiento personal y
-                        profesional dentro del campus, un espacio diseñado especialmente para inspirarte y motivarte.
-                        Aquí puedes hacer preguntas, compartir tus conocimientos, brindar apoyo y aprender de otros
-                        estudiantes que están recorriendo un camino similar al tuyo..</p>
-                    <p>
-                        Construir conexiones significativas no solo enriquece tu experiencia, sino que también te ayuda
-                        a afrontar los desafíos con mayor confianza. El camino siempre es más ligero, inspirador y
-                        gratificante cuando lo recorres junto a personas que comparten tus objetivos y te impulsan a
-                        alcanzar tu máximo potencial
-                    </p>
-
-                </div>
-            </div>
-        </section>
     </main>
     <!-- FOOTER -->
     <footer>
