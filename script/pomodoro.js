@@ -215,8 +215,7 @@ function changeMode(mode) {
     updateclock(minutos[0], minutos[1], segundos[0], segundos[1]);    
 }
 
-start_btn.addEventListener('click', () => {
-    
+start_btn.addEventListener('click', () => {    
     if (!running && !inpause) {
         running = true;
         start_btn.classList.add("active");
@@ -239,7 +238,6 @@ start_btn.addEventListener('click', () => {
         }
         startMode();
     } else if (inpause) {
-        inpause = false;
         running = true;
         rounds = false
         pause_btn.classList.remove("active");
@@ -247,6 +245,7 @@ start_btn.addEventListener('click', () => {
         pause_btn.disabled = false;
         totalSeconds = tiempoRestante;
         workerMode();
+        inpause = false;
         blockModes();
         if(nocounter < 1){
             nocounter++;
@@ -266,15 +265,18 @@ pause_btn.addEventListener('click', () => {
 })
 
 function workerMode() {
-    //let totalSegundos = parseInt(mins.innerHTML) * 60 + parseInt(secs.innerHTML);    
-    let totalSegundos = pomodoroMins * 60 + pomodoroSecs;
-    if (worker) worker.terminate();
-    totalSegundos = tiempoRestante;
+    if (worker) {
+        worker.terminate();
+        //totalSegundos = totalSeconds;
+    } else {
+        totalSegundos = pomodoroMins * 60;
+    }
+    tiempoRestante = totalSeconds;
+
     worker = new Worker("./script/worker.js");
-    //worker.postMessage({ action: "start", time: totalSegundos });
-    worker.postMessage({ action: "start", time: totalSegundos });
+    worker.postMessage({ action: "start", time: tiempoRestante});
     worker.onmessage = function (e) {
-        if (e.data.finished) {
+        if (e.data.finished) {            
             worker.terminate();
 
             if (nocounter > 0) {
@@ -291,16 +293,20 @@ function workerMode() {
                 }
             })
 
-            if(breakTime==true && counter==0){
+            if(breakTime==true && counter!=0){
                 console.log('breakTime')
                 unlockModes()
-                pauseMode()
-                ALARM_WARNING.currentTime = 0
+                totalSegundos = workTime_Mins * 60;
+                worktime_btn.click();
+                running = false;
+                inpause = false;
+                pauseMode();
+                ALARM_WARNING.currentTime = 0;
                 ALARM_WARNING.play()
                 return
             }
 
-            if(restTime==true && counter==0){
+            if(restTime==true && counter!=0){
                 console.log('restTime')
                 unlockModes()
                 pauseMode()
@@ -310,13 +316,17 @@ function workerMode() {
             }
 
             if (rounds == true) {
+                running = false;
+                inpause = false;
                 unlockModes()
                 worktime_btn.click()
                 pauseMode()
                 blockModes()
             } else {
                 unlockModes()
-                if (counter == 4) {
+                if (counter == 2) {
+                    running = false;
+                    inpause = false;
                     console.log('se cumplieron las 4 rondas')
                     resttime_btn.click()
                     pauseMode()
@@ -329,19 +339,22 @@ function workerMode() {
                     unlockModes()
                 } else {
                     breaktime_btn.click()
+                    totalSegundos = breakTime_Mins*60;
                     pauseMode()
+                    running = false;
+                    inpause = false;
                     start_btn.click()
                     ALARM_WARNING.play();
                     rounds = true
                     blockModes()
                 }
-            }
+            }            
         } else {
             let min = Math.floor(e.data.timeLeft / 60);
             sec = e.data.timeLeft % 60;
             //mins.innerHTML = min.toString().padStart(2, "0");
             //secs.innerHTML = sec.toString().padStart(2, "0");
-            setProgress((e.data.timeLeft*100)/totalSegundos);            
+            setProgress((e.data.timeLeft*100)/totalSegundos);
             minutos = (min.toString());
             segundos = (sec.toString());
             tiempoRestante = e.data.timeLeft;
@@ -397,6 +410,7 @@ function unlockModes() {
     worktime_btn.disabled = false
     breaktime_btn.disabled = false
     resttime_btn.disabled = false
+    setProgress(100);
 }
 
 worktime_btn.click()
