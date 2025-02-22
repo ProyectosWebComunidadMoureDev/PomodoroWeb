@@ -324,7 +324,7 @@ function workerMode() {
                 blockModes()
             } else {
                 unlockModes()
-                if (counter == 2) {
+                if (counter == 4) {
                     running = false;
                     inpause = false;
                     console.log('se cumplieron las 4 rondas')
