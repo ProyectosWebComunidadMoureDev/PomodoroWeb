@@ -33,6 +33,7 @@ header {
 	gap: 1rem;
 	height: 15vh;
 	padding: 20px 25px;
+	position: relative;
 }
 
 .header__top {
@@ -169,29 +170,40 @@ header {
 /**************** BOTONES DE ESTADO ***************************/
 /**************************************************************/
 .state__container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 3;
+	width: 100%;
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
 	font-size: var(--responsive-btns);
 	gap: 10px;
-	height: 100%;
 	justify-content: center;
-
 	@media (width > 720px) {
 		gap: 50px;
 	}
 }
 
 .btn-state {
+	width: 12%;
+	min-width: 200px;
+	max-width: 250px;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	border: 2px solid var(--gray-color);
 	color: var(--white-color);
 	font-size: var(--responsive-btns);
+	font-size: var(--font-size-xsmall);
 	padding: 0 15px;
+	background-color: transparent;
+	-webkit-backdrop-filter : blur(6px);	
+	backdrop-filter: blur(6px) brightness(80%);
 	& img {
-		width: 2rem;
+		width: 40px;
 		padding: .25rem;
 		margin: 0 .5rem;
 	}
@@ -246,7 +258,7 @@ main {
 
 #pomodoro_section {
 	width: 100%;
-	height: 70dvh;
+	height: 80dvh;
 	position: relative;	
 }
 
@@ -266,16 +278,17 @@ main {
 	left: 50%;	
 	width: 100%;	
 	height: 100%;
-	transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);	
 }
 
 .circle-container {
 	position: absolute;
-	top: 50%;
+	top: 55%;
 	left: 50%;
 	width: 100%;
 	height: 100%;
 	transform: translateY(-50%) translateX(-50%);
+	overflow: hidden;
 }
 
 #pomodoro_bottom {
@@ -299,7 +312,7 @@ main {
 	width: calc((var(--segment_height)*3 + var(--segment_width)*2)*3);
 	width: calc((var(--segment_width)*4) + var(--segment_height*8));
 	height: calc(var(--segment_height)*3 + var(--segment_width)*2);
-	top: 50%;
+	top: 55%;
 	left: 50%;	
 	transform: translateX(-50%) translateY(-50%);
 	background-color: #f7f7f715;
@@ -523,6 +536,9 @@ main {
 	padding: 5px 10px;
 	background-color: var(--bg-color-main);
 	border-bottom: 1px solid var(--white-color);
+	cursor: grab;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .window-container header h2 {
@@ -531,10 +547,23 @@ main {
 }
 
 .window-controls {
-	display: flex;
-	gap: 5px;
-}
-
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: start;
+    gap: 5px;
+    width: 100%;
+    & button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        aspect-ratio: 1/1;
+        font-size: var(--font-size-xsmall);
+        color: var(--white-color);
+        background-color: var(--bg-color-main);
+    }
+}  
 .window-control {
 	width: 20px;
 	height: 20px;
@@ -1191,10 +1220,11 @@ footer .background-text {
 /****************** STATISTICS WINDOW ***********************/
 /************************************************************/
 #statistics {
-  width: 90%;
+  width: 25%;
+  min-width: 400px;
   position: absolute;
-  top: 20vh;
-  left: 50%;
+  top: 60vh;
+  left: 20%;
   transform: translateX(-50%);
   z-index: 3;
   display: none;
@@ -1313,8 +1343,12 @@ footer .background-text {
 		border-radius: 0rem;
 		font-size: var(--font-size-xxsmall);
 		width: 30%;
+		min-width: 90px;
 		height: 1.5rem;
 		gap: .25rem;
+		& .active {
+			border: 2px solid salmon;
+		}
 	}
 
 	.tabs {
@@ -1347,7 +1381,7 @@ footer .background-text {
 	}
 
 	#timer {
-		position: relative;
+		position: relative;		
 	}
 
 	.circle-container {
@@ -1356,7 +1390,7 @@ footer .background-text {
 		overflow: hidden;
 		top: 50%;
 		left: 50%;
-		transform: translateX(-53%) translateY(-50%);
+		transform: translateX(-53%) translateY(-50%);		
 	}
 
 	.progress-ring {

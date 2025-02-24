@@ -66,7 +66,7 @@
     </header>
     <main>
         <section>
-            <section id="pomodoro_section">                  
+            <section id="pomodoro_section">
                 <section class="tabs">
                     <button id="tab-tasks">Tasks</button>
                     <button id="tab-tasks-resp">                
@@ -82,13 +82,13 @@
                     </button>
                 </section>
                 <section id="pomodoro_core">
-                    <div id="timer">
+                    <div id="timer">                        
                         <div class="circle-container">
                             <svg class="progress-ring">
                                 <circle class="progress-ring__circle" cx="150" cy="80" r="225" stroke-width="22"
                                     fill="transparent" />
                                 <circle class="out-ring__circle" cx="150" cy="80" r="240" stroke-width="3"
-                                    fill="transparent" />
+                                    fill="transparent" />                                    
                                 <circle class="in-ring__circle" cx="150" cy="80" r="210" stroke-width="3"
                                     fill="transparent" />
                             </svg>
@@ -182,13 +182,13 @@
             </section>        
         </section>        
                                 <!-- TASKS WINDOW -->
-        <section id="tasks" class="window-container" hidden>
-            <header>
+        <section id="tasks" class="window-container draggable" hidden>
+            <header class="header">
                 <h2>Tasks</h2>
                 <div id="tasks-window-controls" class="window-controls">
-                <button class="window-control" id="tasks-minimize">_</button>
-                <button class="window-control" id="tasks-maximize">+</button>
-                <button class="window-control" id="tasks-close">x</button>
+                    <button class="window-control minimize" id="tasks-minimize">_</button>
+                    <button class="window-control maximize" id="tasks-maximize">+</button>
+                    <button class="window-control close" id="tasks-close">x</button>
                 </div>
             </header>
             <form id="add-task" hidden>
@@ -333,4 +333,5 @@
 <script src="./script/main.js"></script>
 <script src="./script/pomodoro.js"></script>
 <script src="./script/taskList.js"></script>
+<script src="./script/dragdrop.js"></script>
 </html>
