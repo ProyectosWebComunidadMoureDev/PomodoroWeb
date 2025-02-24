@@ -4,21 +4,22 @@ const menuContent= document.querySelector(".menu-content");
 
 // Evento click para cerrar el menu al clickar fuera de el
 window.document.addEventListener("click",(event)=>{
-if(!menuContent.contains(event.target) && !menuBtn.contains(event.target)){
-    closeMenu();
-}
-})
+    if(!menuContent.contains(event.target) && !menuBtn.contains(event.target)){
+        closeMenu();
+    }
+});
 
 // Evento para cerrar al presionar la tecla Escape
 window.document.addEventListener("keydown",(event)=>{
     if(event.key==="Escape"){
         closeMenu();
     }
-})
+});
+
 // Evento click en el Menu para mostrar y ocultar el contenido
 menuBtn.addEventListener("click", ()=>{
     toggleMenu();
-})
+});
 
 //Función para abrir el menú
 function openMenu(){
@@ -33,13 +34,8 @@ function closeMenu(){
     menuContent.classList.remove("show");
     menuBtn.setAttribute("aria-expanded", "false")
 }
-// Función para alternar entre abierto y cerrado
 
-function toggleMenu(){
-    const ariaExpanded = menuBtn.getAttribute('aria-expanded')==="true"
-    if(ariaExpanded){
-        closeMenu();
-    }else{
-        openMenu();
-    }
+// Función para alternar entre abierto y cerrado
+function toggleMenu(){    
+    menuBtn.getAttribute('aria-expanded')==="true" ? closeMenu() : openMenu();    
 }
