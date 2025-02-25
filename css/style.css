@@ -1,143 +1,152 @@
 @import url(variables.css);
 @import url(reset.css);
 
-/**************************************************************/
 /************************* GENERAL ****************************/
-/**************************************************************/
 body {
 	background-color: var(--bg-color-main);
 	color: var(--text-color-main);
 	font-family: var(--font-family-main);
-	font-size: var(--font-size-medium);	
+	font-size: var(--font-size-medium);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 button {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
-	font-size: var(--font-size-medium);
+	font-size: var(--font-size-small);
 }
 
-button:focus-visible {
-	outline: 4px solid var(--blue-color);
+*:focus-visible {
+	outline: 4px solid var(--orange-color);
 	outline-offset: 5px;
 }
 
-/**************************************************************/
 /************************** HEADER ****************************/
-/**************************************************************/
 header {
-	color: var(--text-color-main);
 	display: flex;
-	flex-direction: column;
+	flex-direction: column;	
 	gap: 1rem;
-	height: 15vh;
-	padding: 20px 25px;
-}
-
-.header__top {
-	display: flex;
-	gap: 15px;
-	justify-content: center;
-	@media (width > 570px) {
-		justify-content: space-between;
-	}
-}
-
-.logo {
-	align-items: center;
-	display: flex;
-	gap: 0.5rem;
 	position: relative;
-	@media (width > 720px) {
-		gap: 1rem;
+	padding: 30px 0;
+	.header__top {
+		display: flex;
+		gap: 15px;
+		justify-content: space-between;
+		.logo {
+			align-items: center;
+			display: flex;
+			gap: 0.5rem;
+			position: relative;
+			.logo-img {
+				width: 3rem;
+			}
+			.logo-name {
+				font-size: clamp(1rem, 2.5vw, 3rem);
+				font-weight: 900;
+			}
+			.logo-name-pill {
+				align-items: center;
+				background-color: var(--blue-color);
+				border-radius: 20px;
+				color: var(--bg-color-main);
+				display: flex;
+				font-size: var(--font-size-small);
+				height: 30px;
+				justify-content: center;
+				padding: 0 15px;
+				position: absolute;
+				right: -1.5rem;
+				top: 50px;
+				transform: rotate(-10deg);
+				transition: transform 0.3s ease;
+				z-index: 3;
+				&:hover {
+					transform: rotate(0deg);
+				}
+			}
+		}
+	}
+}
+@media (width > 1050px) {	
+	header {
+		width: 95%;
+		height: 20vh;
+	}
+}
+@media (width <= 1050px) {
+	header {
+		width: 90%;
+		height: 17vh;
 	}
 }
 
-.logo-img {
-	width: 3rem;
-}
-
-.logo-name {
-	font-size: clamp(1rem, 2.5vw, 3rem);
-	font-weight: 900;
-
-  /* font-size: var(--font-size-large); */
-}
-
-.logo-name-pill {
-	align-items: center;
-	background-color: var(--blue-color);
-	border-radius: 20px;
-	color: var(--bg-color-main);
-	display: flex;
-	font-size: var(--font-size-small);
-	height: 30px;
-	justify-content: center;
-	padding: 0 15px;
-	position: absolute;
-	right: -1.5rem;
-	top: 50px;
-	transform: rotate(-10deg);
-	transition: transform 0.3s ease;
-}
-
-.logo-name-pill:hover {
-	transform: rotate(0deg);
-}
-
-/**************************************************************/
 /*************************** MENU *****************************/
-/**************************************************************/
 .menu__container {
 	position: relative;
 	z-index: 2;
 }
 
 .btn-menu {
-	background: white;
-	border: 2px solid var(--white-color);
-	color: black;
-	font-size: var(--responsive-btns);
-	font-weight: bold;
-	padding: 0 25px;
-	position: relative;
-}
-
-.btn-menu::before {
-	border: 1px solid white;
-	content: "";
-	display: block;
-	height: 100%;
-	position: absolute;
-	top: 7px;
-	transform: translateX(-15px);
-	width: 100%;
-	z-index: -1;
-}
-
-.btn-menu::after {
 	background: var(--white-color);
-	bottom: 10px;
-	content: "";
-	height: 2px;
-	left: 10px;
-	position: absolute;
-	transition: width 0.1s ease-in-out;
-	width: 0%;
+	border: 1px solid var(--white-color);
+	color: var(--bg-color-main);
+	font-size: var(--font-size-small);
+	font-weight: bold;
+	padding: 0 45px 0 25px ;
+	position: relative;
+	height: 60px;
+	&::before {
+		border: 1px solid var(--white-color);
+		content: "";
+		
+		height: 100%;
+		position: absolute;
+		top: 7px;
+		transform: translateX(-15px);
+		width: 100%;
+		z-index: -1;
+	}
+	& span {
+		position: absolute;
+		top: 50%;
+		right: 10%;
+		transform: translateY(-50%) rotate(180deg);
+		fill: #1a1a1a;
+	}
+	&::after {
+		background: var(--white-color);
+		bottom: 10px;
+		content: "";
+		height: 2px;
+		position: absolute;
+		top: 85%;
+		left: 10px;
+		transition: width 0.1s ease-in-out;
+		width: 0%;
+	}
+	&:hover::after {
+		width: 90%;
+	}
+	&:active {
+		box-shadow: none;
+		transform: translate(5px, 5px);
+		&::before {
+			display: none;
+		}
+	}
 }
-
-.btn-menu:hover::after {
-	width: 80%;
+@media (width <= 1050px) {
+	#bigmenu {
+		display: none;
+	}
 }
-
-.btn-menu:active {
-	box-shadow: none;
-	transform: translate(5px, 5px);
-}
-
-#smallmenu {
-	display: none;
+@media (width > 1050px) {	
+	#smallmenu, #worktime_btn_resp, #breaktime_btn_resp, #resttime_btn_resp {
+		display: none;
+	}
 }
 
 .menu-content {
@@ -150,104 +159,78 @@ header {
 	right: 1px;
 	top: 80px;
 	transform: translateX(10px);
-}
-
-.menu-content.show {
-	display: flex;
-}
-
-.btn {
-	font-size: var(--font-size-medium);
-}
-
-.btn:hover {
-	background-color: var(--white-color);
-	color: var(--bg-color-alt);
-}
-
-/**************************************************************/
-/**************** BOTONES DE ESTADO ***************************/
-/**************************************************************/
-.state__container {
-	align-items: center;
-	display: flex;
-	flex-wrap: wrap;
-	font-size: var(--responsive-btns);
-	gap: 10px;
-	height: 100%;
-	justify-content: center;
-
-	@media (width > 720px) {
-		gap: 50px;
+	&.show {
+		display: flex;
 	}
+	.btn {
+		font-size: var(--font-size-small);
+		&:hover {
+			background-color: var(--white-color);
+			color: var(--bg-color-alt);
+		}
+	}
+}
+/**************** BOTONES DE ESTADO ***************************/
+.state__container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 3;
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 10px;
+	justify-content: center;
 }
 
 .btn-state {
+	width: 12%;
+	min-width: 200px;
+	max-width: 250px;
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
 	border: 2px solid var(--gray-color);
 	color: var(--white-color);
-	font-size: var(--responsive-btns);
+	font-size: var(--font-size-xsmall);
 	padding: 0 15px;
+	background-color: transparent;
+	-webkit-backdrop-filter : blur(6px);	
+	backdrop-filter: blur(6px) brightness(80%);
 	& img {
-		width: 2rem;
+		width: 40px;
 		padding: .25rem;
 		margin: 0 .5rem;
-	}
+	}	
 }
-
-/*
-.btn-state:focus {
-	border: 5px solid var(--blue-color);
-}
-*/
-
-#worktime_btn_resp, #breaktime_btn_resp, #resttime_btn_resp {
-	display: none;
-}
-
-.work {
-	border-color: var(--blue-color);
-}
-
-.brake {
-	border-color: var(--orange-color);
-}
-
-.rest {
-	border-color: var(--green-color);
-}
-/**************************************************************/
 /****************** ANIMACIÓN DEL FONDO **********************/
-/************************************************************/
 main {
 	animation: bg-scrolling-reverse 5s linear infinite;
 	background: url("../img/png/bg_dark_pattern.png") repeat;
 	background-color: var(--bg-color-main);
-	height: fit-content;	
+	height: fit-content;
 }
 @keyframes bg-scrolling-reverse {
 	from {
 		background-position: 0 0;
 	}
 	to {
-		background-position: 73px 73px;
-
 		/* Ajustar el tamaño a un múltiplo del patrón */
+		background-position: 73px 73px;
 	}
 }
 
-
-
-/**************************************************************/
 /********************* POMODORO SECTION ************************/
-/************************************************************/
+/********************* POMODORO SECTION ************************/
+/********************* POMODORO SECTION ************************/
+/********************* POMODORO SECTION ************************/
+/********************* POMODORO SECTION ************************/
 
 #pomodoro_section {
 	width: 100%;
-	height: 70dvh;
-	position: relative;	
+	height: 75dvh;
+	position: relative;
 }
 
 #pomodoro_core {
@@ -266,16 +249,17 @@ main {
 	left: 50%;	
 	width: 100%;	
 	height: 100%;
-	transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);	
 }
 
 .circle-container {
 	position: absolute;
 	top: 50%;
-	left: 50%;
+	right: 50%;
 	width: 100%;
 	height: 100%;
-	transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(50%);
+	overflow: hidden;
 }
 
 #pomodoro_bottom {
@@ -302,8 +286,8 @@ main {
 	top: 50%;
 	left: 50%;	
 	transform: translateX(-50%) translateY(-50%);
-	background-color: #f7f7f715;
-	background-color: #f7f7f70a;
+	/*background-color: #f7f7f715;
+	background-color: #f7f7f70a;*/
 	
 }
 
@@ -416,7 +400,8 @@ main {
 	top: calc(var(--digits_space)*.25);
     left: calc(var(--digits_space)*2.25);
 	top: 40%;
-	transform: translateY(-50%);
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 }
 
 #separator_two {    
@@ -426,8 +411,9 @@ main {
     background-color: var(--clock_color);
     top: calc(var(--digits_space)*1.25);
     left: calc(var(--digits_space)*2.25);  
-	top: 60%;
-	transform: translateY(50%);
+	top: 65%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 }
 
 
@@ -470,12 +456,11 @@ main {
 }
 
 .progress-ring {
-	transform: rotate(-90deg); /* Ajustar el inicio del stroke al tope del círculo */	
 	overflow: visible;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-90deg);	
 }
 
 .progress-ring__circle {
@@ -483,8 +468,9 @@ main {
 	stroke: var(--blue-color); /* Color del stroke */
 	stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
 	stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
-	transition: stroke-dashoffset 0.3s linear; /* Transición suave */
+	transition: stroke-dashoffset .6s ease-out; /* Transición suave */
 	stroke-linecap: round;  /* Bordes redondeados */
+
 }
 
 .out-ring__circle {
@@ -493,7 +479,7 @@ main {
 	stroke-dashoffset: 314.16;  /* Empieza con stroke completamente oculto */
 	transition: stroke-dashoffset 0.3s linear;  /* Transición suave */
 	stroke-linecap: round;  /* Bordes redondeados */
-	opacity: 1;
+	opacity: 1;	
 }
 
 .in-ring__circle {
@@ -523,6 +509,9 @@ main {
 	padding: 5px 10px;
 	background-color: var(--bg-color-main);
 	border-bottom: 1px solid var(--white-color);
+	cursor: grab;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .window-container header h2 {
@@ -531,10 +520,23 @@ main {
 }
 
 .window-controls {
-	display: flex;
-	gap: 5px;
-}
-
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: start;
+    gap: 5px;
+    width: 100%;
+    & button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        aspect-ratio: 1/1;
+        font-size: var(--font-size-xsmall);
+        color: var(--white-color);
+        background-color: var(--bg-color-main);
+    }
+}  
 .window-control {
 	width: 20px;
 	height: 20px;
@@ -947,13 +949,15 @@ footer .final-text {
 }
 
 footer .background-text {
-  width: 100vw;
+  width: 100%;
   position: absolute;
   bottom: 0px;
   margin: -3rem auto;
   z-index: -9999;
 }
-
+#pomouredevpro {
+	width: 100%;
+}
 /************************************************************/
 /********************* BOTONES TIMER ************************/
 /************************************************************/
@@ -1191,10 +1195,11 @@ footer .background-text {
 /****************** STATISTICS WINDOW ***********************/
 /************************************************************/
 #statistics {
-  width: 90%;
+  width: 25%;
+  min-width: 400px;
   position: absolute;
-  top: 20vh;
-  left: 50%;
+  top: 60vh;
+  left: 20%;
   transform: translateX(-50%);
   z-index: 3;
   display: none;
@@ -1249,11 +1254,6 @@ footer .background-text {
 		justify-content: center;
 		align-items: center;
 	}
-	header {
-		height: fit-content;
-		width: 90%;
-		position: relative;
-	}
 	.logo-name {
 		z-index: 2;
 	}
@@ -1263,9 +1263,10 @@ footer .background-text {
 		background-color: var(--blue-color);
 		border-radius: 20px;
 		color: var(--bg-color-main);
-		display: flex;
-		font-size: var(--font-size-small);
-		height: 30px;
+		display: none;
+		font-size: var(--font-size-xxsmall);
+		width: 40px;
+		height: 20px;
 		justify-content: center;
 		padding: 0 15px;
 		position: absolute;
@@ -1288,7 +1289,7 @@ footer .background-text {
 		justify-content: center;
 		margin: 1rem 0 0;
 		position: absolute;		
-		top: 2rem;
+		bottom: 0px;
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 3;
@@ -1311,15 +1312,20 @@ footer .background-text {
 		background-color: var(--gray-color);
 		background-color: transparent;
 		border-radius: 0rem;
-		font-size: var(--font-size-xxsmall);
+		font-size: var(--font-size-xsmall);
+		border: 2px solid var(--gray-color);
 		width: 30%;
+		min-width: 90px;
 		height: 1.5rem;
 		gap: .25rem;
+		& .active {
+			border: 2px solid salmon;
+		}
 	}
 
 	.tabs {
 		position: absolute;
-		top: 40px;
+		top: 20px;
 		left: 0;
 		margin: 15px 0 0 15px;
 		display: flex;
@@ -1332,14 +1338,14 @@ footer .background-text {
 			background-color: var(--gray-color);			
 			background-color: transparent;		
 			border: 2px solid var(--gray-color);
-		}
+		}		
 		& #tab-tasks, #tab-statistics{
 			display: none;
 		}
 		& #tab-tasks-resp, #tab-statistics-resp {
 			display: flex;
 			margin: 3px;
-		}	
+		}			
 	}
 	main > section {
 		width: 100%;
@@ -1347,7 +1353,7 @@ footer .background-text {
 	}
 
 	#timer {
-		position: relative;
+		position: relative;		
 	}
 
 	.circle-container {
@@ -1356,7 +1362,7 @@ footer .background-text {
 		overflow: hidden;
 		top: 50%;
 		left: 50%;
-		transform: translateX(-53%) translateY(-50%);
+		transform: translateX(-50%) translateY(-50%);		
 	}
 
 	.progress-ring {
@@ -1381,7 +1387,7 @@ footer .background-text {
 	}
 
 
-	#separator {    
+	#separator {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
@@ -1390,13 +1396,13 @@ footer .background-text {
 		left: calc(var(--digits_space)*2.2);
 	}
 	
-	#separator_two {    
+	#separator_two {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
 		background-color: var(--clock_color);
 		top: calc(var(--digits_space)*1);
-		left: calc(var(--digits_space)*2.2);  
+		left: calc(var(--digits_space)*2.2);
 	}
 
 	#pomodor_bottom {
