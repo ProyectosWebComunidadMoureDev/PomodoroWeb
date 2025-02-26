@@ -2,6 +2,46 @@
 @import url(reset.css);
 
 /************************* GENERAL ****************************/
+@media (width >= 1450px) {
+	.state__container {
+		position: absolute;
+		top: 75%;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 3;
+		width: fit-content;
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		gap: 10px;
+		justify-content: center;
+	}
+
+	.logo-name-pill {
+		font-size: var(--font-size-small);
+	}
+}
+
+@media (width < 1450px) {
+	.state__container {
+		position: absolute;
+		top: 75%;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 3;
+		width: fit-content;
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		gap: 10px;
+		justify-content: center;
+	}
+
+	.logo-name-pill {
+		font-size: var(--font-size-small);
+	}
+}
+
 body {
 	background-color: var(--bg-color-main);
 	color: var(--text-color-main);
@@ -53,7 +93,7 @@ header {
 				border-radius: 20px;
 				color: var(--bg-color-main);
 				display: flex;
-				font-size: var(--font-size-small);
+				/* font-size: var(--font-size-small); */
 				height: 30px;
 				justify-content: center;
 				padding: 0 15px;
@@ -171,19 +211,7 @@ header {
 	}
 }
 /**************** BOTONES DE ESTADO ***************************/
-.state__container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 3;
-	width: fit-content;
-	display: flex;
-	align-items: center;
-	flex-wrap: nowrap;
-	gap: 10px;
-	justify-content: center;
-}
+
 
 .btn-state {
 	width: 12%;
@@ -957,6 +985,7 @@ footer .background-text {
 }
 #pomouredevpro {
 	width: 100%;
+	filter: brightness(10) contrast(1);
 }
 /************************************************************/
 /********************* BOTONES TIMER ************************/
@@ -1264,8 +1293,8 @@ footer .background-text {
 		border-radius: 20px;
 		color: var(--bg-color-main);
 		display: none;
-		font-size: var(--font-size-xxsmall);
-		width: 40px;
+		font-size: var(--font-size-xsmall);
+		/* width: 40px; */
 		height: 20px;
 		justify-content: center;
 		padding: 0 15px;
@@ -1454,9 +1483,9 @@ footer .background-text {
 	.comunity-description {
 		width: 100%;
 		& .certificate {
-		right: 20px;
+		right: 10px;
 		top: 10px;
-		scale: 1;
+		scale: 1.15;
 		transform: rotate(-10deg);
 		}
 		& .folder {
@@ -1472,9 +1501,10 @@ footer .background-text {
 		margin: 0;
 		width: 80%;
 		& .container__title {
+			margin-top: 70px;
 			width: 100%;
 			padding: 1rem 0;
-			text-align: center;
+			/* text-align: center; */
 			font-size: var(--font-size-xlarge);
 		}
 		& .container__description {
