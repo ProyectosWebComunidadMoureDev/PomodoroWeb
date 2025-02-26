@@ -119,7 +119,7 @@ header {
 @media (width <= 1050px) {
 	header {
 		width: 90%;
-		height: 17vh;
+		height: 25vh;
 	}
 }
 
@@ -1391,7 +1391,7 @@ footer .background-text {
 		overflow: hidden;
 		top: 50%;
 		left: 50%;
-		transform: translateX(-50%) translateY(-50%);		
+		transform: translateX(-50%) translateY(-50%) scale(0.7);
 	}
 
 	.progress-ring {
@@ -1407,7 +1407,7 @@ footer .background-text {
 		height: calc(var(--segment_height)*3 + var(--segment_width)*2);
 		top: 50%;
 		left: 50%;
-		transform: translateX(-50%) translateY(-50%) scale(.75);
+		transform: translateX(-50%) translateY(-50%) scale(0.50);
 	}
 
 	#first_minutes, #second_minutes, #first_seconds, #second_seconds, #separator, #separator_two {
