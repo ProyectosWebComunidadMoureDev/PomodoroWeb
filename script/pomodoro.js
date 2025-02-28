@@ -10,8 +10,42 @@ const POMODORO = {
     roundsCompleted: 0,
     totalSeconds: 0,
     remainingTime: 0,
-    completeCycle: 4
+    completeCycle: 4,
+    speed_clock: 1000,
+    speed_miniclock: 200
 };
+
+const WORKERS = {
+    worker: {
+        time: () => POMODORO.remainingTime,
+        speed: POMODORO.speed_clock,
+        instance: null,
+        onMessage: (e) => {
+            if (e.data.finished) {
+                timerComplete();
+            } else {
+                POMODORO.remainingTime = e.data.timeLeft;
+                setProgress((e.data.timeLeft*100)/POMODORO.totalSeconds);
+                formatClock(e.data.timeLeft);
+            }
+        }
+    },
+    miniworker: {
+        time: () => POMODORO.remainingTime * (POMODORO.speed_clock / POMODORO.speed_miniclock),
+        speed: POMODORO.speed_miniclock,
+        instance: null,
+        onMessage: (e) => {
+            if (e.data.finished) {
+                //timerComplete();
+            } else {
+                complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
+                POMODORO.remainingTime = e.data.timeLeft/(POMODORO.speed_clock / POMODORO.speed_miniclock);
+                setProgress((POMODORO.remainingTime*100)/POMODORO.totalSeconds);
+            }
+        }
+    }
+};
+
 
 // Segmentos del display
 const NUMBERS = {
@@ -35,11 +69,18 @@ const TIMER = document.getElementById('timer');
 const circle = document.querySelector(".progress-ring__circle");
 const outcircle = document.querySelector(".out-ring__circle");
 const incircle = document.querySelector(".in-ring__circle");
+const wt_circle = document.querySelector(".worktime_circle");
+const complete_circle = document.getElementById("complete_circle");
+
 
 // Radio del círculo
 const radius = circle.r.baseVal.value;
 const inradius = incircle.r.baseVal.value;
 const outradius = outcircle.r.baseVal.value;
+// Radio del círculo
+const wt_radius = wt_circle.r.baseVal.value;
+const wt_circumference = 2 * Math.PI * wt_radius;
+wt_circle.style.strokeDasharray = `${wt_circumference} ${wt_circumference}`;
 
 // Perímetro del círculo (longitud del trazo)
 const circumference = 2 * Math.PI * radius;
@@ -82,6 +123,7 @@ const ALARM_WARNING = document.getElementById('alarm');
 
 /* ************** *  VARIABLES  ** *********** */
 let worker = null;
+let miniworker = null;
 
 // Minutos y Segundos del timer
 let pomodoroMins = 0;
@@ -160,28 +202,13 @@ function changeColor(colorVar) {
 
 }
 
+
 function startPomodoro() {
-    /*
-    grabar en localstorage nocompletado +1
-    */
     blockModes();
     activeButton(start_btn);
     desactiveButton(pause_btn);
-    stopWorker();    
-    worker = new Worker("./script/worker.js");
-    worker.postMessage({
-        action: "start",
-        time: POMODORO.remainingTime
-    });    
-    worker.onmessage = (e) => {
-        if (e.data.finished) {
-            timerComplete();
-        } else {
-            POMODORO.remainingTime = e.data.timeLeft;
-            setProgress((e.data.timeLeft*100)/POMODORO.totalSeconds);
-            formatClock(e.data.timeLeft);
-        }
-    }    
+    stopWorker();
+    startWorkers();    
 }
 
 function pausePomodoro() {
@@ -212,9 +239,22 @@ function timerComplete() {
     }
 }
 
+function startWorkers() {
+    Object.entries(WORKERS).forEach(([key, config]) => {
+        config.instance = new Worker("../script/worker.js");
+        config.instance.onmessage = config.onMessage;
+        config.instance.postMessage({
+            action: "start",
+            time: config.time(),
+            speed: config.speed
+        });
+    });
+};
+
 function stopWorker() {
     if (worker) {
         worker.terminate();
+        miniworker.terminate();
         worker = null;
     }
 }
@@ -273,4 +313,17 @@ function stopAlarm() {
 window.addEventListener("load", (event) => {
     setProgress(100);
     setMode("work");
+    const wt_offset = (TIMER_CONFIG.work.minutes / 60) * wt_circumference;
+    wt_circle.style.strokeDashoffset = wt_circumference-wt_offset;
+    complete_circle.style.strokeDashoffset = (TIMER_CONFIG.work.minutes*60 + TIMER_CONFIG.work.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));
+    const worktime_mins = document.getElementById('worktime_mins');
+    worktime_mins.innerText = TIMER_CONFIG.work.minutes;
 });
+
+
+/*
+30.000
+1.500
+
+
+*/

@@ -173,9 +173,9 @@ header {
 /**************** BOTONES DE ESTADO ***************************/
 .state__container {
 	position: absolute;
-	top: 50%;
+	bottom: 0;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(-50%) translateY(-20%);
 	z-index: 3;
 	width: fit-content;
 	display: flex;
@@ -197,12 +197,12 @@ header {
 	padding: 0 15px;
 	background-color: transparent;
 	-webkit-backdrop-filter : blur(6px);	
-	backdrop-filter: blur(6px) brightness(80%);
+	backdrop-filter: blur(6px) brightness(80%);	
 	& img {
 		width: 40px;
 		padding: .25rem;
 		margin: 0 .5rem;
-	}	
+	}
 }
 /****************** ANIMACIÓN DEL FONDO **********************/
 main {
@@ -1527,3 +1527,38 @@ footer .background-text {
 	}
 }
 
+.worktime_img, .breaktime_img {
+	position: absolute;
+	top: 50%;
+	left: 50%;	
+	transform: translateX(-50%) translateY(-50%);
+	width: 200px;
+	height: 50px;
+	display: flex;	
+	& svg {
+		position: absolute;
+		transform:  rotate(-90deg);
+		& .worktime_circle {
+			position: absolute;
+			stroke: var(--white-color);  /* Color del stroke */
+			stroke-dasharray: 314.16;  /* Longitud total del perímetro del círculo */
+			stroke-dashoffset: 158;  /* Empieza con stroke completamente oculto */
+			transition: stroke-dashoffset 0.3s linear;  /* Transición suave */
+			stroke-linecap: round;  /* Bordes redondeados */
+			opacity: 1;
+		}
+	}
+	& span {
+		display: flex;
+		align-items: center;
+		& span {
+			position: absolute;
+			left: 9%;
+			font-size: var(--font-size-xxsmall);
+		}
+	}
+}
+#complete_circle {
+	stroke-dasharray: 8px;
+	stroke-dashoffset: 40px;
+}

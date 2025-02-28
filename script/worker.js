@@ -2,8 +2,10 @@ let totalSegundos;
 
 // Recibir el tiempo inicial desde el script principal
 self.onmessage = function (e) {
+    console.log("Worker recibió mensaje:", e.data);
     if (e.data.action === "start") {
         totalSegundos = e.data.time;
+        speed = e.data.speed;
         runTimer();
     } else if (e.data.action === "pause") {
         clearInterval(self.interval);
@@ -20,5 +22,5 @@ function runTimer() {
             clearInterval(self.interval);
             self.postMessage({ finished: true });
         }
-    }, 1000);
+    }, speed);
 }
