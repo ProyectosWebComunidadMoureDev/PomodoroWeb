@@ -38,7 +38,15 @@ const WORKERS = {
             if (e.data.finished) {
                 //timerComplete();
             } else {
-                complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
+                if (POMODORO.mode == "work") {
+                    complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
+                } else {
+                    if (POMODORO.mode == "break") {
+                        breaktime_complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
+                    } else {
+                        //rest_complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
+                    }
+                }
                 POMODORO.remainingTime = e.data.timeLeft/(POMODORO.speed_clock / POMODORO.speed_miniclock);
                 setProgress((POMODORO.remainingTime*100)/POMODORO.totalSeconds);
             }
@@ -70,7 +78,11 @@ const circle = document.querySelector(".progress-ring__circle");
 const outcircle = document.querySelector(".out-ring__circle");
 const incircle = document.querySelector(".in-ring__circle");
 const wt_circle = document.querySelector(".worktime_circle");
+const bt_circle = document.querySelector(".breaktime_circle");
+const rt_circle = document.querySelector(".resttime_circle");
 const complete_circle = document.getElementById("complete_circle");
+const breaktime_complete_circle = document.getElementById("breaktime_complete_circle");
+const resttime_complete_circle = document.getElementById("resttime_complete_circle");
 
 
 // Radio del círculo
@@ -81,6 +93,14 @@ const outradius = outcircle.r.baseVal.value;
 const wt_radius = wt_circle.r.baseVal.value;
 const wt_circumference = 2 * Math.PI * wt_radius;
 wt_circle.style.strokeDasharray = `${wt_circumference} ${wt_circumference}`;
+
+const bt_radius = bt_circle.r.baseVal.value;
+const bt_circumference = 2 * Math.PI * bt_radius;
+bt_circle.style.strokeDasharray = `${bt_circumference} ${bt_circumference}`;
+
+const rt_radius = rt_circle.r.baseVal.value;
+const rt_circumference = 2 * Math.PI * rt_radius;
+rt_circle.style.strokeDasharray = `${rt_circumference} ${rt_circumference}`;
 
 // Perímetro del círculo (longitud del trazo)
 const circumference = 2 * Math.PI * radius;
@@ -310,20 +330,26 @@ function stopAlarm() {
 }
 /* ************** **  FUNCTIONS  ** **************** */
 
-window.addEventListener("load", (event) => {
-    setProgress(100);
+window.addEventListener("load", (event) => {    
     setMode("work");
-    const wt_offset = (TIMER_CONFIG.work.minutes / 60) * wt_circumference;
-    wt_circle.style.strokeDashoffset = wt_circumference-wt_offset;
-    complete_circle.style.strokeDashoffset = (TIMER_CONFIG.work.minutes*60 + TIMER_CONFIG.work.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));
-    const worktime_mins = document.getElementById('worktime_mins');
-    worktime_mins.innerText = TIMER_CONFIG.work.minutes;
+    setCircles();
 });
 
-
-/*
-30.000
-1.500
-
-
-*/
+function setCircles() {
+    setProgress(100);
+    const wt_offset = (TIMER_CONFIG.work.minutes / 60) * wt_circumference;
+    const bt_offset = (TIMER_CONFIG.break.minutes / 60) * bt_circumference;
+    const rt_offset = (TIMER_CONFIG.rest.minutes / 60) * rt_circumference;
+    wt_circle.style.strokeDashoffset = wt_circumference-wt_offset;
+    bt_circle.style.strokeDashoffset = bt_circumference-bt_offset;
+    rt_circle.style.strokeDashoffset = rt_circumference-rt_offset;
+    complete_circle.style.strokeDashoffset = (TIMER_CONFIG.work.minutes*60 + TIMER_CONFIG.work.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));
+    breaktime_complete_circle.style.strokeDashoffset = (TIMER_CONFIG.break.minutes*60 + TIMER_CONFIG.break.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));
+    resttime_complete_circle.style.strokeDashoffset = (TIMER_CONFIG.rest.minutes*60 + TIMER_CONFIG.rest.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));
+    const worktime_mins = document.getElementById('worktime_mins');
+    const breaktimetime_mins = document.getElementById('breaktimetime_mins');
+    const resttimetime_mins = document.getElementById('resttimetime_mins');
+    worktime_mins.innerText = TIMER_CONFIG.work.minutes.toString().padStart(2, '0');
+    breaktimetime_mins.innerText = TIMER_CONFIG.break.minutes.toString().padStart(2, '0');
+    resttimetime_mins.innerText = TIMER_CONFIG.rest.minutes.toString().padStart(2, '0'); 
+}
