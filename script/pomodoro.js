@@ -261,7 +261,7 @@ function timerComplete() {
 
 function startWorkers() {
     Object.entries(WORKERS).forEach(([key, config]) => {
-        config.instance = new Worker("../script/worker.js");
+        config.instance = new Worker("./worker.js");
         config.instance.onmessage = config.onMessage;
         config.instance.postMessage({
             action: "start",
