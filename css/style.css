@@ -100,8 +100,7 @@ header {
 	height: 60px;
 	&::before {
 		border: 1px solid var(--white-color);
-		content: "";
-		
+		content: "";		
 		height: 100%;
 		position: absolute;
 		top: 7px;
@@ -173,9 +172,9 @@ header {
 /**************** BOTONES DE ESTADO ***************************/
 .state__container {
 	position: absolute;
-	top: 50%;
+	bottom: 0;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(-50%) translateY(-20%);
 	z-index: 3;
 	width: fit-content;
 	display: flex;
@@ -197,12 +196,12 @@ header {
 	padding: 0 15px;
 	background-color: transparent;
 	-webkit-backdrop-filter : blur(6px);	
-	backdrop-filter: blur(6px) brightness(80%);
+	backdrop-filter: blur(6px) brightness(80%);	
 	& img {
 		width: 40px;
 		padding: .25rem;
 		margin: 0 .5rem;
-	}	
+	}
 }
 /****************** ANIMACIÓN DEL FONDO **********************/
 main {
@@ -466,8 +465,8 @@ main {
 .progress-ring__circle {
 	z-index: 2;
 	stroke: var(--blue-color); /* Color del stroke */
-	stroke-dasharray: 314.16; /* Longitud total del perímetro del círculo */
-	stroke-dashoffset: 314.16; /* Empieza con stroke completamente oculto */
+	stroke-dasharray: 1413.72, 1413.72; /* Longitud total del perímetro del círculo */
+	stroke-dashoffset: 1413.72; /* Empieza con stroke completamente oculto */
 	transition: stroke-dashoffset .6s ease-out; /* Transición suave */
 	stroke-linecap: round;  /* Bordes redondeados */
 
@@ -475,8 +474,8 @@ main {
 
 .out-ring__circle {
 	stroke: var(--blue-color);  /* Color del stroke */
-	stroke-dasharray: 314.16;  /* Longitud total del perímetro del círculo */
-	stroke-dashoffset: 314.16;  /* Empieza con stroke completamente oculto */
+	stroke-dasharray: 1507.96, 1507.96;
+	stroke-dashoffset: 0;
 	transition: stroke-dashoffset 0.3s linear;  /* Transición suave */
 	stroke-linecap: round;  /* Bordes redondeados */
 	opacity: 1;	
@@ -484,8 +483,8 @@ main {
 
 .in-ring__circle {
 	stroke: var(--blue-color);  /* Color del stroke */
-	stroke-dasharray: 314.16;  /* Longitud total del perímetro del círculo */
-	stroke-dashoffset: 314.16;  /* Empieza con stroke completamente oculto */
+	stroke-dasharray: 1319.47, 1319.47;
+	stroke-dashoffset: 0;	
 	transition: stroke-dashoffset 0.3s linear;  /* Transición suave */
 	stroke-linecap: round;  /* Bordes redondeados */
 	opacity: 1;	
@@ -1527,3 +1526,54 @@ footer .background-text {
 	}
 }
 
+
+
+
+.worktime_img, .breaktime_img, .resttime_img {
+    position: absolute;
+    top: 50%;
+    left: 0%;    
+    transform: translateX(-0%) translateY(-50%);
+    width: 50px;
+    height: 50px;
+    display: flex;    
+    & svg {        
+        position: absolute;
+        transform: rotate(-90deg);
+    }
+    & span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & span {
+            position: relative;
+            left: 0;
+            font-size: var(--font-size-xxsmall);
+            font-weight: bold;
+        }
+    }
+}
+
+.worktime_img, .breaktime_img, .resttime_img {
+	svg {
+		position: absolute;
+		transform:  rotate(-90deg);
+		& .resttime_circle, .breaktime_circle,.worktime_circle {
+			position: absolute;
+			stroke: var(--white-color);
+			stroke-dasharray: 314.16;  /* Longitud total del perímetro del círculo */
+			stroke-dashoffset: 158;  /* Empieza con stroke completamente oculto */
+			transition: stroke-dashoffset 0.3s linear;  /* Transición suave */
+			stroke-linecap: round;  /* Bordes redondeados */
+			opacity: 1;
+		}
+	}
+}
+
+#complete_circle, #breaktime_complete_circle, #resttime_complete_circle {
+	stroke-dasharray: 8px;
+	stroke-dashoffset: 40px;
+}
