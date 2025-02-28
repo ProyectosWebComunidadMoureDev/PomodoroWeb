@@ -3,6 +3,7 @@ let totalSegundos;
 // Recibir el tiempo inicial desde el script principal
 self.onmessage = function (e) {
     if (e.data.action === "start") {
+        console.log("Worker Iniciado");
         totalSegundos = e.data.time;
         speed = e.data.speed;
         runTimer();
