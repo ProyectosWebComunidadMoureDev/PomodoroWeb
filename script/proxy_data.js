@@ -138,3 +138,7 @@ function deleteTaskProxyData(id){
 
 addModeTimeProxyData("workTime",true);
 addModeTimeProxyData(true);
+
+export{
+    
+}
