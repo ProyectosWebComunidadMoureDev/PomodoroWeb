@@ -105,6 +105,7 @@ TIMER.addEventListener('mouseover', function () {stopAlarm();});
 
 /* ************** **  FUNCTIONS  ** **************** */
 function setMode(mode) {
+    stopWorker();
     if (!(mode in TIMER_CONFIG)) {
         console.error("Modo inválido");
         return;
@@ -164,7 +165,7 @@ function startPomodoro() {
     /*
     grabar en localstorage nocompletado +1
     */
-    blockModes();
+    //blockModes();
     activeButton(start_btn);
     desactiveButton(pause_btn);
     stopWorker();    
