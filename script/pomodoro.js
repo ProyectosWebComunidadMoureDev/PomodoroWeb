@@ -10,8 +10,49 @@ const POMODORO = {
     roundsCompleted: 0,
     totalSeconds: 0,
     remainingTime: 0,
-    completeCycle: 4
+    completeCycle: 4,
+    speed_clock: 1000,
+    speed_miniclock: 200
 };
+
+const CIRCLES = {
+    work: { circle: null, complete: null, circumference: 0 },
+    break: { circle: null, complete: null, circumference: 0 },
+    rest: { circle: null, complete: null, circumference: 0 }
+};
+
+const WORKERS = {
+    worker: {
+        time: () => POMODORO.remainingTime,
+        speed: POMODORO.speed_clock,
+        instance: null,
+        onMessage: (e) => {
+            if (e.data.finished) {
+                timerComplete();
+            } else {
+                POMODORO.remainingTime = e.data.timeLeft;
+                setProgress((e.data.timeLeft*100)/POMODORO.totalSeconds);
+                formatClock(e.data.timeLeft);
+            }
+        }
+    },
+    miniworker: {
+        time: () => POMODORO.remainingTime * (POMODORO.speed_clock / POMODORO.speed_miniclock),
+        speed: POMODORO.speed_miniclock,
+        instance: null,
+        onMessage: (e) => {
+            if (!e.data.finished) {
+                const circle = CIRCLES[POMODORO.mode].complete;
+                if (circle) {
+                    circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
+                }
+                POMODORO.remainingTime = e.data.timeLeft/(POMODORO.speed_clock / POMODORO.speed_miniclock);
+                setProgress((POMODORO.remainingTime*100)/POMODORO.totalSeconds);
+            }
+        }
+    }
+};
+
 
 // Segmentos del display
 const NUMBERS = {
@@ -36,10 +77,35 @@ const circle = document.querySelector(".progress-ring__circle");
 const outcircle = document.querySelector(".out-ring__circle");
 const incircle = document.querySelector(".in-ring__circle");
 
+CIRCLES.work.circle = document.querySelector(".worktime_circle");
+CIRCLES.work.complete = document.getElementById("wt_complete_circle");
+CIRCLES.break.circle = document.querySelector(".breaktime_circle");
+CIRCLES.break.complete = document.getElementById("bt_complete_circle");
+CIRCLES.rest.circle = document.querySelector(".resttime_circle");
+CIRCLES.rest.complete = document.getElementById("rt_complete_circle");
+
+const wt_circle = document.querySelector(".worktime_circle");
+const wt_complete_circle = document.getElementById("wt_complete_circle");
+const bt_circle = document.querySelector(".breaktime_circle");
+const bt_complete_circle = document.getElementById("bt_complete_circle");
+const rt_circle = document.querySelector(".resttime_circle");
+const rt_complete_circle = document.getElementById("rt_complete_circle");
+
+
 // Radio del círculo
 const radius = circle.r.baseVal.value;
 const inradius = incircle.r.baseVal.value;
 const outradius = outcircle.r.baseVal.value;
+// Radio del círculo
+const wt_radius = wt_circle.r.baseVal.value;
+const bt_radius = bt_circle.r.baseVal.value;
+const rt_radius = rt_circle.r.baseVal.value;
+const wt_circumference = 2 * Math.PI * wt_radius;
+const bt_circumference = 2 * Math.PI * bt_radius;
+const rt_circumference = 2 * Math.PI * rt_radius;
+wt_circle.style.strokeDasharray = `${wt_circumference} ${wt_circumference}`;
+bt_circle.style.strokeDasharray = `${bt_circumference} ${bt_circumference}`;
+rt_circle.style.strokeDasharray = `${rt_circumference} ${rt_circumference}`;
 
 // Perímetro del círculo (longitud del trazo)
 const circumference = 2 * Math.PI * radius;
@@ -82,6 +148,7 @@ const ALARM_WARNING = document.getElementById('alarm');
 
 /* ************** *  VARIABLES  ** *********** */
 let worker = null;
+let miniworker = null;
 
 // Minutos y Segundos del timer
 let pomodoroMins = 0;
@@ -105,6 +172,7 @@ TIMER.addEventListener('mouseover', function () {stopAlarm();});
 
 /* ************** **  FUNCTIONS  ** **************** */
 function setMode(mode) {
+    stopWorker();
     if (!(mode in TIMER_CONFIG)) {
         console.error("Modo inválido");
         return;
@@ -157,31 +225,18 @@ function changeColor(colorVar) {
             btn.style.border = `3px solid ${color}`;
         });
     }
-
 }
+
 
 function startPomodoro() {
     /*
     grabar en localstorage nocompletado +1
     */
-    blockModes();
+    //blockModes();
     activeButton(start_btn);
     desactiveButton(pause_btn);
-    stopWorker();    
-    worker = new Worker("./script/worker.js");
-    worker.postMessage({
-        action: "start",
-        time: POMODORO.remainingTime
-    });    
-    worker.onmessage = (e) => {
-        if (e.data.finished) {
-            timerComplete();
-        } else {
-            POMODORO.remainingTime = e.data.timeLeft;
-            setProgress((e.data.timeLeft*100)/POMODORO.totalSeconds);
-            formatClock(e.data.timeLeft);
-        }
-    }    
+    stopWorker();
+    startWorkers();    
 }
 
 function pausePomodoro() {
@@ -212,11 +267,25 @@ function timerComplete() {
     }
 }
 
+function startWorkers() {
+    Object.entries(WORKERS).forEach(([key, config]) => {
+        config.instance = new Worker("../script/worker.js");
+        config.instance.onmessage = config.onMessage;
+        config.instance.postMessage({
+            action: "start",
+            time: config.time(),
+            speed: config.speed
+        });
+    });
+};
+
 function stopWorker() {
-    if (worker) {
-        worker.terminate();
-        worker = null;
-    }
+    Object.values(WORKERS).forEach(config => {
+        if (config.instance) {
+            config.instance.terminate();
+            config.instance = null;
+        }
+    });
 }
 
 function updateclock(m, mm, s, ss) {
@@ -272,5 +341,19 @@ function stopAlarm() {
 
 window.addEventListener("load", (event) => {
     setProgress(100);
-    setMode("work");
+    setMode("work");    
+    setCircleOffsets('work', wt_circle, wt_complete_circle, wt_circumference);
+    setCircleOffsets('break', bt_circle, bt_complete_circle, bt_circumference);
+    setCircleOffsets('rest', rt_circle, rt_complete_circle, rt_circumference);
+    ['work', 'break', 'rest'].forEach(mode => {
+        const element = document.getElementById(`${mode}time_mins`);
+        element.innerText = TIMER_CONFIG[mode].minutes.toString().padStart(2, '0');
+    });
 });
+
+function setCircleOffsets(mode, circle, complete_circle, circumference) {
+    const minutes = TIMER_CONFIG[mode].minutes;
+    const offset = (minutes / 60) * circumference;
+    circle.style.strokeDashoffset = circumference - offset;
+    complete_circle.style.strokeDashoffset = minutes * 60 * (1 + POMODORO.speed_clock/POMODORO.speed_miniclock);
+}
