@@ -15,6 +15,12 @@ const POMODORO = {
     speed_miniclock: 200
 };
 
+const CIRCLES = {
+    work: { circle: null, complete: null, circumference: 0 },
+    break: { circle: null, complete: null, circumference: 0 },
+    rest: { circle: null, complete: null, circumference: 0 }
+};
+
 const WORKERS = {
     worker: {
         time: () => POMODORO.remainingTime,
@@ -35,15 +41,10 @@ const WORKERS = {
         speed: POMODORO.speed_miniclock,
         instance: null,
         onMessage: (e) => {
-            if (e.data.finished) {
-                //timerComplete();
-            } else {             
-                if (POMODORO.mode == "work") {
-                    wt_complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);                
-                } else if (POMODORO.mode == "break") {
-                    bt_complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);                
-                } else {
-                    rt_complete_circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);                
+            if (!e.data.finished) {
+                const circle = CIRCLES[POMODORO.mode].complete;
+                if (circle) {
+                    circle.style.strokeDashoffset = (POMODORO.remainingTime + e.data.timeLeft);
                 }
                 POMODORO.remainingTime = e.data.timeLeft/(POMODORO.speed_clock / POMODORO.speed_miniclock);
                 setProgress((POMODORO.remainingTime*100)/POMODORO.totalSeconds);
@@ -75,6 +76,14 @@ const TIMER = document.getElementById('timer');
 const circle = document.querySelector(".progress-ring__circle");
 const outcircle = document.querySelector(".out-ring__circle");
 const incircle = document.querySelector(".in-ring__circle");
+
+CIRCLES.work.circle = document.querySelector(".worktime_circle");
+CIRCLES.work.complete = document.getElementById("wt_complete_circle");
+CIRCLES.break.circle = document.querySelector(".breaktime_circle");
+CIRCLES.break.complete = document.getElementById("bt_complete_circle");
+CIRCLES.rest.circle = document.querySelector(".resttime_circle");
+CIRCLES.rest.complete = document.getElementById("rt_complete_circle");
+
 const wt_circle = document.querySelector(".worktime_circle");
 const wt_complete_circle = document.getElementById("wt_complete_circle");
 const bt_circle = document.querySelector(".breaktime_circle");
@@ -327,28 +336,19 @@ function stopAlarm() {
 
 window.addEventListener("load", (event) => {
     setProgress(100);
-    setMode("work");
-    const wt_offset = (TIMER_CONFIG.work.minutes / 60) * wt_circumference;
-    const bt_offset = (TIMER_CONFIG.work.minutes / 60) * bt_circumference;
-    const rt_offset = (TIMER_CONFIG.work.minutes / 60) * rt_circumference;
-    wt_circle.style.strokeDashoffset = wt_circumference-wt_offset;
-    bt_circle.style.strokeDashoffset = bt_circumference-bt_offset;
-    rt_circle.style.strokeDashoffset = rt_circumference-rt_offset;
-    wt_complete_circle.style.strokeDashoffset = (TIMER_CONFIG.work.minutes*60 + TIMER_CONFIG.work.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));    
-    bt_complete_circle.style.strokeDashoffset = (TIMER_CONFIG.break.minutes*60 + TIMER_CONFIG.break.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));    
-    rt_complete_circle.style.strokeDashoffset = (TIMER_CONFIG.rest.minutes*60 + TIMER_CONFIG.rest.minutes*(60*(POMODORO.speed_clock/POMODORO.speed_miniclock)));    
-    const worktime_mins = document.getElementById('worktime_mins');
-    const breaktime_mins = document.getElementById('breaktime_mins');
-    const resttime_mins = document.getElementById('resttime_mins');
-    worktime_mins.innerText = TIMER_CONFIG.work.minutes.toString().padStart(2, '0');
-    breaktime_mins.innerText = TIMER_CONFIG.break.minutes.toString().padStart(2, '0');
-    resttime_mins.innerText = TIMER_CONFIG.rest.minutes.toString().padStart(2, '0');
+    setMode("work");    
+    setCircleOffsets('work', wt_circle, wt_complete_circle, wt_circumference);
+    setCircleOffsets('break', bt_circle, bt_complete_circle, bt_circumference);
+    setCircleOffsets('rest', rt_circle, rt_complete_circle, rt_circumference);
+    ['work', 'break', 'rest'].forEach(mode => {
+        const element = document.getElementById(`${mode}time_mins`);
+        element.innerText = TIMER_CONFIG[mode].minutes.toString().padStart(2, '0');
+    });
 });
 
-
-/*
-30.000
-1.500
-
-
-*/
+function setCircleOffsets(mode, circle, complete_circle, circumference) {
+    const minutes = TIMER_CONFIG[mode].minutes;
+    const offset = (minutes / 60) * circumference;
+    circle.style.strokeDashoffset = circumference - offset;
+    complete_circle.style.strokeDashoffset = minutes * 60 * (1 + POMODORO.speed_clock/POMODORO.speed_miniclock);
+}

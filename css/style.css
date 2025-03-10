@@ -1405,7 +1405,7 @@ footer .background-text {
 		left: calc(var(--digits_space)*2.2);
 	}
 
-	#pomodor_bottom {
+	#pomodoro_bottom {
 		position: absolute;
 		bottom: 0;
 		width: 100%;
