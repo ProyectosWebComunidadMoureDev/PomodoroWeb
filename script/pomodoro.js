@@ -12,7 +12,8 @@ const POMODORO = {
     remainingTime: 0,
     completeCycle: 4,
     speed_clock: 1000,
-    speed_miniclock: 200
+    speed_miniclock: 200,
+    auto_start: true
 };
 
 const CIRCLES = {
@@ -292,7 +293,7 @@ function updateclock(m, mm, s, ss) {
     draw_number(parseInt(m), "first_minutes");
     draw_number(parseInt(mm), "second_minutes");
     draw_number(parseInt(s), "first_seconds");
-    draw_number(parseInt(ss), "second_seconds");
+    draw_number(parseInt(ss), "second_seconds");    
 }
 
 function draw_number(number, id) {    
@@ -357,3 +358,6 @@ function setCircleOffsets(mode, circle, complete_circle, circumference) {
     circle.style.strokeDashoffset = circumference - offset;
     complete_circle.style.strokeDashoffset = minutes * 60 * (1 + POMODORO.speed_clock/POMODORO.speed_miniclock);
 }
+
+
+export {TIMER_CONFIG, POMODORO};

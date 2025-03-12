@@ -1,235 +1,125 @@
 @import url(variables.css);
 @import url(reset.css);
 
-/************************* GENERAL ****************************/
-
-
-
-@media (width >=1450px) {
-	.state__container {
-		position: absolute;
-		top: 75%;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 3;
-		width: fit-content;
-		display: flex;
-		align-items: center;
-		flex-wrap: nowrap;
-		gap: 10px;
-		justify-content: center;
-	}
-
-	.logo-name-pill {
-		font-size: var(--font-size-small);
-	}
-}
-
-@media (width < 1450px) {
-	.state__container {
-		position: absolute;
-		top: 75%;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 3;
-		width: fit-content;
-		display: flex;
-		align-items: center;
-		flex-wrap: nowrap;
-		gap: 10px;
-		justify-content: center;
-	}
-
-	.logo-name-pill {
-		font-size: var(--font-size-small);
-	}
-}
-
-@media (width < 1300px) {
-	.state__container {
-		position: absolute;
-		top: 120%;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 3;
-		width: fit-content;
-		display: flex;
-		align-items: center;
-		flex-wrap: nowrap;
-		gap: 10px;
-		justify-content: center;
-	}
-
-	#timer {
-		position: absolute;
-		top: 75%;
-		left: 50%;
-		width: 100%;
-		height: 100%;
-		transform: translateY(-50%) translateX(-50%);
-		overflow: visible;
-	}
-}
-
-body {
-	background-color: var(--bg-color-main);
-	color: var(--text-color-main);
-	font-family: var(--font-family-main);
-	font-size: var(--font-size-medium);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-button {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	font-size: var(--font-size-small);
-}
-
-*:focus-visible {
-	outline: 4px solid var(--orange-color);
-	outline-offset: 5px;
-}
-
-/************************** HEADER ****************************/
+/************************* HEADER ****************************/
 header {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	justify-content: start;
+	align-items: center;
 	position: relative;
-	padding: 30px 0;
-
-	.header__top {
-		display: flex;
-		gap: 15px;
-		justify-content: space-between;
-
-		.logo {
-			align-items: center;
-			display: flex;
-			gap: 0.5rem;
-			position: relative;
-
-			.logo-img {
-				width: 3rem;
-			}
-
-			.logo-name {
-				font-size: clamp(1rem, 2.5vw, 3rem);
-				font-weight: 900;
-			}
-
-			.logo-name-pill {
-				align-items: center;
-				background-color: var(--blue-color);
-				border-radius: 20px;
-				color: var(--bg-color-main);
-				display: flex;
-				/* font-size: var(--font-size-small); */
-				height: 30px;
-				justify-content: center;
-				padding: 0 15px;
-				position: absolute;
-				right: -1.5rem;
-				top: 50px;
-				transform: rotate(-10deg);
-				transition: transform 0.3s ease;
-				z-index: 3;
-
-				&:hover {
-					transform: rotate(0deg);
-				}
-			}
-		}
+	gap: 1rem;
+	padding: 1rem 0 3rem 0;
+	width: 95%;
+	margin: 0 auto;
+}
+.header__top {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	position: relative;
+}
+.logo-img {
+	width: 3rem;
+}
+.logo-name {
+	font-size: clamp(1rem, 2.5vw, 3rem);
+	font-weight: 900;
+}
+.logo-name-pill {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--blue-color);
+	border-radius: 20px;
+	color: var(--bg-color-main);
+	height: 1.25rem;
+	padding: 0 .65rem;
+	position: absolute;
+	right: -1.5rem;
+	top: 2rem;
+	transform: rotate(-10deg);
+	transition: transform 0.3s ease;
+	z-index: 3;
+	font-size: var(--font-size-small);
+	&:hover {
+		transform: rotate(0deg);
 	}
 }
-
-@media (width > 1050px) {
-	header {
-		width: 95%;
-		height: 20vh;
-	}
+.state__container {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	width: 60%;
+	position: absolute;
+	bottom: 0;
 }
-
-@media (width <=1050px) {
-	header {
-		width: 90%;
-		height: 25vh;
-	}
-}
-
-/*************************** MENU *****************************/
+/************************* MENU ****************************/
 .menu__container {
 	position: relative;
-	z-index: 2;
+	z-index: 1;	
 }
-
 .btn-menu {
 	background: var(--white-color);
 	border: 1px solid var(--white-color);
 	color: var(--bg-color-main);
 	font-size: var(--font-size-small);
 	font-weight: bold;
-	padding: 0 45px 0 25px;
+	height: 2.5rem;
+	padding: 0 2rem 0 1rem;
 	position: relative;
-	height: 60px;
-
 	&::before {
 		border: 1px solid var(--white-color);
 		content: "";
-
 		height: 100%;
 		position: absolute;
-		top: 7px;
-		transform: translateX(-15px);
+		top: .5rem;
+		transform: translateX(-.5rem);
 		width: 100%;
 		z-index: -1;
 	}
-
-	& span {
-		position: absolute;
-		top: 50%;
-		right: 10%;
-		transform: translateY(-50%) rotate(180deg);
-		fill: #1a1a1a;
-	}
-
 	&::after {
-		background: var(--white-color);
-		bottom: 10px;
+		bottom: .5rem;
 		content: "";
 		height: 2px;
 		position: absolute;
-		top: 85%;
+		bottom: 20%;
 		left: 10px;
-		transition: width 0.1s ease-in-out;
+		transition: all 0.3s ease-in-out;
 		width: 0%;
+		border: 0;
 	}
-
 	&:hover::after {
-		width: 90%;
+		width: 85%;
+		border: 1px solid var(--orange-color);
 	}
-
 	&:active {
 		box-shadow: none;
 		transform: translate(5px, 5px);
-
 		&::before {
 			display: none;
 		}
 	}
 }
-
+.btn-menu span {
+	position: absolute;
+	top: 50%;
+	right: 10%;
+	transform: translateY(-50%) rotate(180deg);
+}
 @media (width <=1050px) {
 	#bigmenu {
 		display: none;
 	}
 }
-
 @media (width > 1050px) {
-
 	#smallmenu,
 	#worktime_btn_resp,
 	#breaktime_btn_resp,
@@ -237,66 +127,68 @@ header {
 		display: none;
 	}
 }
-
 .menu-content {
 	background: var(--bg-color-alt);
 	border: 1px solid var(--white-color);
 	display: none;
 	flex-direction: column;
-	padding: 10px;
+	padding: .5rem 0;
 	position: absolute;
 	right: 1px;
-	top: 80px;
-	transform: translateX(10px);
-
+	top: 3.5rem;
+	transform: translateX(.5rem);
 	&.show {
 		display: flex;
 	}
-
-	.btn {
-		font-size: var(--font-size-small);
-
-		&:hover {
-			background-color: var(--white-color);
-			color: var(--bg-color-alt);
-		}
-	}
 }
-
-/**************** BOTONES DE ESTADO ***************************/
-.state__container {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%) translateY(-20%);
-	z-index: 3;
-	width: fit-content;
-	display: flex;
-	align-items: center;
-	flex-wrap: nowrap;
-	gap: 10px;
-	justify-content: center;
+.menu-content .btn {
+	border: 0;
+	font-size: var(--font-size-small);
+	padding: 0 1rem;
+	&:hover {
+		background-color: var(--white-color);
+		color: var(--bg-color-alt);
+	}
 }
 
 .btn-state {
-	width: 12%;
-	min-width: 200px;
-	max-width: 250px;
 	display: flex;
 	justify-content: center;
+	width: clamp(120px, 250px, 25%);
 	border: 2px solid var(--gray-color);
-	color: var(--white-color);
-	font-size: var(--font-size-xsmall);
-	padding: 0 15px;
-	background-color: transparent;
+	color: var(--white-color);	
 	-webkit-backdrop-filter : blur(6px);	
 	backdrop-filter: blur(6px) brightness(80%);	
-	& img {
-		width: 40px;
-		padding: .25rem;
-		margin: 0 .5rem;
-	}
 }
+.pomodoro_mode_btn {
+	font-size: var(--font-size-xsmall);
+	position: relative;
+	left: .75rem;
+}
+#worktime_mins {
+	font-size: var(--font-size-xxsmall);
+}
+
+.worktime_img svg {
+	position: absolute;
+	left: .5rem;
+}
+
+#worktime_mins {
+	position: absolute;
+	left: 1.25rem;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /****************** ANIMACIÓN DEL FONDO **********************/
 main {
@@ -1421,7 +1313,7 @@ footer .background-text {
 		transform: translateX(-50%);
 		z-index: 3;
 	}
-
+/*
 	.btn-state {
 		font-size: var(--font-size-xsmall);
 		line-height: 1rem;
@@ -1431,7 +1323,7 @@ footer .background-text {
 			margin: 0;
 		}
 	}
-
+*/
 	#worktime_btn,
 	#breaktime_btn,
 	#resttime_btn {
@@ -1735,3 +1627,60 @@ footer .background-text {
 	stroke-dashoffset: 40px;
 }
 
+#settings {
+	display: block;
+	position: absolute;
+	top: 30%;
+	width: 80%;
+	max-width: 500px;
+	#settings-form {
+		* {		
+			font-size: var(--font-size-xsmall);
+		}
+		display: flex;
+		padding: 1rem;
+		flex-direction: column;
+
+		section {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			margin: .25rem 0;
+			div {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: stretch;
+				.horizontal_form {
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					label {
+						margin: 0 1rem;
+					}					
+				}
+				span {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;					
+					input {				
+						text-align: center;
+						width: 60px;
+						color: var(--bg-color-main);
+						border-radius: .15rem;
+						&:focus-visible {
+							outline: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+#rest_interval {
+	color: var(--bg-color-main);
+}

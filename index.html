@@ -20,8 +20,8 @@
                 <a href="./index.html" class="logo" aria-label="Ir al inicio">
                     <img class="logo-img" src="./img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
                     <span class="logo-name">PomoureDev</span>
+                    <div class="logo-name-pill">beta</div>
                 </a>
-                <div class="logo-name-pill">beta</div>
             </div>
             <nav class="menu__container" aria-label="Menú principal">
                 <button class="btn-menu" aria-expanded="false" aria-controls="menu-content">
@@ -31,7 +31,7 @@
                     </span>
                 </button>
                 <div class="menu-content" id="menu-content" role="menu" tabindex="-1">
-                    <button class="btn settings" role="menuitem">Settings</button>
+                    <button id="btn_settings" class="btn settings" role="menuitem">Settings</button>
                     <button class="btn login" role="menuitem">Log In</button>
                     <button class="btn signup" role="menuitem">Sign Up</button>
                 </div>
@@ -42,29 +42,20 @@
         <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
         <div class="state__container" role="group" aria-label="Estados de temporizador">
             <button class="btn-state" id="worktime_btn" aria-pressed="false">
-                <!--
-                    <img src="./img/svg/25.svg" alt="">
-                    -->
-                    <span class="worktime_img">
-                        <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
-                            <circle id="wt_complete_circle" class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
-                            fill="transparent" />
-                        </svg>
-                        <span>
-                            <span id="worktime_mins"></span>
-                        </span>
+                <span class="worktime_img">
+                    <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
+                        <circle id="wt_complete_circle" class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
+                        fill="transparent" />
+                    </svg>
+                    <span>
+                        <span id="worktime_mins"></span>
                     </span>
+                </span>
+                <span class="pomodoro_mode_btn">
                     Work Time
-                    <!--
-                        <span id="worktime_img">
-                            <svg>
-                                <circle class="worktime_circle" cx="50%" cy="50%" r="15" stroke-width="3"
-                                fill="transparent" />
-                            </svg>
-                        </span>
-                        -->                        
-                </button>
+                </span>                    
+            </button>
             <button class="btn-state " id="worktime_btn_resp" aria-pressed="false">
                 <!--
                     <img src="./img/svg/25.svg" alt="">
@@ -241,6 +232,54 @@
                 </div>
             </section>        
         </section>        
+        <section id="settings" class="window-container draggable" hidden>
+            <header class="header">
+                <h2>Settings</h2>
+                <div id="settings-window-controls" class="window-controls">
+                    <button class="window-control minimize" id="settings-minimize">_</button>
+                    <button class="window-control maximize" id="settings-maximize">+</button>
+                    <button class="window-control close" id="settings-close">x</button>
+                </div>
+            </header>
+            <form id="settings-form">
+                <section>
+                    <div>
+                        <h4>Time (minutes)</h4>
+                        <span>
+                            <section>
+                                <label for="worktime_minutes">Work Time</label>
+                            <input type="number" id="worktime_minutes" placeholder="25" maxlength="2" required>
+                            </section>
+                            <section class="vertical_form">
+                                <label for="breaktime_minutes">Break Time</label>
+                                <input type="number" id="breaktime_minutes" placeholder="5" maxlength="2" required>
+                            </section>
+                            <section class="vertical_form">
+                                <label for="resttime_minutes">Rest Time</label>
+                                <input type="number" id="resttime_minutes" placeholder="15" maxlength="2" required>
+                            </section>
+                        </span>
+                    </div>
+                    <div>
+                        <section class="horizontal_form">
+                            <label for="auto_start">Auto Start</label>
+                            <input type="checkbox" id="auto_start" name="auto_start" aria-label="Auto start next timer">
+                        </section>
+                    </div>
+                    <div>
+                        <section class="horizontal_form">
+                            <label for="rest_interval">Rest Interval</label>
+                            <input type="number" id="rest_interval" maxlength="2" required>
+                        </section>
+                    </div>
+                </section>
+
+                <div class="form_buttons">
+                    <button class="form-submit" id="save-settings" type="button">Guardar</button>
+                    <button class="form-cancel" id="cancel-settings" type="button">Cancelar</button>
+                </div>
+            </form>
+        </section>
                                 <!-- TASKS WINDOW -->
         <section id="tasks" class="window-container draggable" hidden>
             <header class="header">
@@ -381,5 +420,6 @@
 <script type="module" src="./script/taskList.js"></script>
 <script type="module" src="./script/proxy_data.js"></script>                            
 <script type="module" src="./script/dragdrop.js"></script>
+<script type="module" src="./script/settings.js"></script>
 </html>
 

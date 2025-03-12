@@ -44,3 +44,9 @@ li {
     line-height: 1.5;
     justify-content: center;
 }
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    font-size: var(--font-size-xsmall);
+}
