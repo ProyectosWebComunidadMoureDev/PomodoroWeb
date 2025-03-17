@@ -8,7 +8,7 @@
     color: inherit;
     margin: 0;
     font-family: var(--font-family-main);
-    font-size: var(--font-size-large);
+    /*font-size: var(--font-size-large);*/
 }
 
 *::selection {
@@ -49,4 +49,5 @@ button {
     cursor: pointer;
     background-color: transparent;
     font-size: var(--font-size-xsmall);
+    border: 0;
 }
