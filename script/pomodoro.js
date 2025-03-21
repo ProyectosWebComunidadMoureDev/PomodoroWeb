@@ -12,12 +12,15 @@ const POMODORO = {
     totalSeconds: 0,
     remainingTime: 0,
     completeCycle: 4,
-    speed_clock: 30,
+    speed_clock: 1000,
     speed_miniclock: 200,
     auto_start: true,
     music: true,
     isRunning: false
 };
+
+
+
 
 const CIRCLES = {
     work: { circle: null, complete: null, circumference: 0 },
@@ -37,7 +40,6 @@ const WORKERS = {
                 POMODORO.remainingTime = e.data.timeLeft;
                 setProgress((e.data.timeLeft*100)/POMODORO.totalSeconds);
                 formatClock(e.data.timeLeft);
-                console.log("POMODORO.totalSeconds " + (POMODORO.totalSeconds));
             }
         }
     },
@@ -352,9 +354,7 @@ function updatePomodoroModes() {
         const element = document.getElementById(`${mode}time_mins`);
         element.innerText = TIMER_CONFIG[mode].minutes.toString().padStart(2, '0');
     });    
-    formatClock(TIMER_CONFIG[POMODORO.mode].minutes*60);   
-    if (!POMODORO.isRunning) {
-    }
+    formatClock(TIMER_CONFIG[POMODORO.mode].minutes*60);       
 }
 
 function setCircleOffsets(mode, circle, complete_circle, circumference) {
