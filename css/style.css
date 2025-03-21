@@ -789,7 +789,7 @@ footer .background-text {
 	opacity: 1;
 }
 #settings {
-	display: block;
+	display: none;
 	position: absolute;
 	top: 30%;
 	width: 80%;

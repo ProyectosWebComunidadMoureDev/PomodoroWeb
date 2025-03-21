@@ -129,7 +129,6 @@
                     <!-- 
                     -->                
                 </div> 
-                 <!-- 
                     <section class="tabs">
                         <button id="tab-tasks">Tasks</button>
                         <button id="tab-tasks-resp">                
@@ -144,7 +143,7 @@
                             </span>
                         </button>
                     </section>
-                    -->    
+                    
                 <section id="pomodoro_core">
                     <div id="timer">                        
                         <div class="circle-container">
@@ -279,6 +278,12 @@
                         <section class="horizontal_form">
                             <label for="auto_start">Auto Start</label>
                             <input type="checkbox" id="auto_start" name="auto_start" aria-label="Auto start next timer">
+                        </section>
+                    </div>
+                    <div>
+                        <section class="horizontal_form">
+                            <label for="music">Music</label>
+                            <input type="checkbox" id="music" name="music" aria-label="music">
                         </section>
                     </div>
                     <div>
@@ -432,10 +437,11 @@
     
 </body>
 <script type="module" src="./script/main.js"></script>
-<script type="module" src="./script/pomodoro.js"></script>
 <script type="module" src="./script/settings.js"></script>
+<script type="module" src="./script/pomodoro.js"></script>
 <script type="module" src="./script/dragdrop.js"></script>
 <script type="module" src="./script/taskList.js"></script>
+<script type="module" src="./script/data.js"></script>
 <!--
     <script type="module" src="./script/proxy_data.js"></script>                            
 -->

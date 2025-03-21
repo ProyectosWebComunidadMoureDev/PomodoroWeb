@@ -1,3 +1,4 @@
+import {mySettingsData, pomodoroCompleted} from "./data.js"
 /* ************** *  OBJETOS  ** *********** */
 const TIMER_CONFIG = {
     work: { minutes: 25, color: '--blue-color', button: `worktime_btn`, button_resp: `worktime_btn_resp`  },
@@ -11,9 +12,11 @@ const POMODORO = {
     totalSeconds: 0,
     remainingTime: 0,
     completeCycle: 4,
-    speed_clock: 1000,
+    speed_clock: 30,
     speed_miniclock: 200,
-    auto_start: true
+    auto_start: true,
+    music: true,
+    isRunning: false
 };
 
 const CIRCLES = {
@@ -30,10 +33,11 @@ const WORKERS = {
         onMessage: (e) => {
             if (e.data.finished) {
                 timerComplete();
-            } else {
+            } else {                
                 POMODORO.remainingTime = e.data.timeLeft;
                 setProgress((e.data.timeLeft*100)/POMODORO.totalSeconds);
                 formatClock(e.data.timeLeft);
+                console.log("POMODORO.totalSeconds " + (POMODORO.totalSeconds));
             }
         }
     },
@@ -184,7 +188,7 @@ function setMode(mode) {
     desactiveButton(start_btn);
     desactiveButton(pause_btn);
     pause_btn.disabled = true;
-    changeColor(TIMER_CONFIG[mode].color);        
+    changeColor(TIMER_CONFIG[mode].color);
     formatClock(POMODORO.totalSeconds);
     setProgress(100);
 }
@@ -197,17 +201,14 @@ function activeButton(btn) {
     btn.classList.add("active");
     btn.disabled = true;
 }
-
 function formatClock(seconds) {
     let pomodoroMins = Math.floor(seconds / 60);
     let pomodoroSecs = seconds % 60;
-
     let minutesStr = pomodoroMins.toString().padStart(2, '0');
     let secondsStr = pomodoroSecs.toString().padStart(2, '0');
     updateclock(minutesStr[0], minutesStr[1], secondsStr[0], secondsStr[1]);
     blink_separators();
 }
-
 function changeColor(colorVar) {
     let color = `var(${colorVar})`;
     [circle, outcircle, incircle].forEach(el => el.style.stroke = color);
@@ -227,48 +228,46 @@ function changeColor(colorVar) {
         });
     }
 }
-
-
 function startPomodoro() {
-    /*
-    grabar en localstorage nocompletado +1
-    */
-    //blockModes();
+    if (POMODORO.mode in TIMER_CONFIG) {
+        pomodoroCompleted(POMODORO.mode, false);
+    }
     activeButton(start_btn);
     desactiveButton(pause_btn);
     stopWorker();
-    startWorkers();    
+    startWorkers();
+    POMODORO.isRunning = true;
 }
-
 function pausePomodoro() {
     activeButton(pause_btn);
     desactiveButton(start_btn);
     stopWorker();    
+    POMODORO.isRunning = false;
 }
-
 function timerComplete() {
-    /*
-    grabar en localstorage nocompletado -1
-    */
     stopWorker();
+    POMODORO.isRunning = false;
     POMODORO.mode === "work" && POMODORO.roundsCompleted++;
     playAlarm();
+    pomodoroCompleted(POMODORO.mode, true);
     if (POMODORO.roundsCompleted > 0 && POMODORO.roundsCompleted % POMODORO.completeCycle === 0) {
         setMode("rest");
         POMODORO.roundsCompleted = 0;
     } else {
         if (POMODORO.mode == "work") {
             setMode("break");
-            setTimeout(() => {
-                startPomodoro();
-            }, 2000);
+            if (POMODORO.auto_start) {
+                setTimeout(() => {
+                    startPomodoro();
+                }, 2000);
+            }
         } else {
             setMode("work");
         }
     }
 }
-
 function startWorkers() {
+    POMODORO.remainingTime = TIMER_CONFIG[POMODORO.mode].minutes * 60;
     Object.entries(WORKERS).forEach(([key, config]) => {
         config.instance = new Worker("../script/worker.js");
         config.instance.onmessage = config.onMessage;
@@ -279,7 +278,6 @@ function startWorkers() {
         });
     });
 };
-
 function stopWorker() {
     Object.values(WORKERS).forEach(config => {
         if (config.instance) {
@@ -288,14 +286,12 @@ function stopWorker() {
         }
     });
 }
-
 function updateclock(m, mm, s, ss) {
     draw_number(parseInt(m), "first_minutes");
     draw_number(parseInt(mm), "second_minutes");
     draw_number(parseInt(s), "first_seconds");
     draw_number(parseInt(ss), "second_seconds");    
 }
-
 function draw_number(number, id) {    
     const segments = NUMBERS[number];
     const digit = document.getElementById(id);
@@ -308,12 +304,10 @@ function draw_number(number, id) {
         }
     }); 
 }
-
 function blink_separators() {
     const opacity = POMODORO.remainingTime % 2 ? 0.6 : 1;
     [separator, separator_two].forEach(el => el.style.opacity = opacity);    
 }
-
 function setProgress(percentage) {    
     const offset = (percentage / 100) * circumference;
     circle.style.strokeDashoffset = offset;
@@ -331,26 +325,37 @@ function unlockModes() {
     resttime_btn.disabled = false;
 }
 function playAlarm() {
-    ALARM_WARNING.play();
+    if (POMODORO.music) {
+        ALARM_WARNING.play();
+    }
 }
-
 function stopAlarm() {
     ALARM_WARNING.pause();
     ALARM_WARNING.currentTime = 0;
 }
 /* ************** **  FUNCTIONS  ** **************** */
 
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
+    setMode("work");
+});
+function initPomodoro() {
     setProgress(100);
-    setMode("work");    
     setCircleOffsets('work', wt_circle, wt_complete_circle, wt_circumference);
     setCircleOffsets('break', bt_circle, bt_complete_circle, bt_circumference);
     setCircleOffsets('rest', rt_circle, rt_complete_circle, rt_circumference);
+    POMODORO.totalSeconds = TIMER_CONFIG[POMODORO.mode].minutes * 60;
+}
+
+function updatePomodoroModes() {
+    initPomodoro();
     ['work', 'break', 'rest'].forEach(mode => {
         const element = document.getElementById(`${mode}time_mins`);
         element.innerText = TIMER_CONFIG[mode].minutes.toString().padStart(2, '0');
-    });
-});
+    });    
+    formatClock(TIMER_CONFIG[POMODORO.mode].minutes*60);   
+    if (!POMODORO.isRunning) {
+    }
+}
 
 function setCircleOffsets(mode, circle, complete_circle, circumference) {
     const minutes = TIMER_CONFIG[mode].minutes;
@@ -360,4 +365,4 @@ function setCircleOffsets(mode, circle, complete_circle, circumference) {
 }
 
 
-export {TIMER_CONFIG, POMODORO};
+export {TIMER_CONFIG, POMODORO, initPomodoro, updatePomodoroModes};
