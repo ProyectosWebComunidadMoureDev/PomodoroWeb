@@ -16,7 +16,6 @@ const estatisticsData = {
 };
 
 
-
 /**
  * observerObjectData convierte un objeto en un Proxy que vigila los accesos y modificaciones.
  * - Lanza un error si se accede a una propiedad inexistente.

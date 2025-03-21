@@ -8,7 +8,7 @@
     color: inherit;
     margin: 0;
     font-family: var(--font-family-main);
-    font-size: var(--font-size-large);
+    /*font-size: var(--font-size-large);*/
 }
 
 *::selection {
@@ -43,4 +43,11 @@ li {
     color: var(--text-color-main);
     line-height: 1.5;
     justify-content: center;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    font-size: var(--font-size-xsmall);
+    border: 0;
 }

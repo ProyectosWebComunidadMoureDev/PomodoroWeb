@@ -252,6 +252,7 @@ const handleWindowControl = (e) => {
 //---------------------//
 
 // Pestaña
+
 tabTasks.addEventListener('click', () => {
   tabTasks.hidden = true;
   tabTasksresp.hidden = true;

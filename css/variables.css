@@ -29,7 +29,11 @@
     --segment_height: 10px;
     --digits_space: 80px;
     
-    --segment_width: 45px;
-    --segment_height: 10px;
-    --digits_space: 80px;
+    /* Breakpoints para Media Queries */
+    --breakpoint-xs: 320px;    /* Smartphones pequeños */
+    --breakpoint-sm: 576px;    /* Smartphones medianos */
+    --breakpoint-md: 768px;    /* Smartphones grandes/tablets pequeñas */
+    --breakpoint-lg: 992px;    /* Tablets grandes/laptops pequeñas */
+    --breakpoint-xl: 1200px;   /* Desktops/laptops */
+    --breakpoint-xxl: 1400px;  /* Pantallas grandes */
 }

@@ -13,25 +13,25 @@
     <title>Pomodoro</title>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="header__top">
             <!-- Logo -->
             <div class="logo">
                 <a href="./index.html" class="logo" aria-label="Ir al inicio">
                     <img class="logo-img" src="./img/svg/pomodoro.svg" alt="Logo de PomodoreDev">
                     <span class="logo-name">PomoureDev</span>
+                    <div class="logo-name-pill">beta</div>
                 </a>
-                <div class="logo-name-pill">beta</div>
             </div>
             <nav class="menu__container" aria-label="Menú principal">
-                <button class="btn-menu" aria-expanded="false" aria-controls="menu-content">
+                <button id="bigmenu" class="btn-menu" aria-expanded="false" aria-controls="menu-content">
                     Menu
                     <span class="material-symbols-outlined">
                         shift
                     </span>
                 </button>
                 <div class="menu-content" id="menu-content" role="menu" tabindex="-1">
-                    <button class="btn settings" role="menuitem">Settings</button>
+                    <button id="btn_settings" class="btn settings" role="menuitem">Settings</button>
                     <button class="btn login" role="menuitem">Log In</button>
                     <button class="btn signup" role="menuitem">Sign Up</button>
                 </div>
@@ -41,85 +41,65 @@
         </div>
         <!-- Estos botones tiene una clase reservada para cambiar el color de sus bordes (.work .brake .rest) -->
         <div class="state__container" role="group" aria-label="Estados de temporizador">
+            
             <button class="btn-state" id="worktime_btn" aria-pressed="false">
-                <!--
-                    <img src="./img/svg/25.svg" alt="">
-                    -->
+                <div>
                     <span class="worktime_img">
                         <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
+                            <circle class="worktime_circle" cx="50" cy="50" r="25" stroke-width="3" fill="transparent" />
                             <circle id="wt_complete_circle" class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
                             fill="transparent" />
                         </svg>
-                        <span>
-                            <span id="worktime_mins"></span>
-                        </span>
+                        <span id="worktime_mins"></span>
                     </span>
-                    Work Time
-                    <!--
-                        <span id="worktime_img">
-                            <svg>
-                                <circle class="worktime_circle" cx="50%" cy="50%" r="15" stroke-width="3"
-                                fill="transparent" />
-                            </svg>
-                        </span>
-                        -->                        
-                </button>
+                    <span class="pomodoro_mode_btn">
+                        Work Time
+                    </span>                    
+                </div>
+            </button>            
+
+            
             <button class="btn-state " id="worktime_btn_resp" aria-pressed="false">
-                <!--
-                    <img src="./img/svg/25.svg" alt="">
-                -->     
-                <span class="worktime_img">
-                    <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="worktime_circle" cx="50%" cy="50%" r="15" stroke-width="3" fill="transparent" />
-                        <circle id="wt_complete_circle" class="worktime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
-                    </svg>                    
-                </span>
-           
                 Work
             </button>
             <button class="btn-state " id="breaktime_btn" aria-pressed="false">
-                <!--
-                <img src="./img/svg/5.svg" alt="">
-                --> 
-                <span class="breaktime_img">
-                    <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="breaktime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
-                        <circle id="bt_complete_circle" class="breaktime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
-                        fill="transparent" />
-                    </svg>
-                    <span>
-                        <span id="breaktime_mins"></span>
+                <div>                                
+                    <span class="breaktime_img">
+                        <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="breaktime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
+                            <circle id="bt_complete_circle" class="breaktime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
+                            fill="transparent" />
+                        </svg>
+                        <span>
+                            <span id="breaktime_mins"></span>
+                        </span>
                     </span>
-                </span>
-                Break Time
+                    <span class="pomodoro_mode_btn">
+                        Break Time
+                    </span>   
+                </div>
             </button>
             <button class="btn-state " id="breaktime_btn_resp" aria-pressed="false">
-                <!--
-                <img src="./img/svg/5.svg" alt="">
-                --> 
                 Break
             </button>
             <button class="btn-state " id="resttime_btn" aria-pressed="false">
-                <!--
-                <img src="./img/svg/15.svg" alt="">
-                -->
-                <span class="resttime_img">
-                    <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle class="resttime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
-                        <circle id="rt_complete_circle" class="resttime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
-                        fill="transparent" />
-                    </svg>
-                    <span>
-                        <span id="resttime_mins"></span>
+                <div>
+                    <span class="resttime_img">
+                        <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="resttime_circle" cx="50%" cy="50%" r="25" stroke-width="3" fill="transparent" />
+                            <circle id="rt_complete_circle" class="resttime_circle" cx="50%" cy="50%" r="25" stroke-width="3"
+                                fill="transparent" />
+                        </svg>
+                        <span>
+                            <span id="resttime_mins"></span>
+                        </span>
                     </span>
-                </span>
-                Rest Time
+                    <span class="pomodoro_mode_btn">
+                        Rest Time
+                    </span>   
+                </div>
             </button>
             <button class="btn-state" id="resttime_btn_resp" aria-pressed="false">
-                <!--
-                <img src="./img/svg/15.svg" alt="">
-                -->
                 Rest
             </button>
         </div>
@@ -127,20 +107,43 @@
     <main>
         <section>
             <section id="pomodoro_section">
-                <section class="tabs">
-                    <button id="tab-tasks">Tasks</button>
-                    <button id="tab-tasks-resp">                
-                        <span class="material-symbols-outlined">
-                            task
-                        </span>
-                    </button>
-                    <button id="tab-statistics">Statistics</button>
-                    <button id="tab-statistics-resp">
-                        <span class="material-symbols-outlined">
-                            monitoring
-                        </span>
-                    </button>
-                </section>
+                <div id="icons">
+                    <div id="tasks_icon_wrapper" class="draggable-wrapper">
+                        <div class="task-icon-overlay draggable-overlay ">
+                            <a href="#" id="tasks_icon" class="draggable_icon">
+                                <img src="./img/icons/tasks_icon.png" alt="tasks_icon">
+                                Tasks
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 
+                    -->
+                    <div id="statistics_icon_wrapper" class="draggable-wrapper">
+                        <div class="task-icon-overlay draggable-overlay ">
+                            <a href="#" id="status_icon" class="draggable_icon">
+                                <img src="./img/icons/statistics_icon.png" alt="tasks_icon">
+                                Statistics
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 
+                    -->                
+                </div> 
+                    <section class="tabs">
+                        <button id="tab-tasks">Tasks</button>
+                        <button id="tab-tasks-resp">                
+                            <span class="material-symbols-outlined">
+                                task
+                            </span>
+                        </button>
+                        <button id="tab-statistics">Statistics</button>
+                        <button id="tab-statistics-resp">
+                            <span class="material-symbols-outlined">
+                                monitoring
+                            </span>
+                        </button>
+                    </section>
+                    
                 <section id="pomodoro_core">
                     <div id="timer">                        
                         <div class="circle-container">
@@ -202,10 +205,12 @@
                         <!--En CSS se creo una clase Active, para cuando ocurra el evento click del boton y cambie el diseño -->
                         <button id="startbutton" class="timer-button start">Start</button>
                         <button id="pausebutton" class="timer-button pause">Pause</button>
-                        <button id="resetbutton" class="timer-button reset">Reset</button>
+                        <!--
+                            <button id="resetbutton" class="timer-button reset">Reset</button> 
+                        -->
                     </div>
                 </section>
-            </section>    
+            </section>
             <section class="pomodoro-description">
                 <img class="key-enter" src="./img/icons/key_enter_light.svg" alt="figura de tecla enter" width="90px">
                 <img class="key-new" src="./img/icons/key_new.svg" alt="figura de tecla new" width="100px">
@@ -219,9 +224,9 @@
                 </div>
             </section>
             <section class="comunity-description">
-                <div>
-                    <img class="folder" src="./img/icons/folder_orange.svg" alt="figura de tecla enter" width="90px">
-                    <span class="folder-pill">comunity-folder</span>
+                <div class="folder">
+                    <img src="./img/icons/folder_orange.svg" alt="figura de tecla enter" width="90px">
+                    <span>comunity-folder</span>
                 </div>
                 <img class="certificate" src="./img/webp/achievement.webp" alt="figura de mano haciendo unos cuernos" width="100px">
                 <div class="container">
@@ -239,9 +244,63 @@
                         </p>
                     </div>
                 </div>
-            </section>        
-        </section>        
-                                <!-- TASKS WINDOW -->
+            </section>
+        </section>
+        <section id="settings" class="window-container draggable" hidden>
+            <header class="header">
+                <h2>Settings</h2>
+                <div id="settings-window-controls" class="window-controls">
+                    <button class="window-control minimize" id="settings-minimize">_</button>
+                    <button class="window-control maximize" id="settings-maximize">+</button>
+                    <button class="window-control close" id="settings-close">x</button>
+                </div>
+            </header>
+            <form id="settings-form">
+                <section>
+                    <div>
+                        <h4>Time (minutes)</h4>
+                        <span>
+                            <section class="vertical_form">
+                                <label for="worktime_minutes">Work Time</label>
+                            <input type="number" id="worktime_minutes" placeholder="25" maxlength="2" required>
+                            </section>
+                            <section class="vertical_form">
+                                <label for="breaktime_minutes">Break Time</label>
+                                <input type="number" id="breaktime_minutes" placeholder="5" maxlength="2" required>
+                            </section>
+                            <section class="vertical_form">
+                                <label for="resttime_minutes">Rest Time</label>
+                                <input type="number" id="resttime_minutes" placeholder="15" maxlength="2" required>
+                            </section>
+                        </span>
+                    </div>
+                    <div>
+                        <section class="horizontal_form">
+                            <label for="auto_start">Auto Start</label>
+                            <input type="checkbox" id="auto_start" name="auto_start" aria-label="Auto start next timer">
+                        </section>
+                    </div>
+                    <div>
+                        <section class="horizontal_form">
+                            <label for="music">Music</label>
+                            <input type="checkbox" id="music" name="music" aria-label="music">
+                        </section>
+                    </div>
+                    <div>
+                        <section class="horizontal_form">
+                            <label for="rest_interval">Rest Interval</label>
+                            <input type="number" id="rest_interval" maxlength="2" required>
+                        </section>
+                    </div>
+                </section>
+
+                <div class="form_buttons">
+                    <button class="form-submit" id="save-settings" type="button">Guardar</button>
+                    <button class="form-cancel" id="cancel-settings" type="button">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
         <section id="tasks" class="window-container draggable" hidden>
             <header class="header">
                 <h2>Tasks</h2>
@@ -304,9 +363,8 @@
                 </tbody>
             </table>
         </section>
-        <section class="tasks"></section>
+
     </main>
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="container__left">
@@ -375,11 +433,17 @@
         </div>
     </footer>
     
+    
+    
 </body>
 <script type="module" src="./script/main.js"></script>
+<script type="module" src="./script/settings.js"></script>
 <script type="module" src="./script/pomodoro.js"></script>
-<script type="module" src="./script/taskList.js"></script>
-<script type="module" src="./script/proxy_data.js"></script>                            
 <script type="module" src="./script/dragdrop.js"></script>
+<script type="module" src="./script/taskList.js"></script>
+<script type="module" src="./script/data.js"></script>
+<!--
+    <script type="module" src="./script/proxy_data.js"></script>                            
+-->
 </html>
 
