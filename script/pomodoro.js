@@ -18,10 +18,6 @@ const POMODORO = {
     music: true,
     isRunning: false
 };
-
-
-
-
 const CIRCLES = {
     work: { circle: null, complete: null, circumference: 0 },
     break: { circle: null, complete: null, circumference: 0 },
@@ -74,16 +70,96 @@ const NUMBERS = {
     8: "1111111",
     9: "1111011"    
 };
+// Crear el contenedor SVG
+const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+const circulos_container = document.getElementById('circulos_container');
+
+// Función para crear círculos con sus atributos
+function crearCirculo(settings) {
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    for (const [key, value] of Object.entries(settings)) {
+        circle.setAttribute(key, value);
+    }
+    return circle;
+}
+
+const circle_settings = {    
+    cx: '50%',
+    cy: '50%',    
+    'stroke-width': '3',
+    'stroke': 'var(--blue-color)',
+    'stroke-dasharray': 0,
+    'stroke-dashoffset': 0,
+    'fill': 'transparent'
+}
+
+// Crear los círculos y agregarlos al SVG
+const out_circle = crearCirculo(circle_settings);
+const in_circle = crearCirculo(circle_settings);
+const progress_circle = crearCirculo(circle_settings);
+progress_circle.style.strokeWidth = 22;
+progress_circle.style.strokeDasharray = 0;
+progress_circle.style.strokeDashoffset = 0;
+svg.setAttribute('width', '100%');
+svg.setAttribute('height', '100%');
+svg.appendChild(out_circle);
+svg.appendChild(in_circle);
+progress_circle.classList.add('progress-ring__circle2');
+svg.appendChild(progress_circle);
+circulos_container.appendChild(svg);
+
+// Función para modificar el radio de los círculos
+function modificarRadio(circulo, nuevoRadio) {
+    circulo.setAttribute('r', nuevoRadio);
+}
+// Función para actualizar los radios de los círculos
+function actualizarRadioResponsivo() {
+    const width = window.innerWidth;  // Obtener el ancho de la ventana
+    if (isNaN(width) || width <= 0) {
+        console.error('Error: el valor de window.innerWidth no es válido:', width);
+        return; // Salir si el valor es inválido
+    }
+    // Calculamos el radio en función del ancho de la ventana, usando `vw`
+    const outRadiusVW = 27 * width / 100;  // 27% del ancho de la ventana
+    const inRadiusVW = 23 * width / 100;   // 23% del ancho de la ventana
+    const prRadiusVW = 25 * width / 100;   // 23% del ancho de la ventana
+    const maxR = 280;
+    // Asegurarnos de que los radios no excedan el valor máximo permitido
+    const outRadius = Math.min(outRadiusVW, maxR);  // Limitar al máximo permitido
+    const inRadius = Math.min(inRadiusVW, maxR * 0.9); // Limitar al 90% del máximo
+    const prRadius = Math.min(prRadiusVW, maxR * 0.95); // Limitar al 90% del máximo    
+    progress_circle.setAttribute('r', prRadius);
+    // Asegurarnos de que los radios sean valores numéricos válidos
+    if (!isNaN(outRadius) && outRadius >= 0) {
+        out_circle.setAttribute('r', outRadius);
+    }
+    if (!isNaN(inRadius) && inRadius >= 0) {
+        in_circle.setAttribute('r', inRadius);
+    } 
+    const prcircumference = 2 * Math.PI * prRadius;
+    const proffset = (POMODORO.remainingTime/POMODORO.totalSeconds / 100) * prcircumference;
+    progress_circle.style.strokeDasharray = `${prcircumference} ${prcircumference}`;
+    progress_circle.style.strokeDashoffset = proffset;
+}
+// Llamamos a la función para ajustar el radio en el primer cargado
+actualizarRadioResponsivo();
+let prcircumference = 2 * Math.PI * progress_circle.r.baseVal.value;
+progress_circle.style.strokeDasharray = `${prcircumference} ${prcircumference}`;
+
+// Escuchar el evento de redimensionamiento de la ventana
+window.addEventListener('resize', actualizarRadioResponsivo);
+
 /* ************** *  OBJETOS  ** *********** */
 
 /* DOM */
 /* ************** *  CIRCULAR PROGRESS  ** *********** */
 const TIMER = document.getElementById('timer');
+/* //<!-- ELIMINAR -->
 // Selecciona cada uno de los círculos
 const circle = document.querySelector(".progress-ring__circle");
 const outcircle = document.querySelector(".out-ring__circle");
 const incircle = document.querySelector(".in-ring__circle");
-
+ */
 CIRCLES.work.circle = document.querySelector(".worktime_circle");
 CIRCLES.work.complete = document.getElementById("wt_complete_circle");
 CIRCLES.break.circle = document.querySelector(".breaktime_circle");
@@ -98,11 +174,11 @@ const bt_complete_circle = document.getElementById("bt_complete_circle");
 const rt_circle = document.querySelector(".resttime_circle");
 const rt_complete_circle = document.getElementById("rt_complete_circle");
 
-
+/* //<!-- ELIMINAR -->
 // Radio del círculo
 const radius = circle.r.baseVal.value;
 const inradius = incircle.r.baseVal.value;
-const outradius = outcircle.r.baseVal.value;
+const outradius = outcircle.r.baseVal.value; */
 // Radio del círculo
 const wt_radius = wt_circle.r.baseVal.value;
 const bt_radius = bt_circle.r.baseVal.value;
@@ -114,10 +190,11 @@ wt_circle.style.strokeDasharray = `${wt_circumference} ${wt_circumference}`;
 bt_circle.style.strokeDasharray = `${bt_circumference} ${bt_circumference}`;
 rt_circle.style.strokeDasharray = `${rt_circumference} ${rt_circumference}`;
 
+/* //<!-- ELIMINAR -->
 // Perímetro del círculo (longitud del trazo)
 const circumference = 2 * Math.PI * radius;
 const incircumference = 2 * Math.PI * inradius;
-const outcircumference = 2 * Math.PI * outradius;
+const outcircumference = 2 * Math.PI * outradius; 
 
 circle.style.strokeDashoffset = circumference;
 incircle.style.strokeDashoffset = incircumference;
@@ -133,7 +210,7 @@ outcircle.style.strokeDashoffset = outoffset;
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 incircle.style.strokeDasharray = `${incircumference} ${incircumference}`;
 outcircle.style.strokeDasharray = `${outcircumference} ${outcircumference}`;
-
+*/
 /* ************** **  SEGMENTS  ** **************** */
 const segments = document.querySelectorAll('#clock span');
 const separator = document.getElementById("separator");
@@ -213,7 +290,11 @@ function formatClock(seconds) {
 }
 function changeColor(colorVar) {
     let color = `var(${colorVar})`;
+    /* //<!-- ELIMINAR -->
     [circle, outcircle, incircle].forEach(el => el.style.stroke = color);
+    */
+    out_circle.style.stroke = color;
+    in_circle.style.stroke = color; 
     [separator, separator_two].forEach(el => el.style.backgroundColor = color);    
     segments.forEach(el => { el.style.backgroundColor = color; });
     [worktime_btn, breaktime_btn, resttime_btn, worktime_btn_resp, breaktime_btn_resp, resttime_btn_resp].forEach(btn => {
@@ -243,7 +324,7 @@ function startPomodoro() {
 function pausePomodoro() {
     activeButton(pause_btn);
     desactiveButton(start_btn);
-    stopWorker();    
+    stopWorker();
     POMODORO.isRunning = false;
 }
 function timerComplete() {
@@ -311,8 +392,17 @@ function blink_separators() {
     [separator, separator_two].forEach(el => el.style.opacity = opacity);    
 }
 function setProgress(percentage) {    
+    /* //<!-- ELIMINAR -->
     const offset = (percentage / 100) * circumference;
-    circle.style.strokeDashoffset = offset;
+    circle.style.strokeDashoffset = offset; */
+
+    const width = window.innerWidth;
+    const maxR = 280;
+    const prRadiusVW = 25 * width / 100;   // 23% del ancho de la ventana
+    const prRadius = Math.min(prRadiusVW, maxR * 0.95); // Limitar al 90% del máximo    
+    const proffset = (percentage / 100) * prcircumference;
+    progress_circle.style.strokeDasharray = `${prcircumference} ${prcircumference}`;
+    progress_circle.style.strokeDashoffset = proffset;
 }
 
 function blockModes() {
@@ -339,6 +429,7 @@ function stopAlarm() {
 
 window.addEventListener("load", () => {
     setMode("work");
+    stopWorker();
 });
 function initPomodoro() {
     setProgress(100);

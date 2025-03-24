@@ -222,6 +222,7 @@ header {
 		width: fit-content;
 		height: fit-content;
 		transform: rotate(-90deg);
+		transform-origin: center;
 		.worktime_circle, .breaktime_circle, .resttime_circle {
 			stroke: var(--white-color);  
 			transition: stroke-dashoffset 0.3s linear;  
@@ -1148,8 +1149,15 @@ footer .background-text {
     }
 }
 
-#circles_container {
+#circulos_container {
 	z-index: 99999;
 	width: 100%;
 	height: 100%;
+}
+.progress-ring__circle2 {
+	transform: rotate(-90deg);
+	transform-origin: center;
+	stroke: var(--white-color);  
+	transition: stroke-dashoffset 0.3s linear;  
+	stroke-linecap: round;
 }
