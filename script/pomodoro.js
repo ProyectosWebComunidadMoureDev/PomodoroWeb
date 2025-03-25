@@ -271,7 +271,7 @@ function timerComplete() {
 function startWorkers() {
     POMODORO.remainingTime = TIMER_CONFIG[POMODORO.mode].minutes * 60;
     Object.entries(WORKERS).forEach(([key, config]) => {
-        config.instance = new Worker("../script/worker.js");
+        config.instance = new Worker("./script/worker.js");
         config.instance.onmessage = config.onMessage;
         config.instance.postMessage({
             action: "start",
