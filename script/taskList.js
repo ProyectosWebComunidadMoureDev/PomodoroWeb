@@ -1,4 +1,4 @@
-import {myTasksData, checkLocalStorageData} from "./data.js"
+import {myTasksData, checkLocalStorageData, updateSettingsData} from "./data.js"
 
 /* const tabTasks = document.getElementById('tab-tasks'); */
 const tabTasksresp = document.getElementById('tab-tasks-resp');
@@ -14,17 +14,22 @@ let draggedItem = null;
 function loadTasks() {
   for (let i = 0; i < myTasksData.length; i++) {
     const task = myTasksData[i];
-    const item = document.createElement('li');
-    item.classList.add("task");
-    item.innerHTML = `
+
+    console.log(task.active);
+    if (task.active) {      
+      const item = document.createElement('li');
+      item.classList.add("task");
+      item.innerHTML = `
+      <span aria-hidden="true" aria-label=${task.taskid} class="task-id"></span>
       <span class="task-text">${task.taskName}</span>
       <div class="task-buttons">
-        <button class="edit"><img src="./img/svg/edit.svg"></button>
-        <button class="finish"><img src="./img/svg/check.svg"></button>
-        <button class="delete"><img src="./img/svg/delete.svg"></button>
+      <button class="edit"><img src="./img/svg/edit.svg"></button>
+      <button class="finish"><img src="./img/svg/check.svg"></button>
+      <button class="delete"><img src="./img/svg/delete.svg"></button>
       </div>
-    `;
-    insertTask(item);    
+      `;
+      insertTask(item);    
+    }
   } 
 }
 
@@ -64,7 +69,7 @@ const editTask = (form, itemIndex) => {
 
 //delete task
 const deleteTask = (item) => {
-  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;
+  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;  
   tasksList.hidden = true;
   moreItems.hidden = true;
 
@@ -73,10 +78,16 @@ const deleteTask = (item) => {
       closeForm(formConfirmDeleteTask);
     } else if (e.target.type === 'submit') {
       e.preventDefault();
-      console.log(item);
-      item.remove();
-      console.log('Tarea eliminada');
-      console.log(myTasksData[0].taskName);
+      const itemId = parseInt(item.querySelector(".task-id").ariaLabel);       
+      /* myTasksData = myTasksData.filter(task => task.taskid !== itemId); */
+      
+      const index = myTasksData.findIndex(task => task.taskid === itemId);
+      if (index !== -1) {
+        myTasksData[index].active = false;
+      }
+
+      updateSettingsData();
+      item.remove();      
       closeForm(formConfirmDeleteTask);
     } else {
       return;
@@ -138,12 +149,19 @@ const addNewTask = (form) => {
       }
     }
   });
-
+  const newTaskId = myTasksData.length > 0 ? myTasksData[myTasksData.length - 1].taskid + 1 : 1;
+  myTasksData.push({
+    taskid: newTaskId,
+    taskName: taskName,
+    completed: false,
+    active: true
+  });
+  updateSettingsData();
 }
 
 //submit form
 const submitAddForm = (form) => {
-  const itemIndex = form.getAttribute('data-item');
+  const itemIndex = form.getAttribute('data-item');  
   if (itemIndex === null) {
     addNewTask(form);
   } else {

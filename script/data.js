@@ -34,7 +34,7 @@ const tasksData = [
         completed: false,
         createdAt: "2025-02-08T12:34:56.789Z",
         totalWorkTime: null,
-        pending: true
+        active: true
     }
 ]
 
