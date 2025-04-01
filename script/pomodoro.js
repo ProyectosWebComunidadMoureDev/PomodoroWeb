@@ -310,7 +310,7 @@ function blink_separators() {
     const opacity = POMODORO.remainingTime % 2 ? 0.6 : 1;
     [separator, separator_two].forEach(el => el.style.opacity = opacity);    
 }
-function setProgress(percentage) {    
+function setProgress(percentage) {
     const offset = (percentage / 100) * circumference;
     circle.style.strokeDashoffset = offset;
 }

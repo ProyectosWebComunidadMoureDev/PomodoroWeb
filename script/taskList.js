@@ -1,4 +1,6 @@
-const tabTasks = document.getElementById('tab-tasks');
+import {myTasksData, checkLocalStorageData} from "./data.js"
+
+/* const tabTasks = document.getElementById('tab-tasks'); */
 const tabTasksresp = document.getElementById('tab-tasks-resp');
 const tasksWindow = document.getElementById('tasks');
 const taskWindowControls = document.getElementById('tasks-window-controls');
@@ -8,6 +10,23 @@ const formNewTask = document.getElementById('add-task');
 const formConfirmDeleteTask = document.getElementById('task-deleteConfirmation');
 
 let draggedItem = null;
+
+function loadTasks() {
+  for (let i = 0; i < myTasksData.length; i++) {
+    const task = myTasksData[i];
+    const item = document.createElement('li');
+    item.classList.add("task");
+    item.innerHTML = `
+      <span class="task-text">${task.taskName}</span>
+      <div class="task-buttons">
+        <button class="edit"><img src="./img/svg/edit.svg"></button>
+        <button class="finish"><img src="./img/svg/check.svg"></button>
+        <button class="delete"><img src="./img/svg/delete.svg"></button>
+      </div>
+    `;
+    insertTask(item);    
+  } 
+}
 
 //insert new task
 const insertTask = (item) => {
@@ -54,7 +73,10 @@ const deleteTask = (item) => {
       closeForm(formConfirmDeleteTask);
     } else if (e.target.type === 'submit') {
       e.preventDefault();
+      console.log(item);
       item.remove();
+      console.log('Tarea eliminada');
+      console.log(myTasksData[0].taskName);
       closeForm(formConfirmDeleteTask);
     } else {
       return;
@@ -185,6 +207,7 @@ const handleTaskControl = (e) => {
       return
     } else if (taskButton.classList.contains('finish')) {
       itemClicked.classList.add('task-finished');
+      
       if (tasksList.getAttribute('data-minimized') === "true") {
         itemClicked.style.display = 'none';
       }
@@ -200,7 +223,7 @@ const handleTaskControl = (e) => {
 
 //close Task Window
 const closeTaskWindow = () => {
-  tabTasks.hidden = false;
+  /* tabTasks.hidden = false; */
   tabTasksresp.hidden = false;
   tasksWindow.hidden = true;
   closeForm(formNewTask);
@@ -253,13 +276,13 @@ const handleWindowControl = (e) => {
 
 // Pestaña
 
-tabTasks.addEventListener('click', () => {
+/* tabTasks.addEventListener('click', () => {
   tabTasks.hidden = true;
   tabTasksresp.hidden = true;
   tasksWindow.hidden = false;
-});
+}); */
 tabTasksresp.addEventListener('click', () => {
-  tabTasks.hidden = true;
+  /* tabTasks.hidden = true; */
   tabTasksresp.hidden = true;
   tasksWindow.hidden = false;
 });
@@ -268,3 +291,9 @@ taskWindowControls.addEventListener("click", handleWindowControl);
 tasksList.addEventListener("click", handleTaskControl);
 formNewTask.addEventListener('click', handleFormEvent);
 formNewTask.addEventListener('submit', handleFormEvent);
+
+
+window.addEventListener("load", () => {
+  checkLocalStorageData();
+  loadTasks();
+});

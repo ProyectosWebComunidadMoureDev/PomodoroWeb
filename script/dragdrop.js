@@ -1,8 +1,10 @@
 // Selecciona todos los elementos con la clase draggable
 const draggables = document.querySelectorAll('.draggable');
 const tasks_window = document.getElementById("tasks");
-const tab_tasks = document.getElementById("tab-tasks");
-
+/* const tab_tasks = document.getElementById("tab-tasks"); */
+const draggableWrappers = document.querySelectorAll('.draggable-wrapper');
+const draggable_icons = document.querySelectorAll('.draggable_icon');
+const tasks_screen = document.getElementById("tasks");
 // Añadir tab_tasks_resp para soporte responsive
 const tab_tasks_resp = document.getElementById("tab-tasks-resp");
 
@@ -13,7 +15,7 @@ const container = document.getElementById('pomodoro_core');
 function resetzIndex() {
     const allWindows = [...document.querySelectorAll('.screen')];
     allWindows.forEach((window) => {
-        window.style.zIndex = 1;
+        window.style.zIndex = 2;
     });
 }
 
@@ -22,12 +24,10 @@ draggables.forEach(draggable => {
     // Selecciona el header de la ventana
     const header = draggable.querySelector('.header');
     
-    // Botones de control de ventanas
-    
+    // Botones de control de ventanas    
     const minimize = draggable.querySelector('.minimize');
     const maximize = draggable.querySelector('.maximize');
-    const close = draggable.querySelector('.close');
-    
+    const close = draggable.querySelector('.close');    
     // Si tiene header le añadimos el evento mousedown al header
     if (header) {
         header.addEventListener('mousedown', onMouseDown);        
@@ -41,13 +41,13 @@ draggables.forEach(draggable => {
         minimize.addEventListener("click", function () {
             draggable.classList.toggle("minimize");
             tasks_window.hidden = true;
-            tab_tasks.hidden = false;
+            /* tab_tasks.hidden = false; */
             tab_tasks_resp.hidden = false;
         });
         close.addEventListener("click", function(){
             draggable.classList.toggle("minimize");
             tasks_window.hidden = true;
-            tab_tasks.hidden = false;
+            /* tab_tasks.hidden = false; */
             tab_tasks_resp.hidden = false;
         });
     }
@@ -57,11 +57,10 @@ draggables.forEach(draggable => {
         event.preventDefault();
         
         document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', onMouseUp);
-        
+        document.addEventListener('mouseup', onMouseUp);        
+        resetzIndex();
         if (draggable.classList.contains("draggable")) {
-            resetzIndex();
-            draggable.style.zIndex = 2;
+            draggable.style.zIndex = 9;
         }        
         const rect = draggable.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
@@ -88,3 +87,43 @@ draggables.forEach(draggable => {
     }
 
 });
+
+draggable_icons.forEach(icon => {
+    let isDragging = false;
+    let icon_offsetX = 0;
+    let icon_offsetY = 0;
+        icon.addEventListener('dblclick', (e) => {
+        const taskScreen = document.getElementById('tasks');
+        taskScreen.classList.remove('minimize');
+        tasks_screen.style.display = "block";
+    });
+    icon.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        icon.style.cursor = 'grab';
+        isDragging = true;
+        // Calculamos las posiciones iniciales del mouse relativo al contenedor
+        icon_offsetX = e.clientX - icon.getBoundingClientRect().left;
+        icon_offsetY = e.clientY - icon.getBoundingClientRect().top;
+        // Cambiar el cursor durante el arrastre
+        icon.style.cursor = 'grab';
+    });
+    // Movimiento del mouse mientras arrastramos
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            // Calculamos las nuevas posiciones usando el desplazamiento del mouse
+            const newX = e.clientX - icon_offsetX;
+            const newY = e.clientY - icon_offsetY - container.getBoundingClientRect().top - 125;
+            icon.style.left = `${newX}px`;
+            icon.style.top = `${newY}px`;
+        }
+    });
+
+    // Cuando se suelta el mouse, detenemos el arrastre
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            icon.style.cursor = 'pointer'; // Restauramos el cursor normal
+        }
+    });
+});
+
