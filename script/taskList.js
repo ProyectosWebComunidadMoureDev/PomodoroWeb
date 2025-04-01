@@ -1,4 +1,6 @@
-const tabTasks = document.getElementById('tab-tasks');
+import {myTasksData, checkLocalStorageData, updateSettingsData} from "./data.js"
+
+/* const tabTasks = document.getElementById('tab-tasks'); */
 const tabTasksresp = document.getElementById('tab-tasks-resp');
 const tasksWindow = document.getElementById('tasks');
 const taskWindowControls = document.getElementById('tasks-window-controls');
@@ -8,6 +10,28 @@ const formNewTask = document.getElementById('add-task');
 const formConfirmDeleteTask = document.getElementById('task-deleteConfirmation');
 
 let draggedItem = null;
+
+function loadTasks() {
+  for (let i = 0; i < myTasksData.length; i++) {
+    const task = myTasksData[i];
+
+    console.log(task.active);
+    if (task.active) {      
+      const item = document.createElement('li');
+      item.classList.add("task");
+      item.innerHTML = `
+      <span aria-hidden="true" aria-label=${task.taskid} class="task-id"></span>
+      <span class="task-text">${task.taskName}</span>
+      <div class="task-buttons">
+      <button class="edit"><img src="./img/svg/edit.svg"></button>
+      <button class="finish"><img src="./img/svg/check.svg"></button>
+      <button class="delete"><img src="./img/svg/delete.svg"></button>
+      </div>
+      `;
+      insertTask(item);    
+    }
+  } 
+}
 
 //insert new task
 const insertTask = (item) => {
@@ -45,7 +69,7 @@ const editTask = (form, itemIndex) => {
 
 //delete task
 const deleteTask = (item) => {
-  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;
+  formConfirmDeleteTask.querySelector("#task-delete-name").innerText = item.querySelector(".task-text").innerText;  
   tasksList.hidden = true;
   moreItems.hidden = true;
 
@@ -54,7 +78,16 @@ const deleteTask = (item) => {
       closeForm(formConfirmDeleteTask);
     } else if (e.target.type === 'submit') {
       e.preventDefault();
-      item.remove();
+      const itemId = parseInt(item.querySelector(".task-id").ariaLabel);       
+      /* myTasksData = myTasksData.filter(task => task.taskid !== itemId); */
+      
+      const index = myTasksData.findIndex(task => task.taskid === itemId);
+      if (index !== -1) {
+        myTasksData[index].active = false;
+      }
+
+      updateSettingsData();
+      item.remove();      
       closeForm(formConfirmDeleteTask);
     } else {
       return;
@@ -116,12 +149,19 @@ const addNewTask = (form) => {
       }
     }
   });
-
+  const newTaskId = myTasksData.length > 0 ? myTasksData[myTasksData.length - 1].taskid + 1 : 1;
+  myTasksData.push({
+    taskid: newTaskId,
+    taskName: taskName,
+    completed: false,
+    active: true
+  });
+  updateSettingsData();
 }
 
 //submit form
 const submitAddForm = (form) => {
-  const itemIndex = form.getAttribute('data-item');
+  const itemIndex = form.getAttribute('data-item');  
   if (itemIndex === null) {
     addNewTask(form);
   } else {
@@ -185,6 +225,7 @@ const handleTaskControl = (e) => {
       return
     } else if (taskButton.classList.contains('finish')) {
       itemClicked.classList.add('task-finished');
+      
       if (tasksList.getAttribute('data-minimized') === "true") {
         itemClicked.style.display = 'none';
       }
@@ -200,7 +241,7 @@ const handleTaskControl = (e) => {
 
 //close Task Window
 const closeTaskWindow = () => {
-  tabTasks.hidden = false;
+  /* tabTasks.hidden = false; */
   tabTasksresp.hidden = false;
   tasksWindow.hidden = true;
   closeForm(formNewTask);
@@ -253,13 +294,13 @@ const handleWindowControl = (e) => {
 
 // Pestaña
 
-tabTasks.addEventListener('click', () => {
+/* tabTasks.addEventListener('click', () => {
   tabTasks.hidden = true;
   tabTasksresp.hidden = true;
   tasksWindow.hidden = false;
-});
+}); */
 tabTasksresp.addEventListener('click', () => {
-  tabTasks.hidden = true;
+  /* tabTasks.hidden = true; */
   tabTasksresp.hidden = true;
   tasksWindow.hidden = false;
 });
@@ -268,3 +309,9 @@ taskWindowControls.addEventListener("click", handleWindowControl);
 tasksList.addEventListener("click", handleTaskControl);
 formNewTask.addEventListener('click', handleFormEvent);
 formNewTask.addEventListener('submit', handleFormEvent);
+
+
+window.addEventListener("load", () => {
+  checkLocalStorageData();
+  loadTasks();
+});

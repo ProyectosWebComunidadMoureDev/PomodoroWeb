@@ -1,5 +1,6 @@
 import {updatePomodoroModes} from "./pomodoro.js"
 import { POMODORO, TIMER_CONFIG } from "./pomodoro.js";
+
 const statisticsData = {
     cyclesCompleted: 0,
     workTime: { completed: 0, nocompleted: 0 },
@@ -26,12 +27,26 @@ const settingsData = {
     music: true
 }
 
+const tasksData = [
+    {
+        taskid:1,
+        taskName: "Aprender JavaScript",
+        completed: false,
+        createdAt: "2025-02-08T12:34:56.789Z",
+        totalWorkTime: null,
+        active: true
+    }
+]
+
 let  myStatisticsData = {}
 let mySettingsData = {}
+let myTasksData = []
+
 
 function checkLocalStorageData() {
     const localStorageData = JSON.parse(localStorage.getItem('statisticsData'));
     const localStorageSettings = JSON.parse(localStorage.getItem('settingsData'));
+    const localStorageTasks = JSON.parse(localStorage.getItem('tasksData'));
     if (!localStorageData) {
         console.log("No hay datos statisticsData en el localStorage, se guardan los datos por defecto.");
         localStorage.setItem('statisticsData', JSON.stringify(statisticsData));
@@ -40,13 +55,20 @@ function checkLocalStorageData() {
         console.log("No hay datos settingsData en el localStorage, se guardan los datos por defecto");
         localStorage.setItem('settingsData', JSON.stringify(settingsData));
     }
+    if (!localStorageTasks) {
+        console.log("No hay datos tasksData en el localStorage, se guardan los datos por defecto");
+        localStorage.setItem('tasksData', JSON.stringify(tasksData)); 
+    }
+
     myStatisticsData = JSON.parse(localStorage.getItem('statisticsData'));
     mySettingsData = JSON.parse(localStorage.getItem('settingsData'));
+    myTasksData = JSON.parse(localStorage.getItem('tasksData'));
 }
 
 function updateSettingsData() {
     localStorage.setItem('settingsData', JSON.stringify(mySettingsData));
     localStorage.setItem('statisticsData', JSON.stringify(myStatisticsData));
+    localStorage.setItem('tasksData', JSON.stringify(myTasksData));
     updatePomodoroModes();
 }
 
@@ -65,5 +87,5 @@ function pomodoroCompleted(mode, completed) {
     updateSettingsData();
 }
 
-export { mySettingsData, checkLocalStorageData, updateSettingsData, pomodoroCompleted }
+export { myTasksData ,mySettingsData, checkLocalStorageData, updateSettingsData, pomodoroCompleted }
 
